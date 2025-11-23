@@ -11,7 +11,17 @@
 */
 
 
-/* ----- TYPE ----- */
-export type UserRoleConfig = {
-	roleName: string;
-}
+/* ----- IMPORTS ----- */
+import React from "react";
+
+
+/* ----- COMPONENT ----- */
+const NotFoundPage: React.FC = () => {
+	return (
+		<div className="flex justify-center items-center h-screen">
+			<h1 className="textStyle-title">404 - Not Found</h1>
+		</div>
+	);
+};
+
+export default NotFoundPage;
