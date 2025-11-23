@@ -11,7 +11,17 @@
 */
 
 
-/* ----- TYPE ----- */
-export type UserRoleConfig = {
-	roleName: string;
-}
+/* ----- IMPORTS ----- */
+import React from "react";
+
+
+/* ----- COMPONENT ----- */
+const SearchPage: React.FC = () => {
+	return (
+		<div className="flex justify-center items-center h-screen">
+			<h1 className="textStyle-title">Welcome to Search page</h1>
+		</div>
+	);
+};
+
+export default SearchPage;

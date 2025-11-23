@@ -1,12 +1,14 @@
-/* Authors:
->> Clément Lacroix - { clacroix2@etu.uqac.cq }
->> Lucas Aubriet - { laubriet@etu.uqac.cq }
->> Martin Vidal - { mvidal@etu.uqac.cq }
->> Nathan TIROLF - { ntirolf@etu.uqac.cq }
->> Romane Lesueur - { rlesueur@etu.uqac.cq }
+/*
+	Authors:
+	>> Clément Lacroix - { clacroix2@etu.uqac.cq }
+	>> Lucas Aubriet - { laubriet@etu.uqac.cq }
+	>> Martin Vidal - { mvidal@etu.uqac.cq }
+	>> Nathan TIROLF - { ntirolf@etu.uqac.cq }
+	>> Romane Lesueur - { rlesueur@etu.uqac.cq }
 
-(„• ֊ •„)❤  <  Have a good day !
---U-----U------------------------ */
+	(„• ֊ •„)❤  <  Have a good day !
+	--U-----U------------------------
+*/
 
 
 /* ----- IMPORTS ----- */
@@ -14,15 +16,15 @@
 
 
 /* ----- CLASSE ----- */
-.text-style-title {
+.textStyle-title {
 	font-family: "Montserrat Alternates", sans-serif;
 	font-weight: 700;
 	font-size: 2.5rem;
 	letter-spacing: 2px;
 }
 
-.text-style-subtitle {
+.textStyle-subtitle {
 	font-family: "Montserrat Alternates", sans-serif;
 	font-weight: 600;
-	font-size: 1.75rem;
+	font-size: 1.50rem;
 }
