@@ -1,17 +1,21 @@
-// Authors:
-// >> Clément Lacroix - { clacroix2@etu.uqac.cq }
-// >> Lucas Aubriet - { laubriet@etu.uqac.cq }
-// >> Martin Vidal - { mvidal@etu.uqac.cq }
-// >> Nathan TIROLF - { ntirolf@etu.uqac.cq }
-// >> Romane Lesueur - { rlesueur@etu.uqac.cq }
-// 
-// („• ֊ •„)❤  <  Have a good day !
-// --U-----U------------------------
+/*
+	Authors:
+	>> Clément Lacroix - { clacroix2@etu.uqac.cq }
+	>> Lucas Aubriet - { laubriet@etu.uqac.cq }
+	>> Martin Vidal - { mvidal@etu.uqac.cq }
+	>> Nathan TIROLF - { ntirolf@etu.uqac.cq }
+	>> Romane Lesueur - { rlesueur@etu.uqac.cq }
+
+	(„• ֊ •„)❤  <  Have a good day !
+	--U-----U------------------------
+*/
+
 
 /* ----- IMPORTS ----- */
 import { useEffect, useState } from "react";
 import { GetPagesDatas } from "./data/PageData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "@/components/Layout/NavBar/NavBar";
 
 /* ----- COMPONENT ----- */
 function App() {
@@ -37,7 +41,8 @@ function App() {
 	return (
 		<>
 			<Router>
-				<div>
+				<header><NavBar /></header>
+				<body>
 					<Routes>
 						{pagesDatas.map((pageData) => {
 							// const content: React.ReactElement = pageData.logged ?
@@ -49,7 +54,7 @@ function App() {
 							);
 						})}
 					</Routes>
-				</div>
+				</body>
 			</Router>
 		</>
 	)

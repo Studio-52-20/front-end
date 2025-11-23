@@ -1,0 +1,72 @@
+/*
+	Authors:
+	>> Clément Lacroix - { clacroix2@etu.uqac.cq }
+	>> Lucas Aubriet - { laubriet@etu.uqac.cq }
+	>> Martin Vidal - { mvidal@etu.uqac.cq }
+	>> Nathan TIROLF - { ntirolf@etu.uqac.cq }
+	>> Romane Lesueur - { rlesueur@etu.uqac.cq }
+
+	(„• ֊ •„)❤  <  Have a good day !
+	--U-----U------------------------
+*/
+
+.sidebar {
+	position: fixed;
+	padding-top: 100px;
+	right: 0px;
+	height: 100vh;
+	width: 60vw;
+	background-color: var(--color-bangladesh-green);
+	display: flex;
+	flex-direction: column;
+	transition: transform 0.3s ease-in-out;
+	z-index: 101;
+}
+
+.slideIn {
+	transform: translateX(0);
+}
+
+.slideOut {
+	transform: translateX(100vw);
+}
+
+.navbarLink {
+	display: flex;
+	width: 100%;
+	transition: border-bottom 0.3s;
+	padding: 20px;
+}
+
+.activeLink {
+	border-left: 3px solid var(--color-anti-flash-white);
+}
+
+.overlay {
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	height: 100vh;
+	width: 100vw;
+	z-index: -1;
+	transition: all 0.3s;
+	;
+}
+
+.overlayShow {
+	z-index: 102;
+	backdrop-filter: blur(4px);
+	background-color: var(--color-dark-green-o50);
+}
+
+@media screen and (max-width: 600px) {
+	.sidebar {
+		width: 80vw;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.sidebar {
+		width: 100vw;
+	}
+}

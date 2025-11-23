@@ -1,20 +1,27 @@
-/* Authors:
->> Clément Lacroix - { clacroix2@etu.uqac.cq }
->> Lucas Aubriet - { laubriet@etu.uqac.cq }
->> Martin Vidal - { mvidal@etu.uqac.cq }
->> Nathan TIROLF - { ntirolf@etu.uqac.cq }
->> Romane Lesueur - { rlesueur@etu.uqac.cq }
+/*
+	Authors:
+	>> Clément Lacroix - { clacroix2@etu.uqac.cq }
+	>> Lucas Aubriet - { laubriet@etu.uqac.cq }
+	>> Martin Vidal - { mvidal@etu.uqac.cq }
+	>> Nathan TIROLF - { ntirolf@etu.uqac.cq }
+	>> Romane Lesueur - { rlesueur@etu.uqac.cq }
 
-(„• ֊ •„)❤  <  Have a good day !
---U-----U------------------------ */
+	(„• ֊ •„)❤  <  Have a good day !
+	--U-----U------------------------
+*/
 
 
 /* ----- VARIABLE ----- */
 :root {
 	--color-dark-green: #032221;
+	--color-dark-green-o50: rgba(3, 34, 33, 0.5);
+
 	--color-bangladesh-green: #03624C;
+
 	--color-mountain-meadow: #26A67C;
+
 	--color-caribbean-green: #00DF81;
+
 	--color-anti-flash-white: #F1F7F6;
 }
 

@@ -11,7 +11,21 @@
 */
 
 
-/* ----- TYPE ----- */
-export type UserRoleConfig = {
-	roleName: string;
+/* ----- CLASSE ----- */
+.display-laptop-mode {
+    display: block;
+}
+
+.display-mobile-mode {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .display-laptop-mode {
+        display: none;
+    }
+
+    .display-mobile-mode {
+        display: block;
+    }
 }
