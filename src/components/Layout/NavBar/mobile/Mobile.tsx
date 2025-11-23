@@ -26,9 +26,9 @@ const NavBar: React.FC = () => {
 
 	return (
 		<>
-			<div className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4">
+			<div className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 h-28">
 				<NavLink to="/" onClick={() => setOpen(false)}>
-					<Studio5220TextLogo color="var(--color-mountain-meadow)" size={0.5} />
+					<Studio5220TextLogo color="var(--color-mountain-meadow)" size={0.6} />
 				</NavLink>
 				<div onClick={() => setOpen(!open)}>
 					<Ellipsis size={32} stroke="var(--color-mountain-meadow)" />
