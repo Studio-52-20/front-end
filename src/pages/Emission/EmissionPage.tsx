@@ -12,6 +12,8 @@
 
 
 /* ----- IMPORTS ----- */
+import DisplayComment from "@/components/Display/Comment/Comment";
+import DisplayUserHover from "@/components/Display/User/Hover/DisplayUserHover";
 import type { EmissionConfig } from "@/type/EmissionConfig";
 import type { SerieConfig } from "@/type/SerieConfig";
 import React from "react";
@@ -128,21 +130,14 @@ const EmissionPage: React.FC = () => {
 					<div className="textStyle-subtitle color-anti-flash-white">
 						{exampleEmission.name}
 					</div>
+					{/* <AudioPlayer src={exampleEmission.audio} /> */}
 				</div>
+
 				<div className="background-bangladesh-green w-full h-full rounded-2xl flex flex-col p-12 gap-8 overflow-y-auto">
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Participants</div>
 						<div className="flex flex-row">
-							{exampleEmission.participants.map((participant) => (
-								<div key={participant.id} className="group flex flex-row items-center gap-2 -ml-6 first:ml-0 rounded-full transition-all duration-300 border-4 border-transparent group-hover:border-(--color-mountain-meadow) hover:pr-6 hover:bg-(--color-mountain-meadow)">
-									<img src={participant.avatar} alt={participant.username} className="w-16 h-16 rounded-full object-cover" />
-									<div className="overflow-hidden max-w-0 group-hover:max-w-[200px] transition-all duration-300">
-										<div className="-translate-x-2.5 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 textStyle-subtitle color-anti-flash-white whitespace-nowrap">
-											{participant.username}
-										</div>
-									</div>
-								</div>
-							))}
+							{exampleEmission.participants.map((participant) => <DisplayUserHover key={participant.id} user={participant} />)}
 						</div>
 					</div>
 					<div className="flex flex-col gap-2">
@@ -152,17 +147,7 @@ const EmissionPage: React.FC = () => {
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Comments</div>
 						<div className="flex flex-col gap-4 pr-2">
-							{
-								exampleEmission.comments.map((comment) => (
-									<div key={comment.id} className="flex flex-col gap-1 p-4 background-mountain-meadow rounded-xl">
-										<div className="flex flex-row items-center gap-4">
-											<img src={comment.user.avatar} alt={comment.user.username} className="w-10 h-10 rounded-full object-cover" />
-											<div className="textStyle-subtitle color-anti-flash-white">{comment.user.username}</div>
-											<div className="textStyle-caption color-anti-flash-white">{comment.date.toLocaleDateString()}</div>
-										</div>
-										<div className="textStyle-text color-anti-flash-white">{comment.content}</div>
-									</div>
-								))}
+							{exampleEmission.comments.map((comment) => <DisplayComment key={comment.id} comment={comment} />)}
 						</div>
 					</div>
 				</div>
