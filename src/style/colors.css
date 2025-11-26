@@ -35,8 +35,16 @@
 	color: var(--color-bangladesh-green);
 }
 
+.background-bangladesh-green {
+	background-color: var(--color-bangladesh-green);
+}
+
 .color-mountain-meadow {
 	color: var(--color-mountain-meadow);
+}
+
+.background-mountain-meadow {
+	background-color: var(--color-mountain-meadow);
 }
 
 .color-caribbean-green {

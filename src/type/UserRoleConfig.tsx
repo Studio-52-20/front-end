@@ -15,3 +15,16 @@
 export type UserRoleConfig = {
 	roleName: string;
 }
+
+export type DisplayUserConfig = {
+	id: number;
+	username: string;
+	avatar: string;
+}
+
+export type UserConfig = {
+	id: number;
+	username: string;
+	avatar: string;
+	role: UserRoleConfig;
+}
