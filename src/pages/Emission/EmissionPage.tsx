@@ -29,41 +29,52 @@ const EmissionPage: React.FC = () => {
 	if (!emission) return <NotFoundPage />;
 
 	return (
-		<div className="flex flex-col h-screen">
+		<div className="flex flex-col min-h-screen">
 			<div className="h-28 shrink-0"></div>
-			<div className="flex flex-col lg:flex-row justify-center items-center grow p-8 gap-8 overflow-y-auto">
-				<div className="background-bangladesh-green lg:w-1/2 w-full lg:h-full h-1/2 rounded-2xl flex flex-col p-4 gap-4">
-					<div className="p-8 flex justify-center items-center">
-						<img src={emission.image} alt={emission.name} className="lg:w-full h-full aspect-square object-cover rounded-2xl" />
+
+			<div className="flex flex-col xl:flex-row grow p-8 gap-8 xl:h-[calc(100vh-7rem)]">
+				<div className="background-bangladesh-green  rounded-2xl p-8 lg:p-12 flex flex-col gap-6 xl:flex-col lg:flex-row w-full xl:w-1/3  shrink-0">
+					<div className="w-full flex justify-center p-8">
+						<img src={emission.image} alt={emission.name} className="w-[50vw] max-w-[350px] aspect-square object-cover rounded-2xl" />
 					</div>
+
 					<div className="flex flex-col gap-4 w-full justify-center items-center">
-						<div className="textStyle-subtitle color-anti-flash-white">
+						<div className="textStyle-subtitle color-anti-flash-white text-center">
 							{emission.name}
 						</div>
-						<AudioPlayer src={emission.audio} />
+
+						<div className="w-full flex flex-col md:flex-row items-center justify-center gap-4">
+							<AudioPlayer src={emission.audio} />
+						</div>
 					</div>
 				</div>
 
-				<div className="background-bangladesh-green w-full h-full rounded-2xl flex flex-col p-12 gap-8 overflow-y-auto">
+				<div className="background-bangladesh-green rounded-2xl p-8 flex flex-col gap-10 w-full xl:w-2/3 overflow-y-auto xl:overflow-y-auto">
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Participants</div>
-						<div className="flex flex-row">
-							{emission.participants.map((participant) => <DisplayUserHover key={participant.id} user={participant} />)}
+						<div className="flex flex-row flex-wrap gap-2">
+							{emission.participants.map((participant) => (
+								<DisplayUserHover key={participant.id} user={participant} />
+							))}
 						</div>
 					</div>
+
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Description</div>
 						<div className="textStyle-text color-anti-flash-white">{emission.description}</div>
 					</div>
+
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Comments</div>
-						<div className="flex flex-col gap-4 pr-2">
-							{emission.comments.map((comment) => <DisplayComment key={comment.id} comment={comment} />)}
+						<div className="flex flex-col gap-4">
+							{emission.comments.map((comment) => (
+								<DisplayComment key={comment.id} comment={comment} />
+							))}
 						</div>
 					</div>
 				</div>
 			</div>
-		</div >
+		</div>
 	);
 };
 
