@@ -21,3 +21,11 @@ export type UserConfig = {
 	username: string;
 	avatar: string;
 }
+
+
+/* ----- Data ----- */
+export const DefaultUserConfig: UserConfig = {
+	id: -1,
+	username: "Unknown User",
+	avatar: "/img/anonymous_user.png",
+}

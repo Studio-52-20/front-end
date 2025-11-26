@@ -28,7 +28,7 @@ const PagesDatas: PageConfig[] = [
 	{ name: "The Studio", path: "/studio", content: StudioPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Search", path: "/search", content: SearchPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "My Likes", path: "/likes", content: LikesPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetUserRoleByName(["Admin", "Viewer"]) },
-	{ name: "Emission", path: "/emission", content: EmissionPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
+	{ name: "Emission", path: "/emission/:emissionId", content: EmissionPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	// { name: "Login", path: "/login", content: "@/pages/LoginPage", displayInNavBar: false, displayNavBar: false, allowedAccessRoles: GetAllUserRoles() },
 	// { name: "AdminPanel", path: "/admin-panel", content: "@/pages/AdminPanel", displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetUserRoleByName("Admin") },
 	{ name: "NotFound", path: "*", content: NotFoundPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
