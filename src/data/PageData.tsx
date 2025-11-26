@@ -20,6 +20,7 @@ import SearchPage from "@/pages/Search/SearchPage";
 import LikesPage from "@/pages/Likes/LikesPage";
 import NotFoundPage from "@/pages/NotFound/NotFoundPage";
 import EmissionPage from "@/pages/Emission/EmissionPage";
+import { matchPath } from "react-router-dom";
 
 
 /* ----- DATAS ----- */
@@ -44,8 +45,10 @@ function GetPageDataByName(name: string): PageConfig | undefined {
 	return PagesDatas.find((page) => page.name === name);
 }
 
-function GetPageDataByPath(path: string): PageConfig | undefined {
-	return PagesDatas.find((page) => page.path === path);
+function GetPageDataByPath(pathname: string): PageConfig | undefined {
+	return PagesDatas.find((page) => {
+		return matchPath(page.path, pathname) !== null;
+	});
 }
 
 function GetPagesDatasInNavBar() {
