@@ -41,20 +41,18 @@ function App() {
 	return (
 		<>
 			<Router>
-				<header><NavBar /></header>
-				<body>
-					<Routes>
-						{pagesDatas.map((pageData) => {
-							// const content: React.ReactElement = pageData.logged ?
-							//     <PrivateRoute><pageData.content /></PrivateRoute>:
-							//     <pageData.content />;
-							const content: React.ReactElement = <pageData.content />;
-							return (
-								<Route key={pageData.name} path={pageData.path} element={content} />
-							);
-						})}
-					</Routes>
-				</body>
+				<NavBar />
+				<Routes>
+					{pagesDatas.map((pageData) => {
+						// const content: React.ReactElement = pageData.logged ?
+						//     <PrivateRoute><pageData.content /></PrivateRoute>:
+						//     <pageData.content />;
+						const content: React.ReactElement = <pageData.content />;
+						return (
+							<Route key={pageData.name} path={pageData.path} element={content} />
+						);
+					})}
+				</Routes>
 			</Router>
 		</>
 	)
