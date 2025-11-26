@@ -31,6 +31,10 @@
 	color: var(--color-dark-green);
 }
 
+.background-dark-green {
+	background-color: var(--color-dark-green);
+}
+
 .color-bangladesh-green {
 	color: var(--color-bangladesh-green);
 }

@@ -18,6 +18,7 @@ import { getEmissionById } from "@/data/TemporaryData";
 import React from "react";
 import NotFoundPage from "../NotFound/NotFoundPage";
 import { useParams } from "react-router-dom";
+import AudioPlayer from "@/components/AudioPlayer/AudioPlayer";
 
 
 /* ----- COMPONENT ----- */
@@ -31,14 +32,16 @@ const EmissionPage: React.FC = () => {
 		<div className="flex flex-col h-screen">
 			<div className="h-28 shrink-0"></div>
 			<div className="flex flex-col lg:flex-row justify-center items-center grow p-8 gap-8 overflow-y-auto">
-				<div className="background-bangladesh-green lg:w-1/2 w-full lg:h-full h-1/2 rounded-2xl flex lg:flex-col flex-row p-8 gap-8">
+				<div className="background-bangladesh-green lg:w-1/2 w-full lg:h-full h-1/2 rounded-2xl flex flex-col p-4 gap-4">
 					<div className="p-8 flex justify-center items-center">
 						<img src={emission.image} alt={emission.name} className="lg:w-full h-full aspect-square object-cover rounded-2xl" />
 					</div>
-					<div className="textStyle-subtitle color-anti-flash-white">
-						{emission.name}
+					<div className="flex flex-col gap-4 w-full justify-center items-center">
+						<div className="textStyle-subtitle color-anti-flash-white">
+							{emission.name}
+						</div>
+						<AudioPlayer src={emission.audio} />
 					</div>
-					{/* <AudioPlayer src={emission.audio} /> */}
 				</div>
 
 				<div className="background-bangladesh-green w-full h-full rounded-2xl flex flex-col p-12 gap-8 overflow-y-auto">

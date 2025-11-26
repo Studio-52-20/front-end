@@ -21,27 +21,27 @@ const exampleUsers: UserConfig[] = [
 	{
 		id: 1,
 		username: "Nathan",
-		avatar: "example/img/nathan.png",
+		avatar: "/example/img/nathan.png",
 	},
 	{
 		id: 2,
 		username: "Clement",
-		avatar: "example/img/clement.jpg",
+		avatar: "/example/img/clement.jpg",
 	},
 	{
 		id: 3,
 		username: "Martin",
-		avatar: "example/img/martin.jpg",
+		avatar: "/example/img/martin.jpg",
 	},
 	{
 		id: 4,
 		username: "Romane",
-		avatar: "example/img/romane.jpg",
+		avatar: "/example/img/romane.jpg",
 	},
 	{
 		id: 5,
 		username: "Lucas",
-		avatar: "example/img/lucas.jpg",
+		avatar: "/example/img/lucas.jpg",
 	},
 ];
 
@@ -54,7 +54,7 @@ const exampleSerie: SerieConfig = {
 	id: 1,
 	name: "L'Echo du Cauchemar",
 	description: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-	image: "example/img/echo_du_cauchemar.png",
+	image: "/example/img/echo_du_cauchemar.png",
 	emissions: [],
 };
 
@@ -69,7 +69,7 @@ const exampleEmissions: EmissionConfig[] = [
 		id: 1,
 		name: "Episode 1 - La Génèse des CreepyPastas",
 		description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
-		audio: "example/audio/creepypasta_1.MP3",
+		audio: "/example/audio/creepypasta_1.MP3",
 		date: new Date(),
 		image: "/example/img/creepypasta_1.png",
 		participants: [
@@ -85,31 +85,31 @@ const exampleEmissions: EmissionConfig[] = [
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 2,
 				user: getUserById(4),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 3,
 				user: getUserById(5),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 4,
 				user: getUserById(5),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 5,
 				user: getUserById(4),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 6,
 				user: getUserById(5),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
@@ -121,7 +121,7 @@ const exampleEmissions: EmissionConfig[] = [
 		id: 2,
 		name: "Episode 2 - SlenderMan",
 		description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
-		audio: "example/audio/creepypasta_2.MP3",
+		audio: "/example/audio/creepypasta_2.MP3",
 		date: new Date(),
 		image: "/example/img/creepypasta_2.png",
 		participants: [
@@ -136,31 +136,31 @@ const exampleEmissions: EmissionConfig[] = [
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 2,
 				user: getUserById(4),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 3,
 				user: getUserById(5),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 4,
 				user: getUserById(3),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 5,
 				user: getUserById(4),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
 			},
 			{
-				id: 1,
+				id: 6,
 				user: getUserById(5),
 				date: new Date(),
 				content: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.",
