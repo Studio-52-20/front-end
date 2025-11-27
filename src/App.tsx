@@ -13,9 +13,10 @@
 
 /* ----- IMPORTS ----- */
 import { useEffect, useState } from "react";
-import { GetPagesDatas } from "./data/PageData";
+import { GetPagesDatas } from "@/data/PageData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "@/components/Layout/NavBar/NavBar";
+import Footer from "@/components/Layout/Footer/Footer";
 
 /* ----- COMPONENT ----- */
 function App() {
@@ -41,21 +42,14 @@ function App() {
 	return (
 		<>
 			<Router>
-				<header><NavBar /></header>
-				<body>
-					<Routes>
-						{pagesDatas.map((pageData) => {
-							// const content: React.ReactElement = pageData.logged ?
-							//     <PrivateRoute><pageData.content /></PrivateRoute>:
-							//     <pageData.content />;
-							const content: React.ReactElement = <pageData.content />;
-							return (
-								<Route key={pageData.name} path={pageData.path} element={content} />
-							);
-						})}
-					</Routes>
-				</body>
-			</Router>
+				<NavBar />
+				<Routes>
+					{pagesDatas.map((pageData) =>
+						<Route key={pageData.name} path={pageData.path} element={<pageData.content />} />
+					)}
+				</Routes>
+				<Footer />
+			</Router >
 		</>
 	)
 }
