@@ -13,7 +13,7 @@
 
 /* ----- IMPORTS ----- */
 import { GetPageDataByPath } from "@/data/PageData";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 
@@ -26,6 +26,12 @@ import Mobile from "@/components/Layout/NavBar/mobile/Mobile";
 const NavBar: React.FC = () => {
 	const location = useLocation();
 	const pageData = GetPageDataByPath(location.pathname);
+
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, [pathname]);
 
 	if (!pageData || !pageData.displayNavBar) {
 		return null;
