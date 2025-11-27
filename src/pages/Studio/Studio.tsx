@@ -69,9 +69,12 @@ const StudioPage: React.FC = () => {
 				}}
 			/>
 			
+			{/* ------------------------ C'EST QUOI ? ------------------------  */}
 			<section className="min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16">
 				<div className="max-w-7xl mx-auto w-full">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+						{/* ------ IMAGE ------  */}
 						<div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden ml-12">
 							<img 
 								src="/img/tableDeMixage.png" 
@@ -80,6 +83,7 @@ const StudioPage: React.FC = () => {
 							/>
 						</div>
 						
+						{/* ------ TEXTE ------  */}
 						<div className="order-1 lg:order-2">
 							<h2 className={`textStyle-title mb-6 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
 								C'EST QUOI ?
@@ -112,10 +116,13 @@ const StudioPage: React.FC = () => {
 					</div>
 				</div>
 			</section>
-
+			
+			{/* ------------------------ OU NOUS ECOUTER ? ------------------------  */}
 			<section className={`min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16 ${hubertMode ? 'bg-[#FFF0F5]' : 'bg-[var(--color-dark-green-o50)]'}`}>
 				<div className="max-w-7xl mx-auto w-full">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+						{/* ------ TEXTE ------  */}
 						<div>
 							<h2 className={`textStyle-title mb-6 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
 								OÙ NOUS ÉCOUTER ?
@@ -132,46 +139,49 @@ const StudioPage: React.FC = () => {
 								Suis-nous pour ne rien manquer 👇
 							</p>
 
-						<div className="mt-8 space-y-4">
-							<a href="https://www.instagram.com/studio52.20/" 
-								target="_blank"          
-								rel="noopener noreferrer"
-								className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
-								<img 
-									src="/svg/instagramIcon.svg" 
-									alt="Instagram" 
-									className="w-6 h-6"
-								/> 
-								Instagram : @studio52.20
-							</a>
-
-							<a href="https://open.spotify.com/show/4FAq7xczKaPkyk5q2ZfeHA" 
-								target="_blank"           
-								rel="noopener noreferrer" 
-								className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
-								<img 
-									src="/svg/spotifyIcon.svg" 
-									alt="Spotify" 
-									className="w-6 h-6"
-								/>
-								Spotify : Studio5220
-							</a>
-							
-							<a href="https://discord.com/invite/nB2CBCfS3" 
-								className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}
-								target="_blank"
-								rel="noopener noreferrer">
+							{/* --- HYPERLIENS ---  */}
+							{/* Instagram  */}
+							<div className="mt-8 space-y-4">
+								<a href="https://www.instagram.com/studio52.20/" 
+									target="_blank"          
+									rel="noopener noreferrer"
+									className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
 									<img 
-										src="/svg/discordIcon.svg" 
-										alt="Discord" 
-										className="w-5 h-5"
+										src="/svg/instagramIcon.svg" 
+										alt="Instagram" 
+										className="w-6 h-6"
+									/> 
+									Instagram : @studio52.20
+								</a>
+								{/* Spotify */}
+								<a href="https://open.spotify.com/show/4FAq7xczKaPkyk5q2ZfeHA" 
+									target="_blank"           
+									rel="noopener noreferrer" 
+									className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+									<img 
+										src="/svg/spotifyIcon.svg" 
+										alt="Spotify" 
+										className="w-6 h-6"
 									/>
-									Discord : Studio 52.20
-							</a>
-							
+									Spotify : Studio5220
+								</a>
+								{/* Discord */}
+								<a href="https://discord.com/invite/nB2CBCfS3" 
+									className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}
+									target="_blank"
+									rel="noopener noreferrer">
+										<img 
+											src="/svg/discordIcon.svg" 
+											alt="Discord" 
+											className="w-5 h-5"
+										/>
+										Discord : Studio 52.20
+								</a>
+								
+							</div>
 						</div>
-					</div>
 
+						{/* ------ IMAGE ------  */}
 						<div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden ml-12">
 							<img 
 								src="/img/casqueAudio.png" 
@@ -183,9 +193,11 @@ const StudioPage: React.FC = () => {
 				</div>
 			</section>
 
+			{/* ------------------------ TU VEUX PARTICIPER ? ------------------------  */}
 			<section className="min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16">
 				<div className="max-w-7xl mx-auto w-full">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+						{/* ------ IMAGE ------  */}
 						<div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden ml-12">
 							<img 
 								src="/img/microphone.png" 
@@ -193,7 +205,8 @@ const StudioPage: React.FC = () => {
 								className="w-full h-full object-cover"
 							/>
 						</div>
-						
+
+						{/* ------ TEXTE ------  */}
 						<div className="order-1 lg:order-2">
 							<h2 className={`textStyle-title mb-6 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
 								TU VEUX PARTICIPER ?
@@ -235,6 +248,7 @@ const StudioPage: React.FC = () => {
 				</div>
 			</section>
 
+			{/* ------------------------ L'EQUIPE ------------------------  */}
 			<section className={`min-h-screen flex flex-col justify-center py-16 px-4 md:px-8 lg:px-16 ${hubertMode ? 'bg-[#FFF0F5]' : 'bg-[var(--color-dark-green-o50)]'}`}>
 				<div className="max-w-7xl mx-auto w-full">
 					<h2 className={`textStyle-title mb-12 text-center ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
@@ -278,10 +292,12 @@ const StudioPage: React.FC = () => {
 				</div>
 			</section>
 			
+			{/* ------------------------ FOOTER ------------------------  */}
 			<footer className={hubertMode ? 'bg-[#FFB6C1] py-12 px-4 md:px-8 lg:px-16' : 'bg-[var(--color-bangladesh-green)] py-12 px-4 md:px-8 lg:px-16'}>
 				<div className="max-w-7xl mx-auto">
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
 						
+						{/* ------ Colone 1 : RADIO 52.20 ------  */}
 						<div>
 							<h3 className={`textStyle-subtitle mb-4 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
 								Radio 52.20
@@ -303,6 +319,7 @@ const StudioPage: React.FC = () => {
 							</button>
 						</div>
 
+						{/* ------ Colone 2 : CONTACT ------  */}
 						<div>
 							<h3 className={`textStyle-subtitle mb-4 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
 								Contact
@@ -322,12 +339,15 @@ const StudioPage: React.FC = () => {
 							</div>
 						</div>
 
+						{/* ------ Colone 3 : RESEAUX SOCIAUX ------  */}
 						<div>
 							<h3 className={`textStyle-subtitle mb-4 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
 								Réseaux sociaux
 							</h3>
+							{/* --- HYPERLIENS ---  */}
 							<div className="space-y-2 text-sm md:text-base">
 								<p>
+									{/* Instagram  */}
 									<a href="https://www.instagram.com/studio52.20/" 
 									className={`flex items-center gap-2 transition-colors ${hubertMode ? 'hover:text-[#FF1493]' : 'hover:color-caribbean-green'}`}
 									target="_blank"
@@ -341,6 +361,7 @@ const StudioPage: React.FC = () => {
 									</a>
 								</p>
 								<p>
+									{/* Spotify  */}
 									<a href="https://open.spotify.com/show/4FAq7xczKaPkyk5q2ZfeHA" 
 									className={`flex items-center gap-2 transition-colors ${hubertMode ? 'hover:text-[#FF1493]' : 'hover:color-caribbean-green'}`}
 									target="_blank"
@@ -354,6 +375,7 @@ const StudioPage: React.FC = () => {
 									</a>
 								</p>
 								<p>
+									{/* Discord  */}
 									<a href="https://discord.com/invite/nB2CBCfS3" 
 									className={`flex items-center gap-2 transition-colors ${hubertMode ? 'hover:text-[#FF1493]' : 'hover:color-caribbean-green'}`}
 									target="_blank"
