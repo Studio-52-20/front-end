@@ -1,73 +1,216 @@
-# React + TypeScript + Vite
+# 🎙️ Studio 52-20 — Site Web du Club Radio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenue sur le dépôt du site web du club radio *Studio 52-20*.  
+Ce projet a été développé dans le cadre du cours WEB101, avec l’objectif de proposer une plateforme simple et moderne pour consulter nos émissions, écouter les podcasts, découvrir les participants et interagir via un système de commentaires.
 
-Currently, two official plugins are available:
+L’ambiance du site se veut professionnelle, propre… mais avec une petite touche chill, comme une discussion autour d’un micro à 23h au local radio.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br>
 
-## React Compiler
+---
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+<br>
 
-## Expanding the ESLint configuration
+## 🚀 Technologies utilisées
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Le projet repose sur un stack moderne et rapide :
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### **Frontend**
+- React — v19.2.0
+- React DOM — v19.2.0
+- React Router DOM — v7.9.6
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### **Build & Dev**
+- Vite — rolldown-vite@7.2.2
+- TypeScript — v5.9.3
+- pnpm (gestionnaire de dépendances)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### **Style**
+- TailwindCSS — v4.1.17
+- Autoprefixer — v10.4.22
+- Lucide React — v0.554.0
+
+### **Linting & Qualité**
+- ESLint — v9.39.1
+- typescript-eslint — v8.46.3
+
+<br>
+
+---
+
+<br>
+
+## 📦 Pré-requis
+
+Assurez-vous d’avoir installé :
+
+- Node.js ≥ 18
+- pnpm ≥ 9 (`npm install -g pnpm`)
+
+---
+
+## 🔧 Installation du projet
+
+- Cloner le dépôt
+```bash
+git clone <url-du-dépôt>
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+<br>
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Aller dans le dossier
+```bash
+cd studio-52-20
 ```
+
+<br>
+
+- Installer les dépendances
+```bash
+pnpm install
+```
+
+<br>
+
+---
+
+<br>
+
+## ▶️ Lancement & scripts disponibles
+
+| Commande       | Description |
+|----------------|-------------|
+| `pnpm dev`     | Lance le serveur de dev (port 4666) |
+| `pnpm build`   | Build le projet en production |
+| `pnpm preview` | Prévisualise le build |
+| `pnpm lint`    | Analyse les problèmes ESLint |
+
+Application accessible ici :  
+👉 http://localhost:4666
+
+<br>
+
+---
+
+<br>
+
+## 🧪 Tester le site
+
+Une fois le serveur lancé, vous pouvez :
+
+- naviguer sur la page d’accueil  
+- consulter une émission via l’URL :  
+  `http://localhost:4666/emission/<id>`  
+
+<br>
+
+La page d’émission permet :
+- d’afficher l’image et le titre  
+- de voir les participants  
+- de lire la description  
+- de consulter les commentaires  
+- écouter l’émission via un lecteur audio
+
+Les données affichées proviennent d’un fichier temporaire (`TemporaryData`) en attendant la version finale connectée à un backend.
+
+<br>
+
+---
+
+<br>
+
+## 🧱 Structure du projet
+
+```
+public/            	  # Images, icônes, etc.
+src/
+├─ components/        # Composants réutilisables
+├─ data/              # Données
+├─ pages/             # Pages du router
+├─ style/             # Styles CSS globaux
+├─ type/              # Types de données
+└─ App.tsx            # Point d’entrée React
+```
+
+<br>
+
+---
+
+<br>
+
+## 🎨 Style et Design
+
+- TailwindCSS configuré via le plugin officiel Vite  
+- Palette sombre/verte inspirée de l’ambiance du club radio  
+- Icônes via Lucide React  
+- Styles globaux définis dans `tailwind.css` et `index.css`
+
+<br>
+
+---
+
+<br>
+
+## 🔐 Routing
+
+Le projet utilise React Router DOM avec des routes paramétrées :
+
+- `/`  
+- `/studio`
+- `/emission/:emissionId`
+- `/404`
+
+Une redirection automatique sera mise en place ultérieurement pour les pages inconnues / authentification.
+
+<br>
+
+---
+
+<br>
+
+## 🎧 Lecteur audio
+
+Un lecteur audio personnalisé est en cours de création.  
+Fonctionnalités prévues :
+
+- Play / Pause
+- Barre de progression
+- Options ±10 secondes
+- Affichage du temps total et courant
+
+<br>
+
+---
+
+<br>
+
+## 🤝 Auteurs
+
+Projet réalisé par :
+
+- Clément Lacroix  
+- Lucas Aubriet  
+- Martin Vidal  
+- Nathan Tirolf  
+- Romane Lesueur  
+
+<br>
+
+---
+
+<br>
+
+## 📄 Licence
+
+À compléter selon les exigences du cours.  
+Si aucune indication n’est donnée : **MIT** est conseillé.
+
+<br>
+
+---
+
+<br>
+
+## 🙏 Remerciements
+
+Merci au club radio *Studio 52-20* pour l’identité visuelle et l’inspiration générale, ainsi qu’au professeur pour l’encadrement du projet.
