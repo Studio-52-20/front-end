@@ -11,7 +11,7 @@
 */
 
 /* ----- IMPORTS ----- */
-import React, { useState } from "react";
+import React from "react";
 
 
 /* ----- COMPONENT ----- */
@@ -115,7 +115,7 @@ const StudioPage: React.FC = () => {
 			</section>
 
 			{/* ------------------------ OU NOUS ECOUTER ? ------------------------  */}
-			<section className={`min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-dark-green-o50)]`}>
+			<section className={`min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16 bg-(--color-dark-green-o50)`}>
 				<div className="max-w-7xl mx-auto w-full">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
@@ -246,7 +246,7 @@ const StudioPage: React.FC = () => {
 			</section>
 
 			{/* ------------------------ L'EQUIPE ------------------------  */}
-			<section className={`min-h-screen flex flex-col justify-center py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-dark-green-o50)]`}>
+			<section className={`min-h-screen flex flex-col justify-center py-16 px-4 md:px-8 lg:px-16 bg-(--color-dark-green-o50)`}>
 				<div className="max-w-7xl mx-auto w-full">
 					<h2 className={`textStyle-title mb-12 text-center color-caribbean-green`}>
 						L'ÉQUIPE
@@ -257,9 +257,9 @@ const StudioPage: React.FC = () => {
 							{teamMembers.map((member, index) => (
 								<div
 									key={index}
-									className={`flex-shrink-0 w-72 md:w-80 rounded-lg p-6 border-2 bg-[var(--color-bangladesh-green)] border-[var(--color-mountain-meadow)]`}
+									className={`shrink-0 w-72 md:w-80 rounded-lg p-6 border-2 bg-(--color-bangladesh-green) border-(--color-mountain-meadow)`}
 								>
-									<div className={`w-40 h-40 md:w-48 md:h-48 mx-auto mb-6 rounded-full overflow-hidden bg-[var(--color-mountain-meadow)]`}>
+									<div className={`w-40 h-40 md:w-48 md:h-48 mx-auto mb-6 rounded-full overflow-hidden bg-(--color-mountain-meadow)`}>
 										<img
 											src={member.image}
 											alt={member.name}
@@ -288,26 +288,6 @@ const StudioPage: React.FC = () => {
 					</p>
 				</div>
 			</section>
-			<style>{`
-				.scrollbar-hide::-webkit-scrollbar {
-					display: none;
-				}
-				.scrollbar-hide {
-					-ms-overflow-style: none;
-					scrollbar-width: none;
-				}
-				
-				@keyframes rainbow {
-					0% { background-position: 0% 50%; }
-					50% { background-position: 100% 50%; }
-					100% { background-position: 0% 50%; }
-				}
-				
-				.hubertmode {
-					background-color: #FFE5F0;
-					color: #C71585;
-				}
-			`}</style>
 		</div>
 	);
 };
