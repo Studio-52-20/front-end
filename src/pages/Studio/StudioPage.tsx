@@ -10,17 +10,23 @@
 	--U-----U------------------------
 */
 
-
 /* ----- IMPORTS ----- */
 import React from "react";
+import StudioPresentationPart from "./Content/Presentation";
+import StudioInvitationParticipationPart from "./Content/InvitationParticipation";
+import StudioNousEcouterPart from "./Content/NousEcouter";
+import StudioEquipePart from "./Content/Equipe";
 
 
 /* ----- COMPONENT ----- */
 const StudioPage: React.FC = () => {
 	return (
-		<div className="flex justify-center items-center h-screen">
-			<h1 className="textStyle-title">Welcome to The Studio page</h1>
-		</div>
+		<div>
+			<StudioPresentationPart />
+			<StudioNousEcouterPart />
+			<StudioInvitationParticipationPart />
+			<StudioEquipePart />
+		</div >
 	);
 };
 

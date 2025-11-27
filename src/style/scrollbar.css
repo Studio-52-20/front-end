@@ -1,0 +1,39 @@
+/*
+	Authors:
+	>> Clément Lacroix - { clacroix2@etu.uqac.cq }
+	>> Lucas Aubriet - { laubriet@etu.uqac.cq }
+	>> Martin Vidal - { mvidal@etu.uqac.cq }
+	>> Nathan TIROLF - { ntirolf@etu.uqac.cq }
+	>> Romane Lesueur - { rlesueur@etu.uqac.cq }
+
+	(„• ֊ •„)❤  <  Have a good day !
+	--U-----U------------------------
+*/
+
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-mountain-meadow);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-caribbean-green);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
