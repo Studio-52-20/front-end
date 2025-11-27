@@ -25,10 +25,10 @@ const NavBar: React.FC = () => {
 	const pagesConfigs = GetPagesDatasInNavBar();
 
 	return (
-		<div className="fixed top-0 left-0 w-full flex justify-between items-center z-50 p-4">
+		<div className="fixed top-0 left-0 w-full flex justify-between items-center z-50 p-4 h-28  background-dark-green">
 			<div className="flex flex-row items-center gap-[5vw]">
 				<NavLink to="/">
-					<Studio5220TextLogo color="var(--color-mountain-meadow)" size={0.75} />
+					<Studio5220TextLogo color="var(--color-mountain-meadow)" size={0.6} />
 				</NavLink>
 				{pagesConfigs.map((pageConfig) => {
 					return (
