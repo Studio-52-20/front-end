@@ -10,16 +10,394 @@
 	--U-----U------------------------
 */
 
-
 /* ----- IMPORTS ----- */
-import React from "react";
+import React, { useState } from "react";
 
 
 /* ----- COMPONENT ----- */
 const StudioPage: React.FC = () => {
+	
+	const [hubertMode, setHubertMode] = useState(false);
+	
+	const teamMembers = [
+	{
+		name: "Clement",
+		role: "Président",
+		bio: "Celui qui dit oui à tout... sauf quand il dit non.",
+		image: "/img/clement.jpeg"
+	},
+	{
+		name: "Florian",
+		role: "Vice-Président",
+		bio: "Le vice-président qui n'a rien de vicieux... enfin presque.",
+		image: "/img/florian.jpeg"
+	},
+	{
+		name: "Ethan",
+		role: "Secrétaire",
+		bio: "Prend des notes... parfois même lisibles.",
+		image: "/img/ethan.png"
+	},
+	{
+		name: "Mattéo",
+		role: "Trésorier",
+		bio: "Compte l'argent qu'on n'a pas encore.",
+		image: "/img/matteo.jpeg"
+	},
+	{
+		name: "Elisa",
+		role: "Resp. Journal",
+		bio: "Écrit des articles que même elle relit avec surprise.",
+		image: "/img/elisa.jpeg"
+	},
+	{
+		name: "Nathan",
+		role: "Resp. Monteur",
+		bio: "Coupe, colle, et fait semblant de comprendre le montage.",
+		image: "/img/nathan.jpeg"
+	}
+];
+
 	return (
-		<div className="flex justify-center items-center h-screen">
-			<h1 className="textStyle-title">Welcome to The Studio page</h1>
+		<div style={{ marginTop: '80px' }} className={hubertMode ? 'hubertmode' : ''}>
+		
+			<div 
+				className="fixed top-0 left-0 right-0 pointer-events-none z-40"
+				style={{
+					height: '160px',
+					background: hubertMode ? 'linear-gradient(to bottom, #FFE5F0 60%, transparent)' : 'linear-gradient(to bottom, var(--color-dark-green) 60%, transparent)'
+				}}
+			/>
+			
+			<section className="min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16">
+				<div className="max-w-7xl mx-auto w-full">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+						<div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden ml-12">
+							<img 
+								src="/img/tableDeMixage.png" 
+								alt="Image d'une table de mixage verte" 
+								className="w-full h-full object-cover"
+							/>
+						</div>
+						
+						<div className="order-1 lg:order-2">
+							<h2 className={`textStyle-title mb-6 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								C'EST QUOI ?
+							</h2>
+							<p className="text-lg md:text-xl leading-relaxed mb-4">
+								Une radio chill où :
+							</p>
+							<ul className="space-y-3 text-base md:text-lg">
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>on parle de vie étudiante (sans se prendre trop au sérieux)</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>on découvre des projets d'étudiants</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>on invite des profs, artistes et passionnés</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>on diffuse des émissions et des podcasts 100% made in UQAC</span>
+								</li>
+							</ul>
+							<p className="mt-6 text-base md:text-lg italic opacity-90">
+								Bref, un espace où chacun peut prendre le micro et raconter quelque chose.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section className={`min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16 ${hubertMode ? 'bg-[#FFF0F5]' : 'bg-[var(--color-dark-green-o50)]'}`}>
+				<div className="max-w-7xl mx-auto w-full">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+						<div>
+							<h2 className={`textStyle-title mb-6 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								OÙ NOUS ÉCOUTER ?
+							</h2>
+
+							<p className="text-lg md:text-xl leading-relaxed italic mb-6">
+								Nos émissions sont déjà en ligne ! <br />
+								Tu peux nous écouter sur Spotify ou directement ICI <br />
+								(va dans la section Search) <br />
+								Choisis ton support et profite de nos podcasts.
+							</p>
+
+							<p className="text-base md:text-lg leading-relaxed">
+								Suis-nous pour ne rien manquer 👇
+							</p>
+
+						<div className="mt-8 space-y-4">
+							<a href="https://www.instagram.com/studio52.20/" 
+								target="_blank"          
+								rel="noopener noreferrer"
+								className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								<img 
+									src="/svg/instagramIcon.svg" 
+									alt="Instagram" 
+									className="w-6 h-6"
+								/> 
+								Instagram : @studio52.20
+							</a>
+
+							<a href="https://open.spotify.com/show/4FAq7xczKaPkyk5q2ZfeHA" 
+								target="_blank"           
+								rel="noopener noreferrer" 
+								className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								<img 
+									src="/svg/spotifyIcon.svg" 
+									alt="Spotify" 
+									className="w-6 h-6"
+								/>
+								Spotify : Studio5220
+							</a>
+							
+							<a href="https://discord.com/invite/nB2CBCfS3" 
+								className={`flex items-center gap-3 text-lg md:text-xl hover:opacity-80 transition-opacity ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}
+								target="_blank"
+								rel="noopener noreferrer">
+									<img 
+										src="/svg/discordIcon.svg" 
+										alt="Discord" 
+										className="w-5 h-5"
+									/>
+									Discord : Studio 52.20
+							</a>
+							
+						</div>
+					</div>
+
+						<div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden ml-12">
+							<img 
+								src="/img/casqueAudio.png" 
+								alt="Image casque Audio vert" 
+								className="w-full h-full object-cover"
+							/>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section className="min-h-screen flex items-center py-16 px-4 md:px-8 lg:px-16">
+				<div className="max-w-7xl mx-auto w-full">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+						<div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden ml-12">
+							<img 
+								src="/img/microphone.png" 
+								alt="Image d'un microphone vert" 
+								className="w-full h-full object-cover"
+							/>
+						</div>
+						
+						<div className="order-1 lg:order-2">
+							<h2 className={`textStyle-title mb-6 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								TU VEUX PARTICIPER ?
+							</h2>
+							<p className="text-lg md:text-xl leading-relaxed mb-4">
+								Tu peux :
+							</p>
+							<ul className="space-y-3 text-base md:text-lg">
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>proposer ta propre émission</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>venir animer un segment</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>créer un jingle</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>enregistrer un podcast</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>donner un coup de main en technique</span>
+								</li>
+								<li className="flex items-start">
+									<span className={`mr-3 text-xl ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>▸</span>
+									<span>ou juste passer pour voir l'ambiance</span>
+								</li>
+							</ul>
+							<p className="mt-6 text-base md:text-lg italic opacity-90">
+								Pas besoin d'expérience, juste de la motivation et une bonne dose de curiosité.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section className={`min-h-screen flex flex-col justify-center py-16 px-4 md:px-8 lg:px-16 ${hubertMode ? 'bg-[#FFF0F5]' : 'bg-[var(--color-dark-green-o50)]'}`}>
+				<div className="max-w-7xl mx-auto w-full">
+					<h2 className={`textStyle-title mb-12 text-center ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+						L'ÉQUIPE
+					</h2>
+					
+					<div className="overflow-x-auto pb-8 scrollbar-hide">
+						<div className="flex gap-6 md:gap-8" style={{ width: 'max-content' }}>
+							{teamMembers.map((member, index) => (
+								<div 
+									key={index}
+									className={`flex-shrink-0 w-72 md:w-80 rounded-lg p-6 border-2 ${hubertMode ? 'bg-[#FFB6C1] border-[#FF1493]' : 'bg-[var(--color-bangladesh-green)] border-[var(--color-mountain-meadow)]'}`}
+								>
+									<div className={`w-40 h-40 md:w-48 md:h-48 mx-auto mb-6 rounded-full overflow-hidden ${hubertMode ? 'bg-[#FF69B4]' : 'bg-[var(--color-mountain-meadow)]'}`}>
+										<img 
+											src={member.image}
+											alt={member.name}
+											className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+										/>
+									</div>
+									
+									<div className="text-center">
+										<h3 className={`textStyle-subtitle mb-2 ${hubertMode ? 'text-[#C71585]' : 'color-caribbean-green'}`}>
+											{member.name}
+										</h3>
+										<p className={`text-lg font-semibold mb-4 ${hubertMode ? 'text-[#C71585]' : 'color-anti-flash-white'}`}>
+											{member.role}
+										</p>
+										<p className="text-sm md:text-base italic opacity-90 leading-relaxed">
+											"{member.bio}"
+										</p>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+					
+					<p className="text-center mt-6 opacity-70 text-sm md:text-base">
+						← Fais défiler pour voir toute l'équipe →
+					</p>
+				</div>
+			</section>
+			
+			<footer className={hubertMode ? 'bg-[#FFB6C1] py-12 px-4 md:px-8 lg:px-16' : 'bg-[var(--color-bangladesh-green)] py-12 px-4 md:px-8 lg:px-16'}>
+				<div className="max-w-7xl mx-auto">
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+						
+						<div>
+							<h3 className={`textStyle-subtitle mb-4 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								Radio 52.20
+							</h3>
+							<p className="text-sm md:text-base leading-relaxed opacity-90">
+								Bureau : P0-5220
+							</p>
+							<button 
+								onClick={() => setHubertMode(!hubertMode)}
+								className="mt-4 px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105"
+								style={{
+									background: 'linear-gradient(90deg, #FF1493, #FF69B4, #FFB6C1, #FFC0CB, #FF1493)',
+									backgroundSize: '200% 200%',
+									animation: 'rainbow 3s ease infinite',
+									color: 'white'
+								}}
+							>
+								{hubertMode ? '🌈 Mode Normal' : '💖 Hubert Mode'}
+							</button>
+						</div>
+
+						<div>
+							<h3 className={`textStyle-subtitle mb-4 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								Contact
+							</h3>
+							<div className="space-y-2 text-sm md:text-base">
+								<p>
+									<a href="mailto:club_studio5220@uqac.ca" 
+									className={`flex items-center gap-2 transition-colors ${hubertMode ? 'hover:text-[#FF1493]' : 'hover:color-caribbean-green'}`}>
+										<img 
+											src="/svg/outlookIcon.svg" 
+											alt="Email" 
+											className="w-5 h-5"
+										/>
+										club_studio5220@uqac.ca
+									</a>
+								</p>
+							</div>
+						</div>
+
+						<div>
+							<h3 className={`textStyle-subtitle mb-4 ${hubertMode ? 'text-[#FF1493]' : 'color-caribbean-green'}`}>
+								Réseaux sociaux
+							</h3>
+							<div className="space-y-2 text-sm md:text-base">
+								<p>
+									<a href="https://www.instagram.com/studio52.20/" 
+									className={`flex items-center gap-2 transition-colors ${hubertMode ? 'hover:text-[#FF1493]' : 'hover:color-caribbean-green'}`}
+									target="_blank"
+									rel="noopener noreferrer">
+										<img 
+											src="/svg/instagramIcon.svg" 
+											alt="Instagram" 
+											className="w-5 h-5"
+										/>
+										Instagram : @Studio52.20 
+									</a>
+								</p>
+								<p>
+									<a href="https://open.spotify.com/show/4FAq7xczKaPkyk5q2ZfeHA" 
+									className={`flex items-center gap-2 transition-colors ${hubertMode ? 'hover:text-[#FF1493]' : 'hover:color-caribbean-green'}`}
+									target="_blank"
+									rel="noopener noreferrer">
+										<img 
+											src="/svg/spotifyIcon.svg" 
+											alt="Spotify" 
+											className="w-5 h-5"
+										/>
+										Spotify : Studio5220
+									</a>
+								</p>
+								<p>
+									<a href="https://discord.com/invite/nB2CBCfS3" 
+									className={`flex items-center gap-2 transition-colors ${hubertMode ? 'hover:text-[#FF1493]' : 'hover:color-caribbean-green'}`}
+									target="_blank"
+									rel="noopener noreferrer">
+										<img 
+											src="/svg/discordIcon.svg" 
+											alt="Discord" 
+											className="w-5 h-5"
+										/>
+										Discord : Studio 52.20
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div className={`pt-6 text-center ${hubertMode ? 'border-t border-[#FF1493]' : 'border-t border-[var(--color-mountain-meadow)]'}`}>
+						<p className="text-sm opacity-80">
+							© 2024 Radio 52.20 - UQAC | Prends le micro, on t'écoute 
+						</p>
+					</div>
+				</div>
+			</footer>
+
+			<style>{`
+				.scrollbar-hide::-webkit-scrollbar {
+					display: none;
+				}
+				.scrollbar-hide {
+					-ms-overflow-style: none;
+					scrollbar-width: none;
+				}
+				
+				@keyframes rainbow {
+					0% { background-position: 0% 50%; }
+					50% { background-position: 100% 50%; }
+					100% { background-position: 0% 50%; }
+				}
+				
+				.hubertmode {
+					background-color: #FFE5F0;
+					color: #C71585;
+				}
+			`}</style>
 		</div>
 	);
 };
