@@ -12,9 +12,6 @@
 
 
 /* ----- IMPORTS ----- */
-import type { CommentConfig } from "./CommentConfig";
-import type { SerieConfig } from "./SerieConfig";
-import type { UserConfig } from "./UserRoleConfig";
 
 
 /* ----- TYPE ----- */
@@ -25,7 +22,7 @@ export type EmissionConfig = {
 	audio: string;
 	date: Date;
 	image: string;
-	participants: UserConfig[];
-	comments: CommentConfig[];
-	serie: SerieConfig | null;
+	participants: number[];
+	comments: number[];
+	serie: number | undefined;
 }

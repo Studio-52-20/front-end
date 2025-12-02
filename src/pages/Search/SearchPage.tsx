@@ -11,15 +11,33 @@
 */
 
 /* ----- IMPORTS ----- */
-import { getEmissions } from "@/data/TemporaryData";
-import React from "react";
+import { getEmissions } from "@/store/EmissionsStore";
+import type { EmissionConfig } from "@/type/EmissionConfig";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 /* ----- COMPONENT ----- */
 const SearchPage: React.FC = () => {
-	const emissions = getEmissions();
+	const [emissions, setEmissions] = useState<EmissionConfig[]>([]);
+	const [loading, setLoading] = useState(true);
 
-	return (
+	useEffect(() => {
+		const fetchData = async () => {
+			const tmp = await getEmissions();
+			console.log(tmp);
+			setEmissions(tmp);
+			setLoading(false);
+		};
+		fetchData();
+	}, []);
+
+	if (loading) {
+		return <div className="flex justify-center items-center h-screen textStyle-title">
+			Loading...
+		</div>
+	}
+
+	return emissions.length > 0 ?
 		<div className="flex flex-col gap-8 p-8 min-h-screen">
 			<h1 className="textStyle-title text-center">All Emissions</h1>
 
@@ -48,7 +66,11 @@ const SearchPage: React.FC = () => {
 				))}
 			</div>
 		</div>
-	);
+		:
+		<div className="flex justify-center items-center h-screen textStyle-title">
+			No emissions...
+		</div>
+
 };
 
 export default SearchPage;

@@ -11,15 +11,11 @@
 */
 
 
-/* ----- IMPORTS ----- */
-import type { EmissionConfig } from "./EmissionConfig";
-
-
 /* ----- TYPE ----- */
 export type SerieConfig = {
 	id: number;
 	name: string;
 	description: string;
 	image: string;
-	emissions: EmissionConfig[];
+	emissions: string[];
 };

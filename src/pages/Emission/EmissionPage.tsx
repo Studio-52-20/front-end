@@ -14,18 +14,46 @@
 /* ----- IMPORTS ----- */
 import DisplayComment from "@/components/Display/Comment/Comment";
 import DisplayUserHover from "@/components/Display/User/Hover/DisplayUserHover";
-import { getEmissionById } from "@/data/TemporaryData";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NotFoundPage from "../NotFound/NotFoundPage";
 import { useParams } from "react-router-dom";
 import AudioPlayer from "@/components/AudioPlayer/AudioPlayer";
+import { getEmissionById } from "@/store/EmissionsStore";
+import type { EmissionConfig } from "@/type/EmissionConfig";
+import type { UserConfig } from "@/type/UserRoleConfig";
+import type { CommentConfig } from "@/type/CommentConfig";
+import type { SerieConfig } from "@/type/SerieConfig";
+import { getSerieById } from "@/store/SeriesStore";
 
 
 /* ----- COMPONENT ----- */
 const EmissionPage: React.FC = () => {
+	const [emission, setEmission] = useState<EmissionConfig | undefined>(undefined);
+	const [participants, setParticipants] = useState<UserConfig[]>([]);
+	const [comments, setComments] = useState<CommentConfig[]>([]);
+	const [serie, setSerie] = useState<SerieConfig | undefined>(undefined);
+	const [loading, setLoading] = useState(true);
 	const { emissionId } = useParams();
-	const id = Number(emissionId);
-	const emission = getEmissionById(id);
+
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const tmp = await getEmissionById(Number(emissionId));
+			if (tmp?.serie) setSerie(await getSerieById(tmp.serie));
+			// if (tmp?.participants) setParticipants(await getUsersByIds(tmp.participants));
+			// if (tmp?.comments) setComments(await getCommentsByIds(tmp.comments));
+			setEmission(tmp);
+			setLoading(false);
+		};
+		fetchData();
+	}, []);
+
+	if (loading) {
+		return <div className="flex justify-center items-center h-screen textStyle-title">
+			Loading...
+		</div>
+	}
+
 	if (!emission) return <NotFoundPage />;
 
 	return (
@@ -52,11 +80,15 @@ const EmissionPage: React.FC = () => {
 				<div className="background-bangladesh-green rounded-2xl p-8 flex flex-col gap-10 w-full xl:w-2/3 overflow-y-auto xl:overflow-y-auto">
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Participants</div>
-						<div className="flex flex-row flex-wrap gap-2">
-							{emission.participants.map((participant) => (
-								<DisplayUserHover key={participant.id} user={participant} />
-							))}
-						</div>
+						{participants.length > 0 ?
+							<div className="flex flex-row flex-wrap gap-2">
+								{participants.map((participant) => (
+									<DisplayUserHover key={participant.id} user={participant} />
+								))}
+							</div>
+							:
+							<div className="textStyle-subtitle color-anti-flash-white"> No users.</div>
+						}
 					</div>
 
 					<div className="flex flex-col gap-2">
@@ -64,13 +96,22 @@ const EmissionPage: React.FC = () => {
 						<div className="textStyle-text color-anti-flash-white">{emission.description}</div>
 					</div>
 
+					{serie && <div className="flex flex-col gap-2">
+						<div className="textStyle-title color-anti-flash-white">Serie</div>
+						<div className="textStyle-text color-anti-flash-white">{serie.name}</div>
+					</div>}
+
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Comments</div>
-						<div className="flex flex-col gap-4">
-							{emission.comments.map((comment) => (
-								<DisplayComment key={comment.id} comment={comment} />
-							))}
-						</div>
+						{comments.length > 0 ?
+							<div className="flex flex-col gap-4">
+								{comments.map((comment) => (
+									<DisplayComment key={comment.id} comment={comment} />
+								))}
+							</div>
+							:
+							<div className="textStyle-subtitle color-anti-flash-white"> No comments.</div>
+						}
 					</div>
 				</div>
 			</div>

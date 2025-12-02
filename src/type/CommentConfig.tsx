@@ -11,14 +11,10 @@
 */
 
 
-/* ----- IMPORTS ----- */
-import type { UserConfig } from "./UserRoleConfig";
-
-
 /* ----- TYPE ----- */
 export type CommentConfig = {
 	id: number;
-	user: UserConfig;
+	user: number;
 	content: string;
 	date: Date;
 };
