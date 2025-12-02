@@ -30,7 +30,7 @@ const StudioEquipePart: React.FC = () => {
 							<div key={index} className="shrink-0 w-72 md:w-80 rounded-lg p-6 border-2 bg-(--color-bangladesh-green) border-(--color-mountain-meadow) flex flex-col gap-6" >
 								<div className="flex flex-col gap-2 items-center text-center">
 									<div className="w-40 h-40 md:w-48 md:h-48 mx-auto rounded-full overflow-hidden bg-(--color-mountain-meadow)">
-										<img src={`/img/teamMembers/${member.name.toLowerCase()}.jpeg`} alt={member.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+										<img src={`/img/teamMembers/${member.image}`} alt={member.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
 									</div>
 									<div className="textStyle-subtitle color-caribbean-green"> {member.name} </div>
 								</div>

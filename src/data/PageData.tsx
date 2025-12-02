@@ -12,7 +12,7 @@
 
 
 /* ----- IMPORTS ----- */
-import type { PageConfig } from "@/type/PageConfig";
+import type { IPageConfig } from "@/type/PageConfig";
 import { GetAllUserRoles, GetUserRoleByName } from "@/data/UserRoleData";
 import HomePage from "@/pages/Home/HomePage";
 import StudioPage from "@/pages/Studio/StudioPage";
@@ -24,7 +24,7 @@ import { matchPath } from "react-router-dom";
 
 
 /* ----- DATAS ----- */
-const PagesDatas: PageConfig[] = [
+const PagesDatas: IPageConfig[] = [
 	{ name: "Home", path: "/", content: HomePage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "The Studio", path: "/studio", content: StudioPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Search", path: "/search", content: SearchPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
@@ -41,11 +41,11 @@ function GetPagesDatas() {
 	return PagesDatas;
 }
 
-function GetPageDataByName(name: string): PageConfig | undefined {
+function GetPageDataByName(name: string): IPageConfig | undefined {
 	return PagesDatas.find((page) => page.name === name);
 }
 
-function GetPageDataByPath(pathname: string): PageConfig | undefined {
+function GetPageDataByPath(pathname: string): IPageConfig | undefined {
 	return PagesDatas.find((page) => {
 		return matchPath(page.path, pathname) !== null;
 	});

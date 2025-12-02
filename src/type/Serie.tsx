@@ -12,8 +12,10 @@
 
 
 /* ----- TYPE ----- */
-export type SocialNetworkConfig = {
-	name: string,
-	ref: string,
-	accountName: string,
+export interface ISerie {
+	id: number;
+	name: string;
+	description: string;
+	image: string;
+	emissions: string[];
 };

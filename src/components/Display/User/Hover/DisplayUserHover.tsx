@@ -12,13 +12,13 @@
 
 
 /* ----- IMPORTS ----- */
-import type { UserConfig } from "@/type/UserRoleConfig";
+import type { IUser } from "@/type/User";
 import React from "react";
 
 
 /* ----- PROPS ----- */
 type DisplayUserHoverProps = {
-	user: UserConfig;
+	user: IUser;
 };
 
 

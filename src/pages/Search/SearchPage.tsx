@@ -12,13 +12,13 @@
 
 /* ----- IMPORTS ----- */
 import { getEmissions } from "@/store/EmissionsStore";
-import type { EmissionConfig } from "@/type/EmissionConfig";
+import type { IEmission } from "@/type/Emission";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 /* ----- COMPONENT ----- */
 const SearchPage: React.FC = () => {
-	const [emissions, setEmissions] = useState<EmissionConfig[]>([]);
+	const [emissions, setEmissions] = useState<IEmission[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {

@@ -12,20 +12,9 @@
 
 
 /* ----- TYPE ----- */
-export type UserRoleConfig = {
-	roleName: string;
-}
-
-export type UserConfig = {
+export interface IComment {
 	id: number;
-	username: string;
-	avatar: string;
-}
-
-
-/* ----- Data ----- */
-export const DefaultUserConfig: UserConfig = {
-	id: -1,
-	username: "Unknown User",
-	avatar: "/img/anonymous_user.png",
-}
+	user: number;
+	content: string;
+	date: Date;
+};

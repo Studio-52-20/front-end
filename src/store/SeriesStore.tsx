@@ -11,13 +11,13 @@
 */
 
 /* ----- IMPORTS ----- */
-import type { SerieConfig } from "@/type/SerieConfig";
+import type { ISerie } from "@/type/Serie";
 import { fetchGet } from "@/services/fetch";
 
 
 /* ----- DATAS ----- */
 let lastSeriesFetch: number = 0;
-const series: Map<number, { fetch: number; serie: SerieConfig }> = new Map();
+const series: Map<number, { fetch: number; serie: ISerie }> = new Map();
 
 
 /* ----- FETCH ----- */
@@ -28,7 +28,7 @@ export async function fetchSeries() {
 		series.clear();
 		lastSeriesFetch = Date.now();
 		for (let i = 0; i < jsonResponse.member.length; i++) {
-			const tmp = { ...(jsonResponse.member[i] as SerieConfig) };
+			const tmp = { ...(jsonResponse.member[i] as ISerie) };
 			series.set(tmp.id, { fetch: Date.now(), serie: tmp });
 		}
 	} catch (error) {
@@ -40,7 +40,7 @@ export async function fetchSerie(uid: number) {
 	try {
 		const response = await fetchGet(`series/${uid}`);
 		const jsonResponse = await response.json();
-		const tmp = { ...(jsonResponse as SerieConfig) };
+		const tmp = { ...(jsonResponse as ISerie) };
 		series.set(tmp.id, { fetch: Date.now(), serie: tmp });
 	} catch (error) {
 		console.error("Error fetching serie: ", error);
@@ -50,7 +50,7 @@ export async function fetchSerie(uid: number) {
 /* ----- GETTERS ----- */
 export async function getSeries() {
 	if (series.size === 0 || Date.now() - lastSeriesFetch > 1000 * 60 * 60 * 24) await fetchSeries();
-	const tmp: SerieConfig[] = [];
+	const tmp: ISerie[] = [];
 	series.forEach((value) => {
 		tmp.push(value.serie);
 	});

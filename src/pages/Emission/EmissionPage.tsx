@@ -19,19 +19,19 @@ import NotFoundPage from "../NotFound/NotFoundPage";
 import { useParams } from "react-router-dom";
 import AudioPlayer from "@/components/AudioPlayer/AudioPlayer";
 import { getEmissionById } from "@/store/EmissionsStore";
-import type { EmissionConfig } from "@/type/EmissionConfig";
-import type { UserConfig } from "@/type/UserRoleConfig";
-import type { CommentConfig } from "@/type/CommentConfig";
-import type { SerieConfig } from "@/type/SerieConfig";
+import type { IEmission } from "@/type/Emission";
+import type { IUser } from "@/type/User";
+import type { IComment } from "@/type/Comment";
+import type { ISerie } from "@/type/Serie";
 import { getSerieById } from "@/store/SeriesStore";
 
 
 /* ----- COMPONENT ----- */
 const EmissionPage: React.FC = () => {
-	const [emission, setEmission] = useState<EmissionConfig | undefined>(undefined);
-	const [participants, setParticipants] = useState<UserConfig[]>([]);
-	const [comments, setComments] = useState<CommentConfig[]>([]);
-	const [serie, setSerie] = useState<SerieConfig | undefined>(undefined);
+	const [emission, setEmission] = useState<IEmission | undefined>(undefined);
+	const [participants, setParticipants] = useState<IUser[]>([]);
+	const [comments, setComments] = useState<IComment[]>([]);
+	const [serie, setSerie] = useState<ISerie | undefined>(undefined);
 	const [loading, setLoading] = useState(true);
 	const { emissionId } = useParams();
 

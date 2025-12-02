@@ -8,12 +8,12 @@
 	<script type="module">
 		import { WebsiteConfigDatas } from '/src/data/WebsiteConfigData.tsx';
 
-		document.title = WebsiteConfigDatas.siteName;
+		document.title = IWebsiteConfigDatas.siteName;
 
 		const link = document.createElement('link');
 		link.rel = 'icon';
 		link.type = 'image/svg+xml';
-		link.href = WebsiteConfigDatas.iconLink;
+		link.href = IWebsiteConfigDatas.iconLink;
 		document.head.appendChild(link);
 	</script>
 </head>

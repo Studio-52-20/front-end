@@ -11,13 +11,13 @@
 */
 
 /* ----- IMPORTS ----- */
-import type { EmissionConfig } from "@/type/EmissionConfig";
+import type { IEmission } from "@/type/Emission";
 import { fetchGet } from "@/services/fetch";
 
 
 /* ----- DATAS ----- */
 let lastEmissionsFetch: number = 0;
-const emissions: Map<number, { fetch: number; emission: EmissionConfig }> = new Map();
+const emissions: Map<number, { fetch: number; emission: IEmission }> = new Map();
 
 
 /* ----- FETCH ----- */
@@ -28,7 +28,7 @@ async function fetchEmissions() {
 		emissions.clear();
 		lastEmissionsFetch = Date.now();
 		for (let i = 0; i < jsonResponse.member.length; i++) {
-			const tmp = { ...(jsonResponse.member[i] as EmissionConfig) };
+			const tmp = { ...(jsonResponse.member[i] as IEmission) };
 			emissions.set(tmp.id, { fetch: Date.now(), emission: tmp });
 		}
 	} catch (error) {
@@ -40,7 +40,7 @@ async function fetchEmission(uid: number) {
 	try {
 		const response = await fetchGet(`emissions/${uid}`);
 		const jsonResponse = await response.json();
-		const tmp = { ...(jsonResponse as EmissionConfig) };
+		const tmp = { ...(jsonResponse as IEmission) };
 		emissions.set(tmp.id, { fetch: Date.now(), emission: tmp });
 	} catch (error) {
 		console.error("Error fetching emission: ", error);
@@ -50,7 +50,7 @@ async function fetchEmission(uid: number) {
 /* ----- GETTERS ----- */
 export async function getEmissions() {
 	if (emissions.size === 0 || Date.now() - lastEmissionsFetch > 1000 * 60 * 60 * 24) await fetchEmissions();
-	const tmp: EmissionConfig[] = [];
+	const tmp: IEmission[] = [];
 	emissions.forEach((value) => {
 		tmp.push(value.emission);
 	});

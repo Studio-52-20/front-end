@@ -12,8 +12,9 @@
 
 
 /* ----- TYPE ----- */
-export type TeamMemberConfig = {
-	name: string,
-	role: string,
-	bio: string,
+export interface ITeamMember {
+	name: string;
+	role: string;
+	bio: string;
+	image: string;
 };

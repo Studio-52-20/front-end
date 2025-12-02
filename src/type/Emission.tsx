@@ -15,7 +15,7 @@
 
 
 /* ----- TYPE ----- */
-export type EmissionConfig = {
+export interface IEmission {
 	id: number;
 	name: string;
 	description: string;

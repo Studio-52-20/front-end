@@ -12,13 +12,13 @@
 
 
 /* ----- IMPORTS ----- */
-import type { CommentConfig } from "@/type/CommentConfig";
+import type { IComment } from "@/type/Comment";
 import React from "react";
 
 
 /* ----- PROPS ----- */
 type DisplayCommentProps = {
-	comment: CommentConfig;
+	comment: IComment;
 };
 
 

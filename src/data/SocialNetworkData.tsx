@@ -12,11 +12,11 @@
 
 
 /* ----- IMPORTS ----- */
-import type { SocialNetworkConfig } from "@/type/SocialNetworkconfig";
+import type { ISocialNetwork } from "@/type/SocialNetwork";
 
 
 /* ----- DATAS ----- */
-const SocialNetworkDatas: SocialNetworkConfig[] = [
+const SocialNetworkDatas: ISocialNetwork[] = [
 	{
 		name: "Instagram",
 		ref: "https://www.instagram.com/studio52.20/",
@@ -36,7 +36,7 @@ const SocialNetworkDatas: SocialNetworkConfig[] = [
 
 
 /* ----- FUNCTIONS ----- */
-function GetSocialNetworkDatas(): SocialNetworkConfig[] {
+function GetSocialNetworkDatas(): ISocialNetwork[] {
 	return SocialNetworkDatas
 }
 
