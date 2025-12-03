@@ -11,7 +11,7 @@
 */
 
 /* ----- IMPORTS ----- */
-import { getEmissions } from "@/store/EmissionsStore";
+import { getEmissions } from "@/store/EmissionStore";
 import type { IEmission } from "@/type/Emission";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -50,13 +50,13 @@ const SearchPage: React.FC = () => {
 					>
 						<img
 							src={emission.image}
-							alt={emission.name}
+							alt={emission.title}
 							className="w-full aspect-square object-cover"
 						/>
 
 						<div className="p-4 flex flex-col gap-2">
 							<div className="textStyle-subtitle color-anti-flash-white truncate">
-								{emission.name}
+								{emission.title}
 							</div>
 							<div className="textStyle-text color-anti-flash-white line-clamp-3">
 								{emission.description}

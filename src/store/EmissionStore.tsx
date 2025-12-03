@@ -17,7 +17,14 @@ import { fetchGet } from "@/services/fetch";
 
 /* ----- DATAS ----- */
 let lastEmissionsFetch: number = 0;
-const emissions: Map<number, { fetch: number; emission: IEmission }> = new Map();
+const emissions: Map<string, { fetch: number; emission: IEmission }> = new Map();
+
+
+/* ----- PRIVATE FUNCTION ----- */
+function _formatJsonEmission(jsonResponse: any) {
+	const tmp = { ...(jsonResponse as IEmission) };
+	emissions.set(tmp.id, { fetch: Date.now(), emission: tmp });
+}
 
 
 /* ----- FETCH ----- */
@@ -27,21 +34,18 @@ async function fetchEmissions() {
 		const jsonResponse = await response.json();
 		emissions.clear();
 		lastEmissionsFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++) {
-			const tmp = { ...(jsonResponse.member[i] as IEmission) };
-			emissions.set(tmp.id, { fetch: Date.now(), emission: tmp });
-		}
+		for (let i = 0; i < jsonResponse.member.length; i++)
+			_formatJsonEmission(jsonResponse.member[i]);
 	} catch (error) {
 		console.error("Error fetching emissions: ", error);
 	}
 }
 
-async function fetchEmission(uid: number) {
+async function fetchEmission(id: string) {
 	try {
-		const response = await fetchGet(`emissions/${uid}`);
+		const response = await fetchGet(`emissions/${id}`);
 		const jsonResponse = await response.json();
-		const tmp = { ...(jsonResponse as IEmission) };
-		emissions.set(tmp.id, { fetch: Date.now(), emission: tmp });
+		_formatJsonEmission(jsonResponse);
 	} catch (error) {
 		console.error("Error fetching emission: ", error);
 	}
@@ -57,7 +61,7 @@ export async function getEmissions() {
 	return tmp;
 }
 
-export async function getEmissionById(id: number) {
+export async function getEmissionById(id: string) {
 	const emission = emissions.get(id);
 	if (emission === undefined || Date.now() - emission.fetch > 1000 * 60 * 60 * 24) await fetchEmission(id);
 	return emissions.get(id)?.emission;

@@ -16,13 +16,13 @@
 
 /* ----- TYPE ----- */
 export interface IEmission {
-	id: number;
-	name: string;
+	id: string;
+	title: string;
 	description: string;
 	audio: string;
 	date: Date;
 	image: string;
-	participants: number[];
-	comments: number[];
-	serie: number | undefined;
+	participants: string[];
+	comments: string[];
+	serie: string | undefined;
 }

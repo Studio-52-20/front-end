@@ -12,10 +12,9 @@
 
 
 /* ----- TYPE ----- */
-export interface ISerie {
+export interface ICategory {
 	id: string;
 	name: string;
-	description: string;
 	image: string;
 	emissions: string[];
 };

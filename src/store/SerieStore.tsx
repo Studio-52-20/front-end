@@ -17,7 +17,14 @@ import { fetchGet } from "@/services/fetch";
 
 /* ----- DATAS ----- */
 let lastSeriesFetch: number = 0;
-const series: Map<number, { fetch: number; serie: ISerie }> = new Map();
+const series: Map<string, { fetch: number; serie: ISerie }> = new Map();
+
+
+/* ----- PRIVATE FUNCTION ----- */
+function _formatJsonSerie(jsonResponse: any) {
+	const tmp = { ...(jsonResponse as ISerie) };
+	series.set(tmp.id, { fetch: Date.now(), serie: tmp });
+}
 
 
 /* ----- FETCH ----- */
@@ -27,21 +34,18 @@ export async function fetchSeries() {
 		const jsonResponse = await response.json();
 		series.clear();
 		lastSeriesFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++) {
-			const tmp = { ...(jsonResponse.member[i] as ISerie) };
-			series.set(tmp.id, { fetch: Date.now(), serie: tmp });
-		}
+		for (let i = 0; i < jsonResponse.member.length; i++)
+			_formatJsonSerie(jsonResponse.member[i])
 	} catch (error) {
 		console.error("Error fetching series: ", error);
 	}
 }
 
-export async function fetchSerie(uid: number) {
+export async function fetchSerie(id: string) {
 	try {
-		const response = await fetchGet(`series/${uid}`);
+		const response = await fetchGet(`series/${id}`);
 		const jsonResponse = await response.json();
-		const tmp = { ...(jsonResponse as ISerie) };
-		series.set(tmp.id, { fetch: Date.now(), serie: tmp });
+		_formatJsonSerie(jsonResponse);
 	} catch (error) {
 		console.error("Error fetching serie: ", error);
 	}
@@ -57,7 +61,7 @@ export async function getSeries() {
 	return tmp;
 }
 
-export async function getSerieById(id: number) {
+export async function getSerieById(id: string) {
 	const serie = series.get(id);
 	if (serie === undefined || Date.now() - serie.fetch > 1000 * 60 * 60 * 24) await fetchSerie(id);
 	return series.get(id)?.serie;

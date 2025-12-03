@@ -18,12 +18,12 @@ import React, { useEffect, useState } from "react";
 import NotFoundPage from "../NotFound/NotFoundPage";
 import { useParams } from "react-router-dom";
 import AudioPlayer from "@/components/AudioPlayer/AudioPlayer";
-import { getEmissionById } from "@/store/EmissionsStore";
+import { getEmissionById } from "@/store/EmissionStore";
 import type { IEmission } from "@/type/Emission";
 import type { IUser } from "@/type/User";
 import type { IComment } from "@/type/Comment";
 import type { ISerie } from "@/type/Serie";
-import { getSerieById } from "@/store/SeriesStore";
+import { getSerieById } from "@/store/SerieStore";
 
 
 /* ----- COMPONENT ----- */
@@ -38,7 +38,7 @@ const EmissionPage: React.FC = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const tmp = await getEmissionById(Number(emissionId));
+			const tmp = await getEmissionById(emissionId ?? "");
 			if (tmp?.serie) setSerie(await getSerieById(tmp.serie));
 			// if (tmp?.participants) setParticipants(await getUsersByIds(tmp.participants));
 			// if (tmp?.comments) setComments(await getCommentsByIds(tmp.comments));
@@ -63,12 +63,12 @@ const EmissionPage: React.FC = () => {
 			<div className="flex flex-col xl:flex-row grow p-8 gap-8 xl:h-[calc(100vh-7rem)]">
 				<div className="background-bangladesh-green  rounded-2xl p-8 lg:p-12 flex flex-col gap-6 xl:flex-col lg:flex-row w-full xl:w-1/3  shrink-0">
 					<div className="w-full flex justify-center p-8">
-						<img src={emission.image} alt={emission.name} className="w-[50vw] max-w-[350px] aspect-square object-cover rounded-2xl" />
+						<img src={emission.image} alt={emission.title} className="w-[50vw] max-w-[350px] aspect-square object-cover rounded-2xl" />
 					</div>
 
 					<div className="flex flex-col gap-4 w-full justify-center items-center">
 						<div className="textStyle-subtitle color-anti-flash-white text-center">
-							{emission.name}
+							{emission.title}
 						</div>
 
 						<div className="w-full flex flex-col md:flex-row items-center justify-center gap-4">

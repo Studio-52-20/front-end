@@ -13,8 +13,8 @@
 
 /* ----- TYPE ----- */
 export interface IComment {
-	id: number;
-	user: number;
+	id: string;
+	user: string;
 	content: string;
 	date: Date;
 };
