@@ -22,13 +22,19 @@ const series: Map<string, { fetch: number; serie: ISerie }> = new Map();
 
 /* ----- PRIVATE FUNCTION ----- */
 function _formatJsonSerie(jsonResponse: any) {
-	const tmp = { ...(jsonResponse as ISerie) };
+	const tmp: ISerie = {
+		id: jsonResponse["id"],
+		name: jsonResponse["nom"],
+		description: jsonResponse["description"],
+		image: jsonResponse["image"] ?? "/img/default_img.jpg",
+		emissions: jsonResponse["emissionsIds"],
+	}
 	series.set(tmp.id, { fetch: Date.now(), serie: tmp });
 }
 
 
 /* ----- FETCH ----- */
-export async function fetchSeries() {
+async function fetchSeries() {
 	try {
 		const response = await fetchGet("series");
 		const jsonResponse = await response.json();
@@ -41,7 +47,7 @@ export async function fetchSeries() {
 	}
 }
 
-export async function fetchSerie(id: string) {
+async function fetchSerie(id: string) {
 	try {
 		const response = await fetchGet(`series/${id}`);
 		const jsonResponse = await response.json();

@@ -16,16 +16,25 @@ export interface IUserRole {
 	roleName: string;
 }
 
-export type IUser = {
-	id: number;
+export interface IUser {
+	id: string;
 	username: string;
-	avatar: string;
+	image: string;
 }
 
+export interface IMember {
+	id: string;
+	username: string;
+	image: string;
+	bio: string;
+	email: string;
+	emissions: string[];
+}
 
-/* ----- Data ----- */
-export const DefaultIUser: IUser = {
-	id: -1,
-	username: "Unknown User",
-	avatar: "/img/anonymous_user.png",
+export interface IUserMe {
+	id: string;
+	username: string;
+	image: string;
+	bio: string;
+	email: string;
 }

@@ -24,6 +24,8 @@ import type { IUser } from "@/type/User";
 import type { IComment } from "@/type/Comment";
 import type { ISerie } from "@/type/Serie";
 import { getSerieById } from "@/store/SerieStore";
+import { getUsersByIds } from "@/store/UserStore";
+import { getCommentsByIds } from "@/store/CommentStore";
 
 
 /* ----- COMPONENT ----- */
@@ -35,18 +37,36 @@ const EmissionPage: React.FC = () => {
 	const [loading, setLoading] = useState(true);
 	const { emissionId } = useParams();
 
-
 	useEffect(() => {
 		const fetchData = async () => {
+			setLoading(true);
+
 			const tmp = await getEmissionById(emissionId ?? "");
-			if (tmp?.serie) setSerie(await getSerieById(tmp.serie));
-			// if (tmp?.participants) setParticipants(await getUsersByIds(tmp.participants));
-			// if (tmp?.comments) setComments(await getCommentsByIds(tmp.comments));
+			console.log(tmp);
+
+			if (!tmp) {
+				setEmission(undefined);
+				setLoading(false);
+				return;
+			}
+
+			const [serieRes, participantsRes, commentsRes] = await Promise.all([
+				tmp.serie ? getSerieById(tmp.serie) : Promise.resolve(undefined),
+				tmp.participants ? getUsersByIds(tmp.participants) : Promise.resolve([]),
+				tmp.comments ? getCommentsByIds(tmp.comments) : Promise.resolve([]),
+			]);
+
 			setEmission(tmp);
+			setSerie(serieRes);
+			setParticipants(participantsRes);
+			setComments(commentsRes);
+
 			setLoading(false);
 		};
+
 		fetchData();
-	}, []);
+	}, [emissionId]);
+
 
 	if (loading) {
 		return <div className="flex justify-center items-center h-screen textStyle-title">

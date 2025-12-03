@@ -24,7 +24,6 @@ const SearchPage: React.FC = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const tmp = await getEmissions();
-			console.log(tmp);
 			setEmissions(tmp);
 			setLoading(false);
 		};

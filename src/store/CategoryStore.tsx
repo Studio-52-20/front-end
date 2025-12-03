@@ -22,7 +22,12 @@ const categories: Map<string, { fetch: number; category: ICategory }> = new Map(
 
 /* ----- PRIVATE FUNCTION ----- */
 function _formatJsonCategory(jsonResponse: any) {
-	const tmp = { ...(jsonResponse as ICategory) };
+	const tmp: ICategory = {
+		id: jsonResponse["id"],
+		name: jsonResponse["nom"],
+		image: jsonResponse["image"] ?? "/img/default_img.jpg",
+		emissions: jsonResponse["emissions"],
+	}
 	categories.set(tmp.id, { fetch: Date.now(), category: tmp });
 }
 

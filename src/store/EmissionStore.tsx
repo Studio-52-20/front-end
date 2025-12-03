@@ -22,7 +22,17 @@ const emissions: Map<string, { fetch: number; emission: IEmission }> = new Map()
 
 /* ----- PRIVATE FUNCTION ----- */
 function _formatJsonEmission(jsonResponse: any) {
-	const tmp = { ...(jsonResponse as IEmission) };
+	const tmp: IEmission = {
+		id: jsonResponse["id"],
+		title: jsonResponse["title"],
+		description: jsonResponse["description"],
+		audio: jsonResponse["fichier"],
+		date: new Date(jsonResponse["date"]),
+		image: jsonResponse["image"] ?? "/img/default_img.jpg",
+		participants: jsonResponse["participantsIds"],
+		comments: jsonResponse["commentairesIds"],
+		serie: jsonResponse["idSerie"],
+	}
 	emissions.set(tmp.id, { fetch: Date.now(), emission: tmp });
 }
 

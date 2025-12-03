@@ -14,7 +14,8 @@
 /* ----- TYPE ----- */
 export interface IComment {
 	id: string;
-	user: string;
 	content: string;
+	user: string;
+	emission: string;
 	date: Date;
 };
