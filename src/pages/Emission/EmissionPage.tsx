@@ -42,7 +42,6 @@ const EmissionPage: React.FC = () => {
 			setLoading(true);
 
 			const tmp = await getEmissionById(emissionId ?? "");
-			console.log(tmp);
 
 			if (!tmp) {
 				setEmission(undefined);
@@ -81,7 +80,7 @@ const EmissionPage: React.FC = () => {
 			<div className="h-28 shrink-0"></div>
 
 			<div className="flex flex-col xl:flex-row grow p-8 gap-8 xl:h-[calc(100vh-7rem)]">
-				<div className="background-bangladesh-green  rounded-2xl p-8 lg:p-12 flex flex-col gap-6 xl:flex-col lg:flex-row w-full xl:w-1/3  shrink-0">
+				<div className="background-bangladesh-green rounded-2xl p-8 lg:p-12 flex flex-col gap-6 xl:flex-col lg:flex-row w-full xl:w-1/3  shrink-0">
 					<div className="w-full flex justify-center p-8">
 						<img src={emission.image} alt={emission.title} className="w-[50vw] max-w-[350px] aspect-square object-cover rounded-2xl" />
 					</div>
@@ -101,7 +100,7 @@ const EmissionPage: React.FC = () => {
 					<div className="flex flex-col gap-2">
 						<div className="textStyle-title color-anti-flash-white">Participants</div>
 						{participants.length > 0 ?
-							<div className="flex flex-row flex-wrap gap-2">
+							<div className="flex flex-row flex-wrap">
 								{participants.map((participant) => (
 									<DisplayUserHover key={participant.id} user={participant} />
 								))}
