@@ -80,12 +80,12 @@ const EmissionPage: React.FC = () => {
 			<div className="h-28 shrink-0"></div>
 
 			<div className="flex flex-col xl:flex-row grow p-8 gap-8 xl:h-[calc(100vh-7rem)]">
-				<div className="background-bangladesh-green rounded-2xl p-8 lg:p-12 flex flex-col gap-6 xl:flex-col lg:flex-row w-full xl:w-1/3  shrink-0">
-					<div className="w-full flex justify-center p-8">
+				<div className="background-bangladesh-green rounded-2xl p-8 flex flex-col gap-6 xl:flex-col xl:justify-around lg:flex-row w-full xl:w-1/3  shrink-0">
+					<div className="w-full flex justify-center">
 						<img src={emission.image} alt={emission.title} className="w-[50vw] max-w-[350px] aspect-square object-cover rounded-2xl" />
 					</div>
 
-					<div className="flex flex-col gap-4 w-full justify-center items-center">
+					<div className="flex flex-col gap-2 w-full justify-center items-center">
 						<div className="textStyle-subtitle color-anti-flash-white text-center">
 							{emission.title}
 						</div>

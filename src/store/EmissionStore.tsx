@@ -24,7 +24,7 @@ const emissions: Map<string, { fetch: number; emission: IEmission }> = new Map()
 function _formatJsonEmission(jsonResponse: any) {
 	const tmp: IEmission = {
 		id: jsonResponse["id"],
-		title: jsonResponse["title"],
+		title: jsonResponse["titre"],
 		description: jsonResponse["description"],
 		audio: jsonResponse["fichier"],
 		date: new Date(jsonResponse["date"]),
