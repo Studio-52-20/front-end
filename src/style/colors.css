@@ -17,18 +17,25 @@
 	--color-dark-green-o50: rgba(3, 34, 33, 0.5);
 
 	--color-bangladesh-green: #03624C;
+	--color-bangladesh-green-o20: rgba(3, 98, 76, 0.5);
 
 	--color-mountain-meadow: #26A67C;
 
 	--color-caribbean-green: #00DF81;
 
-	--color-anti-flash-white: #F1F7F6;
+	--color-anti-flash-white: #f1f7f6;
+	--color-anti-flash-white-o50: rgba(241, 247, 246, 0.5);
+	--color-anti-flash-white-o75: rgba(241, 247, 246, 0.75);
 }
 
 
 /* ----- CLASSE ----- */
 .color-dark-green {
 	color: var(--color-dark-green);
+}
+
+.background-dark-green {
+	background-color: var(--color-dark-green);
 }
 
 .background-dark-green {
@@ -57,4 +64,12 @@
 
 .color-anti-flash-white {
 	color: var(--color-anti-flash-white);
+}
+
+.color-anti-flash-white-o75 {
+	color: var(--color-anti-flash-white-o75);
+}
+
+.color-anti-flash-white-o50 {
+	color: var(--color-anti-flash-white-o50);
 }
