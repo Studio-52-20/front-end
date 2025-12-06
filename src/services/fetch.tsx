@@ -12,7 +12,8 @@
 
 
 /* ----- DATAS ----- */
-const API_URL = "https://127.0.0.1:8000/api";
+const BASE_URL = "https://127.0.0.1:8000";
+const API_URL = `${BASE_URL}/api`;
 
 
 /* ----- PRIVATE FUNCTIONS ----- */
@@ -59,5 +60,9 @@ export function fetchDelete(url: string) {
 }
 
 export function getBaseUrl() {
-	return API_URL;
+	return BASE_URL;
+}
+
+export function getFullUrl(relativeUrl: string) {
+	return `${BASE_URL}${relativeUrl}`;
 }
