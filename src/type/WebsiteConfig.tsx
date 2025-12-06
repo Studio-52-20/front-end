@@ -12,7 +12,7 @@
 
 
 /* ----- TYPE ----- */
-export type WebsiteConfig = {
+export interface IWebsiteConfig {
 	siteName: string;
 	iconLink: string;
 };

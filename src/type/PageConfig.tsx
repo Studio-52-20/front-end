@@ -12,15 +12,15 @@
 
 
 /* ----- IMPORTS ----- */
-import type { UserRoleConfig } from "./UserRoleConfig";
+import type { IUserRole } from "./User";
 
 
 /* ----- TYPE ----- */
-export type PageConfig = {
+export interface IPageConfig {
 	name: string;
 	path: string;
 	content: React.FC;
 	displayInNavBar: boolean;
 	displayNavBar: boolean;
-	allowedAccessRoles: UserRoleConfig[];
+	allowedAccessRoles: IUserRole[];
 }

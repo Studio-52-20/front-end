@@ -12,7 +12,7 @@
 
 
 /* ----- IMPORTS ----- */
-import type { UserRoleConfig } from "@/type/UserRoleConfig";
+import type { IUserRole } from "@/type/User";
 
 
 /* ----- DATAS ----- */
@@ -20,7 +20,7 @@ const AdminRole = { roleName: "Admin" };
 const ViewerRole = { roleName: "Viewer" };
 const AnonymousRole = { roleName: "Anonymous" };
 
-const UserRoleDatas: UserRoleConfig[] = [
+const UserRoleDatas: IUserRole[] = [
 	AdminRole,
 	ViewerRole,
 	AnonymousRole
@@ -28,7 +28,7 @@ const UserRoleDatas: UserRoleConfig[] = [
 
 
 /* ----- FUNCTIONS ----- */
-export const GetUserRoleByName = (roleName: string | string[]): UserRoleConfig[] => {
+export const GetUserRoleByName = (roleName: string | string[]): IUserRole[] => {
 	let rolesToGet: string[] = (typeof roleName === "string") ? [roleName] : roleName;
 	const role = UserRoleDatas.find((role) => rolesToGet.includes(role.roleName));
 
@@ -36,6 +36,6 @@ export const GetUserRoleByName = (roleName: string | string[]): UserRoleConfig[]
 	return [AnonymousRole];
 };
 
-export const GetAllUserRoles = (): UserRoleConfig[] => {
+export const GetAllUserRoles = (): IUserRole[] => {
 	return UserRoleDatas;
 };

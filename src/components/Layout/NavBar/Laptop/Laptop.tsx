@@ -18,11 +18,12 @@ import { NavLink } from "react-router-dom";
 import { GetPagesDatasInNavBar } from "@/data/PageData";
 import { UserCircle2 } from "lucide-react";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
+import type { IPageConfig } from "@/type/PageConfig";
 
 
 /* ----- COMPONENT ----- */
 const NavBar: React.FC = () => {
-	const pagesConfigs = GetPagesDatasInNavBar();
+	const pagesConfigs: IPageConfig[] = GetPagesDatasInNavBar();
 
 	return (
 		<div className="fixed top-0 left-0 w-full flex justify-between items-center z-50 p-4 h-28  background-dark-green">

@@ -12,20 +12,9 @@
 
 
 /* ----- TYPE ----- */
-export type UserRoleConfig = {
-	roleName: string;
-}
-
-export type UserConfig = {
-	id: number;
-	username: string;
-	avatar: string;
-}
-
-
-/* ----- Data ----- */
-export const DefaultUserConfig: UserConfig = {
-	id: -1,
-	username: "Unknown User",
-	avatar: "/img/anonymous_user.png",
-}
+export interface ICategory {
+	id: string;
+	name: string;
+	image: string;
+	emissions: string[];
+};

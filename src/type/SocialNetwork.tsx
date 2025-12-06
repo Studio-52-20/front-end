@@ -12,8 +12,8 @@
 
 
 /* ----- TYPE ----- */
-export type TeamMemberConfig = {
-	name: string,
-	role: string,
-	bio: string,
+export interface SocialNetworkConfig {
+	name: string;
+	ref: string;
+	accountName: string;
 };

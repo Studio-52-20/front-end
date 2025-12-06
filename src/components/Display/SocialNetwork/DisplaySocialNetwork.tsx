@@ -12,13 +12,13 @@
 
 
 /* ----- IMPORTS ----- */
-import type { SocialNetworkConfig } from "@/type/SocialNetworkconfig";
+import type { ISocialNetwork } from "@/type/SocialNetwork";
 import React from "react";
 
 
 /* ----- PROPS ----- */
 type DisplaySocialNetworkProps = {
-	social: SocialNetworkConfig,
+	social: ISocialNetwork,
 	color?: string,
 };
 
