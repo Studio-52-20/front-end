@@ -12,23 +12,23 @@
 
 
 /* ----- IMPORTS ----- */
-import type { PageConfig } from "@/type/PageConfig";
+import type { IPageConfig } from "@/type/PageConfig";
 import { GetAllUserRoles, GetUserRoleByName } from "@/data/UserRoleData";
 import HomePage from "@/pages/Home/HomePage";
 import StudioPage from "@/pages/Studio/StudioPage";
 import SearchPage from "@/pages/Search/SearchPage";
-import LikesPage from "@/pages/Likes/LikesPage";
+import MembersPage from "@/pages/Members/Members";
 import NotFoundPage from "@/pages/NotFound/NotFoundPage";
 import EmissionPage from "@/pages/Emission/EmissionPage";
 import { matchPath } from "react-router-dom";
 
 
 /* ----- DATAS ----- */
-const PagesDatas: PageConfig[] = [
+const PagesDatas: IPageConfig[] = [
 	{ name: "Home", path: "/", content: HomePage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "The Studio", path: "/studio", content: StudioPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
+	{ name: "Members", path: "/members", content: MembersPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetUserRoleByName(["Admin", "Viewer"]) },
 	{ name: "Search", path: "/search", content: SearchPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "My Likes", path: "/likes", content: LikesPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetUserRoleByName(["Admin", "Viewer"]) },
 	{ name: "Emission", path: "/emission/:emissionId", content: EmissionPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	// { name: "Login", path: "/login", content: "@/pages/LoginPage", displayInNavBar: false, displayNavBar: false, allowedAccessRoles: GetAllUserRoles() },
 	// { name: "AdminPanel", path: "/admin-panel", content: "@/pages/AdminPanel", displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetUserRoleByName("Admin") },
@@ -41,11 +41,11 @@ function GetPagesDatas() {
 	return PagesDatas;
 }
 
-function GetPageDataByName(name: string): PageConfig | undefined {
+function GetPageDataByName(name: string): IPageConfig | undefined {
 	return PagesDatas.find((page) => page.name === name);
 }
 
-function GetPageDataByPath(pathname: string): PageConfig | undefined {
+function GetPageDataByPath(pathname: string): IPageConfig | undefined {
 	return PagesDatas.find((page) => {
 		return matchPath(page.path, pathname) !== null;
 	});

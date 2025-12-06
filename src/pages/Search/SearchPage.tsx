@@ -11,15 +11,32 @@
 */
 
 /* ----- IMPORTS ----- */
-import { getEmissions } from "@/data/TemporaryData";
-import React from "react";
+import { getEmissions } from "@/store/EmissionStore";
+import type { IEmission } from "@/type/Emission";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 /* ----- COMPONENT ----- */
 const SearchPage: React.FC = () => {
-	const emissions = getEmissions();
+	const [emissions, setEmissions] = useState<IEmission[]>([]);
+	const [loading, setLoading] = useState(true);
 
-	return (
+	useEffect(() => {
+		const fetchData = async () => {
+			const tmp = await getEmissions();
+			setEmissions(tmp);
+			setLoading(false);
+		};
+		fetchData();
+	}, []);
+
+	if (loading) {
+		return <div className="flex justify-center items-center h-screen textStyle-title">
+			Loading...
+		</div>
+	}
+
+	return emissions.length > 0 ?
 		<div className="flex flex-col gap-8 p-8 min-h-screen">
 			<h1 className="textStyle-title text-center">All Emissions</h1>
 
@@ -32,13 +49,13 @@ const SearchPage: React.FC = () => {
 					>
 						<img
 							src={emission.image}
-							alt={emission.name}
+							alt={emission.title}
 							className="w-full aspect-square object-cover"
 						/>
 
 						<div className="p-4 flex flex-col gap-2">
 							<div className="textStyle-subtitle color-anti-flash-white truncate">
-								{emission.name}
+								{emission.title}
 							</div>
 							<div className="textStyle-text color-anti-flash-white line-clamp-3">
 								{emission.description}
@@ -48,7 +65,11 @@ const SearchPage: React.FC = () => {
 				))}
 			</div>
 		</div>
-	);
+		:
+		<div className="flex justify-center items-center h-screen textStyle-title">
+			No emissions...
+		</div>
+
 };
 
 export default SearchPage;

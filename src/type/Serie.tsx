@@ -11,21 +11,11 @@
 */
 
 
-/* ----- IMPORTS ----- */
-import type { CommentConfig } from "./CommentConfig";
-import type { SerieConfig } from "./SerieConfig";
-import type { UserConfig } from "./UserRoleConfig";
-
-
 /* ----- TYPE ----- */
-export type EmissionConfig = {
-	id: number;
+export interface ISerie {
+	id: string;
 	name: string;
 	description: string;
-	audio: string;
-	date: Date;
 	image: string;
-	participants: UserConfig[];
-	comments: CommentConfig[];
-	serie: SerieConfig | null;
-}
+	emissions: string[];
+};

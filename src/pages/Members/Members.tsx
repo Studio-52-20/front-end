@@ -11,9 +11,17 @@
 */
 
 
-/* ----- TYPE ----- */
-export type SocialNetworkConfig = {
-	name: string,
-	ref: string,
-	accountName: string,
+/* ----- IMPORTS ----- */
+import React from "react";
+
+
+/* ----- COMPONENT ----- */
+const MembersPage: React.FC = () => {
+	return (
+		<div className="flex justify-center items-center h-screen">
+			<h1 className="textStyle-title">Welcome to Members page</h1>
+		</div>
+	);
 };
+
+export default MembersPage;

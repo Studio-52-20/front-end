@@ -17,12 +17,13 @@ import { Ellipsis, UserCircle2 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { GetPagesDatasInNavBar } from "@/data/PageData";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
+import type { IPageConfig } from "@/type/PageConfig";
 
 
 /* ----- COMPONENT ----- */
 const NavBar: React.FC = () => {
 	const [open, setOpen] = useState(false);
-	const pagesConfigs = GetPagesDatasInNavBar();
+	const pagesConfigs: IPageConfig[] = GetPagesDatasInNavBar();
 
 	return (
 		<>

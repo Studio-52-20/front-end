@@ -11,14 +11,10 @@
 */
 
 
-/* ----- IMPORTS ----- */
-import type { UserConfig } from "./UserRoleConfig";
-
-
 /* ----- TYPE ----- */
-export type CommentConfig = {
-	id: number;
-	user: UserConfig;
-	content: string;
-	date: Date;
+export interface ITeamMember {
+	name: string;
+	role: string;
+	bio: string;
+	image: string;
 };

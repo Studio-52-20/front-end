@@ -12,16 +12,17 @@
 
 
 /* ----- IMPORTS ----- */
-import React from "react";
 
 
-/* ----- COMPONENT ----- */
-const LikesPage: React.FC = () => {
-	return (
-		<div className="flex justify-center items-center h-screen">
-			<h1 className="textStyle-title">Welcome to Likes page</h1>
-		</div>
-	);
-};
-
-export default LikesPage;
+/* ----- TYPE ----- */
+export interface IEmission {
+	id: string;
+	title: string;
+	description: string;
+	audio: string;
+	date: Date;
+	image: string;
+	participants: string[];
+	comments: string[];
+	serie: string | undefined;
+}
