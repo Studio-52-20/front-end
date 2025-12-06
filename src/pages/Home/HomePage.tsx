@@ -22,7 +22,6 @@ import type { IEmission } from "@/type/Emission";
 import type { ISerie } from "@/type/Serie";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import type SearchPage from "../Search/SearchPage";
 
 /* ----- COMPONENT ----- */
 const HomePage: React.FC = () => {
