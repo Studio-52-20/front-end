@@ -57,6 +57,16 @@ async function fetchSerie(id: string) {
 	}
 }
 
+export async function getQuerySeries(query: string) {
+	await getSeries();
+	const tmp: ISerie[] = [];
+	series.forEach((value) => {
+		if (value.serie.name.toLowerCase().includes(query.toLowerCase()))
+			tmp.push(value.serie);
+	});
+	return tmp;
+}
+
 /* ----- GETTERS ----- */
 export async function getSeries() {
 	if (series.size === 0 || Date.now() - lastSeriesFetch > 1000 * 60 * 60 * 24) await fetchSeries();

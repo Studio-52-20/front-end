@@ -11,65 +11,71 @@
 */
 
 /* ----- IMPORTS ----- */
-import { getEmissions } from "@/store/EmissionStore";
+import React from "react";
+import SearchBar from "./Content/SearchBar";
 import type { IEmission } from "@/type/Emission";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import type { ICategory } from "@/type/Category";
+import type { ISerie } from "@/type/Serie";
+import Loader from "@/components/Layout/Loader/Loader";
+import { getQuerySeries } from "@/store/SerieStore";
+import { getQueryEmissions } from "@/store/EmissionStore";
+import { getQueryCategories } from "@/store/CategoryStore";
+import SearchPageDisplayResult from "./Content/DisplayResult";
+
 
 /* ----- COMPONENT ----- */
 const SearchPage: React.FC = () => {
-	const [emissions, setEmissions] = useState<IEmission[]>([]);
-	const [loading, setLoading] = useState(true);
+	const [emissions, setEmissions] = React.useState<IEmission[]>([]);
+	const [categories, setCategories] = React.useState<ICategory[]>([]);
+	const [series, setSeries] = React.useState<ISerie[]>([]);
+	const [query, setQuery] = React.useState<string>("");
+	const [loading, setLoading] = React.useState<boolean>(false);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const tmp = await getEmissions();
-			setEmissions(tmp);
-			setLoading(false);
-		};
-		fetchData();
-	}, []);
+	const performSearch = async (query: string, filter: string) => {
+		setLoading(true);
 
-	if (loading) {
-		return <div className="flex justify-center items-center h-screen textStyle-title">
-			Loading...
-		</div>
+		const [emissionsRes, categoriesRes, seriesRes] = await Promise.all([
+			filter == "all" || filter == "emission" ? getQueryEmissions(query) : Promise.resolve([]),
+			filter == "all" || filter == "category" ? getQueryCategories(query) : Promise.resolve([]),
+			filter == "all" || filter == "serie" ? getQuerySeries(query) : Promise.resolve([]),
+		]);
+
+		setQuery(query);
+		setEmissions(emissionsRes);
+		setCategories(categoriesRes);
+		setSeries(seriesRes);
+		setLoading(false);
+	};
+
+	const clearSearch = () => {
+		setEmissions([]);
+		setCategories([]);
+		setSeries([]);
+		setQuery("");
 	}
 
-	return emissions.length > 0 ?
-		<div className="flex flex-col gap-8 p-8 min-h-screen">
-			<h1 className="textStyle-title text-center">All Emissions</h1>
 
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-				{emissions.map((emission) => (
-					<Link
-						key={emission.id}
-						to={`/emission/${emission.id}`}
-						className="block bg-background-bangladesh-green rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-200"
-					>
-						<img
-							src={emission.image}
-							alt={emission.title}
-							className="w-full aspect-square object-cover"
-						/>
+	function displayResults() {
+		if (loading)
+			return <div className="flex-1 flex justify-center items-center textStyle-title">
+				<Loader />
+			</div>
+		if (query !== "" && emissions.length === 0 && categories.length === 0 && series.length === 0)
+			return <div className="flex-1 flex justify-center items-center textStyle-subtitle">
+				No results found.
+			</div>
+		return <SearchPageDisplayResult emissions={emissions} categories={categories} series={series} />;
+	}
 
-						<div className="p-4 flex flex-col gap-2">
-							<div className="textStyle-subtitle color-anti-flash-white truncate">
-								{emission.title}
-							</div>
-							<div className="textStyle-text color-anti-flash-white line-clamp-3">
-								{emission.description}
-							</div>
-						</div>
-					</Link>
-				))}
+	return (
+		<div className="flex flex-col items-center p-8 min-h-screen">
+			<div className="h-28 shrink-0"></div>
+			<SearchBar onSearch={performSearch} onClear={clearSearch} />
+			<div className="grow w-full flex flex-col">
+				{displayResults()}
 			</div>
 		</div>
-		:
-		<div className="flex justify-center items-center h-screen textStyle-title">
-			No emissions...
-		</div>
-
+	);
 };
 
 export default SearchPage;

@@ -26,6 +26,7 @@ import type { ISerie } from "@/type/Serie";
 import { getSerieById } from "@/store/SerieStore";
 import { getUsersByIds } from "@/store/UserStore";
 import { getCommentsByIds } from "@/store/CommentStore";
+import Loader from "@/components/Layout/Loader/Loader";
 
 
 /* ----- COMPONENT ----- */
@@ -69,7 +70,7 @@ const EmissionPage: React.FC = () => {
 
 	if (loading) {
 		return <div className="flex justify-center items-center h-screen textStyle-title">
-			Loading...
+			<Loader />
 		</div>
 	}
 

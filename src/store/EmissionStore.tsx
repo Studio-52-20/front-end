@@ -12,7 +12,7 @@
 
 /* ----- IMPORTS ----- */
 import type { IEmission } from "@/type/Emission";
-import { fetchGet } from "@/services/fetch";
+import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
 /* ----- DATAS ----- */
@@ -26,9 +26,9 @@ function _formatJsonEmission(jsonResponse: any) {
 		id: jsonResponse["id"],
 		title: jsonResponse["titre"],
 		description: jsonResponse["description"],
-		audio: jsonResponse["fichier"],
+		audio: getFullUrl(jsonResponse["audioUrl"]),
 		date: new Date(jsonResponse["date"]),
-		image: jsonResponse["image"] ?? "/img/default_img.jpg",
+		image: getFullUrl(jsonResponse["imageUrl"]) ?? "/img/default_img.jpg",
 		participants: jsonResponse["participantsIds"],
 		comments: jsonResponse["commentairesIds"],
 		serie: jsonResponse["idSerie"],
@@ -77,8 +77,29 @@ export async function getEmissionById(id: string) {
 	return emissions.get(id)?.emission;
 }
 
+export async function getQueryEmissions(query: string) {
+	await getEmissions();
+	const tmp: IEmission[] = [];
+	emissions.forEach((value) => {
+		if (value.emission.title.toLowerCase().includes(query.toLowerCase()))
+			tmp.push(value.emission);
+	});
+	return tmp;
+}
+
 
 /* ----- FUNCTION ----- */
 export function clearEmissions() {
 	emissions.clear();
+}
+
+
+export async function getRecentEmissions(count: number) {
+	await getEmissions();
+	const sortedEmissions = Array.from(emissions.values())
+		.sort((a, b) => b.emission.date.getTime() - a.emission.date.getTime())
+		.slice(0, count)
+		.map(item => item.emission);
+	console.log(sortedEmissions);
+	return sortedEmissions;
 }
