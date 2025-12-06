@@ -14,6 +14,7 @@
 import DisplayCategorySmall from "@/components/Display/Category/DisplayCategorySmall";
 import DisplayEmissionMedium from "@/components/Display/Emission/DisplayEmissionMedium";
 import DisplaySerieSmall from "@/components/Display/Serie/DisplaySerieSmall";
+import Loader from "@/components/Layout/Loader/Loader";
 import { getCategories } from "@/store/CategoryStore";
 import { getRecentEmissions } from "@/store/EmissionStore";
 import { getSeries } from "@/store/SerieStore";
@@ -56,7 +57,7 @@ const HomePage: React.FC = () => {
 
 	if (loading) {
 		return <div className="flex justify-center items-center h-screen textStyle-title">
-			Loading...
+			<Loader />
 		</div>
 	}
 

@@ -17,6 +17,7 @@ import { GetPagesDatas } from "@/data/PageData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "@/components/Layout/NavBar/NavBar";
 import Footer from "@/components/Layout/Footer/Footer";
+import Loader from "./components/Layout/Loader/Loader";
 
 /* ----- COMPONENT ----- */
 function App() {
@@ -32,9 +33,8 @@ function App() {
 
 	if (loadingressources) {
 		return (
-			<div style={{ height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center" }}>
-				{/* <Loader /> */}
-				Loading...
+			<div className="h-screen w-screen flex justify-center items-center">
+				<Loader />
 			</div>
 		);
 	}

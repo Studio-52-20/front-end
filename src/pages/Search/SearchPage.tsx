@@ -16,6 +16,7 @@ import SearchBar from "./Content/SearchBar";
 import type { IEmission } from "@/type/Emission";
 import type { ICategory } from "@/type/Category";
 import type { ISerie } from "@/type/Serie";
+import Loader from "@/components/Layout/Loader/Loader";
 
 
 /* ----- COMPONENT ----- */
@@ -43,7 +44,7 @@ const SearchPage: React.FC = () => {
 	function displayResults() {
 		if (loading)
 			return <div className="flex-1 flex justify-center items-center textStyle-title">
-				Loading...
+				<Loader />
 			</div>
 		if (query === "" && emissions.length === 0 && categories.length === 0 && series.length === 0)
 			return
