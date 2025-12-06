@@ -17,13 +17,13 @@ import React from "react";
 
 
 /* ----- PROPS ----- */
-type DisplayMediumEmissionProps = {
+type DisplayEmissionMediumProps = {
 	emission: IEmission
 };
 
 
 /* ----- COMPONENT ----- */
-const DisplayMediumEmission: React.FC<DisplayMediumEmissionProps> = ({ emission }) => {
+const DisplayEmissionMedium: React.FC<DisplayEmissionMediumProps> = ({ emission }) => {
 	return (
 		<div className="background-bangladesh-green rounded-2xl flex lg:w-[500px] w-[400px] shrink-0 lg:h-48 h-32 overflow-hidden">
 			<img
@@ -45,4 +45,4 @@ const DisplayMediumEmission: React.FC<DisplayMediumEmissionProps> = ({ emission 
 	);
 };
 
-export default DisplayMediumEmission;
+export default DisplayEmissionMedium;

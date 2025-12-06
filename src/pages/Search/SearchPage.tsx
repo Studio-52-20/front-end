@@ -11,7 +11,8 @@
 */
 
 /* ----- IMPORTS ----- */
-import DisplayMediumEmission from "@/components/Display/Emission/DisplayMediumEmission";
+import DisplayCategorySmall from "@/components/Display/Category/DisplayCategorySmall";
+import DisplayEmissionMedium from "@/components/Display/Emission/DisplayEmissionMedium";
 import { getCategories } from "@/store/CategoryStore";
 import { getRecentEmissions } from "@/store/EmissionStore";
 import { getSeries } from "@/store/SerieStore";
@@ -51,7 +52,7 @@ const SearchPage: React.FC = () => {
 	}
 
 	return emissions.length > 0 ?
-		<div className="flex flex-col gap-8 p-8 min-h-screen">
+		<div className="flex flex-col gap-16 p-8 min-h-screen">
 			<div className="h-28 shrink-0"></div>
 
 			<div className="flex flex-col gap-2">
@@ -59,8 +60,17 @@ const SearchPage: React.FC = () => {
 				<div className="flex overflow-x-auto gap-8 p-4">
 					{emissions.map((emission) => (
 						<Link to={`/emission/${emission.id}`} key={emission.id}>
-							<DisplayMediumEmission emission={emission} />
+							<DisplayEmissionMedium emission={emission} />
 						</Link>
+					))}
+				</div>
+			</div>
+
+			<div className="flex flex-col gap-2">
+				<div className="textStyle-title color-anti-flash-white">Categories</div>
+				<div className="grid grid-rows-2 grid-flow-col gap-4 overflow-x-auto pb-4 px-1">
+					{categories.map((category) => (
+						<DisplayCategorySmall category={category} key={category.id} />
 					))}
 				</div>
 			</div>
