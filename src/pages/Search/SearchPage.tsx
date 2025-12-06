@@ -13,6 +13,7 @@
 /* ----- IMPORTS ----- */
 import DisplayCategorySmall from "@/components/Display/Category/DisplayCategorySmall";
 import DisplayEmissionMedium from "@/components/Display/Emission/DisplayEmissionMedium";
+import DisplaySerieSmall from "@/components/Display/Serie/DisplaySerieSmall";
 import { getCategories } from "@/store/CategoryStore";
 import { getRecentEmissions } from "@/store/EmissionStore";
 import { getSeries } from "@/store/SerieStore";
@@ -74,7 +75,16 @@ const SearchPage: React.FC = () => {
 					))}
 				</div>
 			</div>
-		</div>
+
+			<div className="flex flex-col gap-2">
+				<div className="textStyle-title color-anti-flash-white">Series</div>
+				<div className="flex overflow-x-auto gap-8 p-4">
+					{series.map((serie) => (
+						<DisplaySerieSmall serie={serie} key={serie.id} />
+					))}
+				</div>
+			</div>
+		</div >
 		:
 		<div className="flex justify-center items-center h-screen textStyle-title">
 			No emissions...
