@@ -19,13 +19,21 @@ import css from "./Loader.module.css";
 /* ----- COMPONENT ----- */
 const Loader: React.FC = () => {
 	return (
-		<div className={css.spinner}>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+		<div className={css.container}>
+			<div className={css.plate}>
+				<div className={css.black}>
+					<div className={css.border}>
+						<div className={css.white}>
+							<div className={css.center}></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className={css.player}>
+				<div className={css.rect}></div>
+				<div className={css.circ}></div>
+			</div>
 		</div>
 	);
 };
