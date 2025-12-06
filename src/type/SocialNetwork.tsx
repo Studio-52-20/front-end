@@ -12,7 +12,7 @@
 
 
 /* ----- TYPE ----- */
-export interface SocialNetworkConfig {
+export interface ISocialNetwork {
 	name: string;
 	ref: string;
 	accountName: string;
