@@ -17,6 +17,10 @@ import type { IEmission } from "@/type/Emission";
 import type { ICategory } from "@/type/Category";
 import type { ISerie } from "@/type/Serie";
 import Loader from "@/components/Layout/Loader/Loader";
+import { getSeries } from "@/store/SerieStore";
+import { getEmissions } from "@/store/EmissionStore";
+import { getCategories } from "@/store/CategoryStore";
+import SearchPageDisplayResult from "./Content/DisplayResult";
 
 
 /* ----- COMPONENT ----- */
@@ -28,17 +32,27 @@ const SearchPage: React.FC = () => {
 	const [loading, setLoading] = React.useState<boolean>(false);
 
 	const performSearch = async (query: string, filter: string) => {
-		console.log(`Terme: "${query}" | Filtre: "${filter}"`);
-
 		setLoading(true);
-		await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate async search
-		// Here you would typically fetch data from an API based on the query and filter
+
+		const [emissionsRes, categoriesRes, seriesRes] = await Promise.all([
+			filter == "all" || filter == "emission" ? getEmissions() : Promise.resolve([]),
+			filter == "all" || filter == "category" ? getCategories() : Promise.resolve([]),
+			filter == "all" || filter == "serie" ? getSeries() : Promise.resolve([]),
+		]);
+
 		setQuery(query);
-		setEmissions([]); // Replace with actual search results
-		setCategories([]); // Replace with actual search results
-		setSeries([]); // Replace with actual search results
+		setEmissions(emissionsRes);
+		setCategories(categoriesRes);
+		setSeries(seriesRes);
 		setLoading(false);
 	};
+
+	const clearSearch = () => {
+		setEmissions([]);
+		setCategories([]);
+		setSeries([]);
+		setQuery("");
+	}
 
 
 	function displayResults() {
@@ -46,21 +60,17 @@ const SearchPage: React.FC = () => {
 			return <div className="flex-1 flex justify-center items-center textStyle-title">
 				<Loader />
 			</div>
-		if (query === "" && emissions.length === 0 && categories.length === 0 && series.length === 0)
-			return
 		if (query !== "" && emissions.length === 0 && categories.length === 0 && series.length === 0)
-			return <div className="flex-1 flex justify-center items-center textStyle-title">
+			return <div className="flex-1 flex justify-center items-center textStyle-subtitle">
 				No results found.
 			</div>
-		return <div className="flex-1 overflow-y-auto">
-			{/* Render search results here */}
-		</div>
+		return <SearchPageDisplayResult emissions={emissions} categories={categories} series={series} />;
 	}
 
 	return (
 		<div className="flex flex-col items-center p-8 min-h-screen">
 			<div className="h-28 shrink-0"></div>
-			<SearchBar onSearch={performSearch} />
+			<SearchBar onSearch={performSearch} onClear={clearSearch} />
 			<div className="grow w-full flex flex-col">
 				{displayResults()}
 			</div>

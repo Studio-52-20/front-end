@@ -11,18 +11,19 @@
 */
 
 /* ----- IMPORTS ----- */
-import { ArrowRight, ChevronDown, Search } from "lucide-react";
+import { ArrowRight, ChevronDown, Search, X } from "lucide-react";
 import React, { useState } from "react";
 
 
 /* ----- PROPS ----- */
 interface SearchBarProps {
 	onSearch: (query: string, filter: string) => void;
+	onClear: () => void;
 }
 
 
 /* ----- COMPONENT ----- */
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onClear }) => {
 	const [query, setQuery] = useState("");
 	const [filter, setFilter] = useState("all");
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -47,6 +48,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
 	const handleSelectFilter = (value: string) => {
 		setFilter(value);
+		onSearch(query, value);
 		setIsDropdownOpen(false);
 	};
 
@@ -74,6 +76,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 					onChange={(e) => setQuery(e.target.value)}
 					onKeyDown={handleKeyDown}
 				/>
+
+				<div className={`px-4 ${query === "" ? "color-anti-flash-white-o50" : "color-anti-flash-white"}`}>
+					<X className="w-5 h-5" onClick={() => {
+						setQuery("");
+						onClear();
+					}} />
+				</div>
 
 				<div className="w-px h-8 background-bangladesh-green"></div>
 

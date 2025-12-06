@@ -98,7 +98,7 @@ const HomePage: React.FC = () => {
 
 			<div className="flex flex-col gap-2">
 				<div className="textStyle-title color-anti-flash-white">Categories</div>
-				<div className="grid grid-rows-2 grid-flow-col gap-4 overflow-x-auto pb-4 px-1">
+				<div className="grid grid-rows-2 grid-flow-col auto-cols-max overflow-x-auto justify-start gap-4 pb-4 px-1">
 					{categories.map((category) => (
 						<DisplayCategorySmall category={category} key={category.id} />
 					))}
