@@ -11,20 +11,34 @@
 */
 
 /* ----- IMPORTS ----- */
-import { getEmissions } from "@/store/EmissionStore";
+import DisplayMediumEmission from "@/components/Display/Emission/DisplayMediumEmission";
+import { getCategories } from "@/store/CategoryStore";
+import { getRecentEmissions } from "@/store/EmissionStore";
+import { getSeries } from "@/store/SerieStore";
+import type { ICategory } from "@/type/Category";
 import type { IEmission } from "@/type/Emission";
+import type { ISerie } from "@/type/Serie";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 /* ----- COMPONENT ----- */
 const SearchPage: React.FC = () => {
 	const [emissions, setEmissions] = useState<IEmission[]>([]);
+	const [series, setSeries] = useState<ISerie[]>([]);
+	const [categories, setCategories] = useState<ICategory[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const tmp = await getEmissions();
-			setEmissions(tmp);
+			setLoading(true);
+
+			const [emissionsRes, seriesRes, categoriesRes] = await Promise.all([
+				getRecentEmissions(8), getSeries(), getCategories()
+			]);
+
+			setEmissions(emissionsRes);
+			setSeries(seriesRes);
+			setCategories(categoriesRes);
 			setLoading(false);
 		};
 		fetchData();
@@ -38,31 +52,17 @@ const SearchPage: React.FC = () => {
 
 	return emissions.length > 0 ?
 		<div className="flex flex-col gap-8 p-8 min-h-screen">
-			<h1 className="textStyle-title text-center">All Emissions</h1>
+			<div className="h-28 shrink-0"></div>
 
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-				{emissions.map((emission) => (
-					<Link
-						key={emission.id}
-						to={`/emission/${emission.id}`}
-						className="block bg-background-bangladesh-green rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-200"
-					>
-						<img
-							src={emission.image}
-							alt={emission.title}
-							className="w-full aspect-square object-cover"
-						/>
-
-						<div className="p-4 flex flex-col gap-2">
-							<div className="textStyle-subtitle color-anti-flash-white truncate">
-								{emission.title}
-							</div>
-							<div className="textStyle-text color-anti-flash-white line-clamp-3">
-								{emission.description}
-							</div>
-						</div>
-					</Link>
-				))}
+			<div className="flex flex-col gap-2">
+				<div className="textStyle-title color-anti-flash-white">Recent Emissions</div>
+				<div className="flex overflow-x-auto gap-8 p-4">
+					{emissions.map((emission) => (
+						<Link to={`/emission/${emission.id}`} key={emission.id}>
+							<DisplayMediumEmission emission={emission} />
+						</Link>
+					))}
+				</div>
 			</div>
 		</div>
 		:
