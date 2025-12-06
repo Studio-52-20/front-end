@@ -77,6 +77,16 @@ export async function getEmissionById(id: string) {
 	return emissions.get(id)?.emission;
 }
 
+export async function getQueryEmissions(query: string) {
+	await getEmissions();
+	const tmp: IEmission[] = [];
+	emissions.forEach((value) => {
+		if (value.emission.title.toLowerCase().includes(query.toLowerCase()))
+			tmp.push(value.emission);
+	});
+	return tmp;
+}
+
 
 /* ----- FUNCTION ----- */
 export function clearEmissions() {

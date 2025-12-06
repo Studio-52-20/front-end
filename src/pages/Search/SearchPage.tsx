@@ -17,9 +17,9 @@ import type { IEmission } from "@/type/Emission";
 import type { ICategory } from "@/type/Category";
 import type { ISerie } from "@/type/Serie";
 import Loader from "@/components/Layout/Loader/Loader";
-import { getSeries } from "@/store/SerieStore";
-import { getEmissions } from "@/store/EmissionStore";
-import { getCategories } from "@/store/CategoryStore";
+import { getQuerySeries } from "@/store/SerieStore";
+import { getQueryEmissions } from "@/store/EmissionStore";
+import { getQueryCategories } from "@/store/CategoryStore";
 import SearchPageDisplayResult from "./Content/DisplayResult";
 
 
@@ -35,9 +35,9 @@ const SearchPage: React.FC = () => {
 		setLoading(true);
 
 		const [emissionsRes, categoriesRes, seriesRes] = await Promise.all([
-			filter == "all" || filter == "emission" ? getEmissions() : Promise.resolve([]),
-			filter == "all" || filter == "category" ? getCategories() : Promise.resolve([]),
-			filter == "all" || filter == "serie" ? getSeries() : Promise.resolve([]),
+			filter == "all" || filter == "emission" ? getQueryEmissions(query) : Promise.resolve([]),
+			filter == "all" || filter == "category" ? getQueryCategories(query) : Promise.resolve([]),
+			filter == "all" || filter == "serie" ? getQuerySeries(query) : Promise.resolve([]),
 		]);
 
 		setQuery(query);

@@ -47,7 +47,7 @@ const SearchPageDisplayResult: React.FC<SearchBarProps> = ({ emissions, categori
 			{emissions.length > 0 &&
 				<div className="flex flex-col gap-4">
 					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Emissions</div>
-					<div className={`gap-4 pb-4 px-1 ${onlyOne ? flexClass : gridClass}`}>
+					<div className={`gap-4 pb-4 px-1 ${onlyOne || emissions.length <= 2 ? flexClass : gridClass}`}>
 						{emissions.map((emission) => (
 							<DisplayEmissionMedium emission={emission} key={emission.id} />
 						))}
@@ -57,7 +57,7 @@ const SearchPageDisplayResult: React.FC<SearchBarProps> = ({ emissions, categori
 			{categories.length > 0 &&
 				<div className="flex flex-col gap-4">
 					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Categories</div>
-					<div className={`gap-4 pb-4 px-1 ${onlyOne ? flexClass : gridClass}`}>
+					<div className={`gap-4 pb-4 px-1 ${onlyOne || categories.length <= 2 ? flexClass : gridClass}`}>
 						{categories.map((category) => (
 							<DisplayCategorySmall category={category} key={category.id} />
 						))}
@@ -67,7 +67,7 @@ const SearchPageDisplayResult: React.FC<SearchBarProps> = ({ emissions, categori
 			{series.length > 0 &&
 				<div className="flex flex-col gap-4">
 					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Series</div>
-					<div className={`gap-4 pb-4 px-1 ${onlyOne ? flexClass : gridClass}`}>
+					<div className={`gap-4 pb-4 px-1 ${onlyOne || series.length <= 2 ? flexClass : gridClass}`}>
 						{series.map((serie) => (
 							<DisplaySerieSmall serie={serie} key={serie.id} />
 						))}

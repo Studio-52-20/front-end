@@ -56,6 +56,16 @@ async function fetchCategory(id: string) {
 	}
 }
 
+export async function getQueryCategories(query: string) {
+	await getCategories();
+	const tmp: ICategory[] = [];
+	categories.forEach((value) => {
+		if (value.category.name.toLowerCase().includes(query.toLowerCase()))
+			tmp.push(value.category);
+	});
+	return tmp;
+}
+
 /* ----- GETTERS ----- */
 export async function getCategories() {
 	if (categories.size === 0 || Date.now() - lastCategoriesFetch > 1000 * 60 * 60 * 24) await fetchCategories();
