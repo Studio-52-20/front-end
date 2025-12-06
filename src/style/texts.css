@@ -16,6 +16,13 @@
 
 
 /* ----- CLASSE ----- */
+.textStyle-huge {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 900;
+	font-size: 64px;
+	letter-spacing: 4px;
+}
+
 .textStyle-title {
 	font-family: "Montserrat Alternates", sans-serif;
 	font-weight: 700;
@@ -36,6 +43,10 @@
 }
 
 @media screen and (max-width: 1024) {
+	.textStyle-huge {
+		font-size: 48px;
+	}
+
 	.textStyle-title {
 		font-size: 24px;
 	}
@@ -50,6 +61,10 @@
 }
 
 @media screen and (max-width: 768px) {
+	.textStyle-huge {
+		font-size: 36px;
+	}
+
 	.textStyle-title {
 		font-size: 20px;
 	}
