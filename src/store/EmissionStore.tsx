@@ -87,12 +87,24 @@ export async function getQueryEmissions(query: string) {
 	return tmp;
 }
 
+export async function getEmissionsByIds(ids: string[]) {
+	const promises = ids.map(async (id) => {
+		try {
+			return await getEmissionById(id);
+		} catch {
+			return undefined;
+		}
+	});
+
+	const results = await Promise.all(promises);
+	return results.filter((c): c is IEmission => c !== undefined);
+}
+
 
 /* ----- FUNCTION ----- */
 export function clearEmissions() {
 	emissions.clear();
 }
-
 
 export async function getRecentEmissions(count: number) {
 	await getEmissions();
