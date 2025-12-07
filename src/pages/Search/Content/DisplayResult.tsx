@@ -72,7 +72,9 @@ const SearchPageDisplayResult: React.FC<SearchBarProps> = ({ emissions, categori
 					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Series</div>
 					<div className={`gap-4 pb-4 px-1 ${onlyOne || series.length <= 2 ? flexClass : gridClass}`}>
 						{series.map((serie) => (
-							<DisplaySerieSmall serie={serie} key={serie.id} />
+							<Link key={serie.id} to={`/serie/${serie.id}`}>
+								<DisplaySerieSmall serie={serie} />
+							</Link>
 						))}
 					</div>
 				</div>
