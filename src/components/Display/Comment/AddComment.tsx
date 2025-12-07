@@ -54,8 +54,8 @@ const AddComment: React.FC<AddCommentProps> = ({ callback }) => {
 		setIsLoading(true);
 
 		try {
-			const response = await fetchPost("comment", { "content": comment });
-			if (response.status == 404 || response.status == 500)
+			const response = await fetchPost("commentaires", { "content": comment });
+			if (response.status < 200 || response.status >= 300)
 				throw (`Response Status: ${response.status} | ${response}`)
 
 			setStatus('success');
