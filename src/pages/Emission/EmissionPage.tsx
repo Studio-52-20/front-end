@@ -12,7 +12,7 @@
 
 
 /* ----- IMPORTS ----- */
-import DisplayComment from "@/components/Display/Comment/Comment";
+import DisplayComment from "@/components/Display/Comment/DisplayComment";
 import DisplayUserHover from "@/components/Display/User/Hover/DisplayUserHover";
 import React, { useEffect, useState } from "react";
 import NotFoundPage from "../NotFound/NotFoundPage";
@@ -66,7 +66,6 @@ const EmissionPage: React.FC = () => {
 
 		fetchData();
 	}, [emissionId]);
-
 
 	if (loading) {
 		return <div className="flex justify-center items-center h-screen textStyle-title">
