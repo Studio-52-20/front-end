@@ -11,13 +11,14 @@
 */
 
 /* ----- IMPORTS ----- */
-import DisplayCategorySmall from "@/components/Display/Category/DisplayCategorySmall";
-import DisplayEmissionMedium from "@/components/Display/Emission/DisplayEmissionMedium";
-import DisplaySerieSmall from "@/components/Display/Serie/DisplaySerieSmall";
+import React from "react";
 import type { ICategory } from "@/type/Category";
 import type { IEmission } from "@/type/Emission";
 import type { ISerie } from "@/type/Serie";
-import React from "react";
+import { Link } from "react-router-dom";
+import DisplayCategorySmall from "@/components/Display/Category/DisplayCategorySmall";
+import DisplayEmissionMedium from "@/components/Display/Emission/DisplayEmissionMedium";
+import DisplaySerieSmall from "@/components/Display/Serie/DisplaySerieSmall";
 
 
 /* ----- PROPS ----- */
@@ -49,7 +50,9 @@ const SearchPageDisplayResult: React.FC<SearchBarProps> = ({ emissions, categori
 					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Emissions</div>
 					<div className={`gap-4 pb-4 px-1 ${onlyOne || emissions.length <= 2 ? flexClass : gridClass}`}>
 						{emissions.map((emission) => (
-							<DisplayEmissionMedium emission={emission} key={emission.id} />
+							<Link key={emission.id} to={`/emission/${emission.id}`}>
+								<DisplayEmissionMedium emission={emission} />
+							</Link>
 						))}
 					</div>
 				</div>
