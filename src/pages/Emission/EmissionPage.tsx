@@ -27,6 +27,7 @@ import { getSerieById } from "@/store/SerieStore";
 import { getUsersByIds } from "@/store/UserStore";
 import { getCommentsByIds } from "@/store/CommentStore";
 import Loader from "@/components/Layout/Loader/Loader";
+import AddComment from "@/components/Display/Comment/AddComment";
 
 
 /* ----- COMPONENT ----- */
@@ -66,6 +67,14 @@ const EmissionPage: React.FC = () => {
 
 		fetchData();
 	}, [emissionId]);
+
+	function refreshComments() {
+		if (!emission) return;
+		getCommentsByIds(emission.comments ?? []).then((comments) => {
+			setComments(comments);
+		});
+	}
+
 
 	if (loading) {
 		return <div className="flex justify-center items-center h-screen textStyle-title">
@@ -121,7 +130,10 @@ const EmissionPage: React.FC = () => {
 					</div>}
 
 					<div className="flex flex-col gap-2">
-						<div className="textStyle-title color-anti-flash-white">Comments</div>
+						<div className="flex justify-between items-center">
+							<div className="textStyle-title color-anti-flash-white">Comments</div>
+							<AddComment callback={refreshComments} />
+						</div>
 						{comments.length > 0 ?
 							<div className="flex flex-col gap-4">
 								{comments.map((comment) => (
