@@ -62,7 +62,9 @@ const SearchPageDisplayResult: React.FC<SearchBarProps> = ({ emissions, categori
 					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Categories</div>
 					<div className={`gap-4 pb-4 px-1 ${onlyOne || categories.length <= 2 ? flexClass : gridClass}`}>
 						{categories.map((category) => (
-							<DisplayCategorySmall category={category} key={category.id} />
+							<Link key={category.id} to={`/category/${category.id}`}>
+								<DisplayCategorySmall category={category} />
+							</Link>
 						))}
 					</div>
 				</div>
