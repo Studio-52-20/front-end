@@ -12,7 +12,7 @@
 
 /* ----- IMPORTS ----- */
 import type { ISerie } from "@/type/Serie";
-import { fetchGet } from "@/services/fetch";
+import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
 /* ----- DATAS ----- */
@@ -26,8 +26,8 @@ function _formatJsonSerie(jsonResponse: any) {
 		id: jsonResponse["id"],
 		name: jsonResponse["nom"],
 		description: jsonResponse["description"],
-		image: jsonResponse["image"] ?? "/img/default_img.jpg",
-		emissions: jsonResponse["emissionsIds"],
+		image: getFullUrl(jsonResponse["imageUrl"]) ?? "/img/default_img.jpg",
+		emissions: jsonResponse["emissionIds"],
 	}
 	series.set(tmp.id, { fetch: Date.now(), serie: tmp });
 }

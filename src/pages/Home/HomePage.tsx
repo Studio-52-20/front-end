@@ -100,7 +100,9 @@ const HomePage: React.FC = () => {
 				<div className="textStyle-title color-anti-flash-white">Categories</div>
 				<div className="grid grid-rows-2 grid-flow-col auto-cols-max overflow-x-auto justify-start gap-4 pb-4 px-1">
 					{categories.map((category) => (
-						<DisplayCategorySmall category={category} key={category.id} />
+						<Link to={`/categorie/${category.id}`} key={category.id}>
+							<DisplayCategorySmall category={category} />
+						</Link>
 					))}
 				</div>
 			</div>
@@ -109,7 +111,9 @@ const HomePage: React.FC = () => {
 				<div className="textStyle-title color-anti-flash-white">Series</div>
 				<div className="flex overflow-x-auto gap-8 p-4">
 					{series.map((serie) => (
-						<DisplaySerieSmall serie={serie} key={serie.id} />
+						<Link to={`/serie/${serie.id}`} key={serie.id}>
+							<DisplaySerieSmall serie={serie} />
+						</Link>
 					))}
 				</div>
 			</div>

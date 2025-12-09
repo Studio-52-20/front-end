@@ -30,7 +30,7 @@ function _formatJsonEmission(jsonResponse: any) {
 		date: new Date(jsonResponse["date"]),
 		image: getFullUrl(jsonResponse["imageUrl"]) ?? "/img/default_img.jpg",
 		participants: jsonResponse["participantsIds"],
-		comments: jsonResponse["commentairesIds"],
+		comments: jsonResponse["commentaireIds"],
 		serie: jsonResponse["idSerie"],
 	}
 	emissions.set(tmp.id, { fetch: Date.now(), emission: tmp });
@@ -98,6 +98,11 @@ export async function getEmissionsByIds(ids: string[]) {
 
 	const results = await Promise.all(promises);
 	return results.filter((c): c is IEmission => c !== undefined);
+}
+
+export async function refreshEmissionById(id: string): Promise<IEmission | undefined> {
+	fetchEmission(id);
+	return emissions.get(id)?.emission;
 }
 
 
