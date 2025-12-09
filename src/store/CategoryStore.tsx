@@ -12,7 +12,7 @@
 
 /* ----- IMPORTS ----- */
 import type { ICategory } from "@/type/Category";
-import { fetchGet } from "@/services/fetch";
+import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
 /* ----- DATAS ----- */
@@ -25,8 +25,8 @@ function _formatJsonCategory(jsonResponse: any) {
 	const tmp: ICategory = {
 		id: jsonResponse["id"],
 		name: jsonResponse["nom"],
-		image: jsonResponse["image"] ?? "/img/default_img.jpg",
-		emissions: jsonResponse["emissions"],
+		image: getFullUrl(jsonResponse["imageUrl"]) ?? "/img/default_img.jpg",
+		emissions: jsonResponse["emissionIds"],
 	}
 	categories.set(tmp.id, { fetch: Date.now(), category: tmp });
 }

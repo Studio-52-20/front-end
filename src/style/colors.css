@@ -51,6 +51,10 @@
 	background-color: var(--color-bangladesh-green);
 }
 
+.background-bangladesh-green-o20 {
+	background-color: var(--color-bangladesh-green-o20);
+}
+
 .color-mountain-meadow {
 	color: var(--color-mountain-meadow);
 }
