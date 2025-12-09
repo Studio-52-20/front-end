@@ -132,7 +132,7 @@ const EmissionPage: React.FC = () => {
 					<div className="flex flex-col gap-2">
 						<div className="flex justify-between items-center">
 							<div className="textStyle-title color-anti-flash-white">Comments</div>
-							<AddComment callback={refreshComments} />
+							<AddComment callback={refreshComments} emissionId={emission.id} />
 						</div>
 						{comments.length > 0 ?
 							<div className="flex flex-col gap-4">

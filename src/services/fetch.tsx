@@ -19,7 +19,6 @@ const API_URL = `${BASE_URL}/api`;
 /* ----- PRIVATE FUNCTIONS ----- */
 const getHeaders = () => {
 	return {
-		"Content-Type": "application/json",
 	};
 };
 
@@ -33,29 +32,12 @@ export function fetchGet(url: string) {
 	});
 }
 
-export function fetchPut(url: string, body: unknown) {
-	const completeUrl = `${API_URL}/${url}`;
-	return fetch(completeUrl, {
-		method: "PUT",
-		headers: getHeaders(),
-		body: JSON.stringify(body),
-	});
-}
-
-export function fetchPost(url: string, body: unknown) {
+export function fetchPost(url: string, body: FormData) {
 	const completeUrl = `${API_URL}/${url}`;
 	return fetch(completeUrl, {
 		method: "POST",
 		headers: getHeaders(),
-		body: JSON.stringify(body),
-	});
-}
-
-export function fetchDelete(url: string) {
-	const completeUrl = `${API_URL}/${url}`;
-	return fetch(completeUrl, {
-		method: "DELETE",
-		headers: getHeaders(),
+		body: body,
 	});
 }
 

@@ -21,6 +21,7 @@ import React, { useState } from "react";
 /* ----- PROPS ----- */
 type AddCommentProps = {
 	callback: () => void;
+	emissionId: string;
 };
 
 
@@ -29,7 +30,7 @@ type StatusType = 'idle' | 'success' | 'error';
 
 
 /* ----- COMPONENT ----- */
-const AddComment: React.FC<AddCommentProps> = ({ callback }) => {
+const AddComment: React.FC<AddCommentProps> = ({ callback, emissionId }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [comment, setComment] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
@@ -53,15 +54,24 @@ const AddComment: React.FC<AddCommentProps> = ({ callback }) => {
 
 		setIsLoading(true);
 
+		const payload = new FormData();
+		payload.append("contenu", comment);
+		payload.append("emissionId", emissionId);
+		payload.append("userId", "10000000-0000-0000-0000-000000000001");
+
 		try {
-			const response = await fetchPost("commentaires", { "content": comment });
-			if (response.status < 200 || response.status >= 300)
-				throw (`Response Status: ${response.status} | ${response}`)
+			const response = await fetchPost("commentaires", payload);
+			if (response.status < 200 || response.status >= 300) {
+				const errorData = await response.json();
+				console.error("Erreur API:", errorData);
+				throw new Error(`Erreur ${response.status}`);
+			}
 
 			setStatus('success');
 			setComment("");
 			callback();
 		} catch (error) {
+			console.error(error);
 			setStatus('error');
 		} finally {
 			setIsLoading(false);
