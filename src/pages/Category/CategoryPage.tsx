@@ -85,7 +85,7 @@ const CategoryPage: React.FC = () => {
 						<div className="p-8 flex flex-col gap-4 w-full xl:w-2/3 overflow-y-auto xl:overflow-y-auto">
 							{
 								emissions.map((emission) => (
-									<Link to={`/emission/${emission.id}`}>
+									<Link to={`/emission/${emission.id}`} key={emission.id}>
 										<DisplayEmissionSmall emission={emission} />
 									</Link>
 								))
