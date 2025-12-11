@@ -7,8 +7,7 @@
 	>> Romane Lesueur - { rlesueur@etu.uqac.cq }
 
 	(„• ֊ •„)❤  <  Have a good day !
-	--U-----U------------------------
-*/
+	--U-----U------------------------*/
 
 /* ----- IMPORTS ----- */
 import React, { useState } from "react";
