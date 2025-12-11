@@ -19,11 +19,20 @@ const API_URL = `${BASE_URL}/api`;
 
 
 /* ----- PRIVATE FUNCTIONS ----- */
-const getHeaders = (contentType: string = "application/json") => {
-	let header = { "Content-Type": contentType };
-	if (isAuthenticated())
-		return { ...header, "Authorization": `Bearer ${localStorage.getItem("authToken")}` };
-	return header;
+const getHeaders = (contentType: string | null = "application/json") => {
+	let headers: HeadersInit = {};
+
+	if (contentType) {
+		headers = { ...headers, "Content-Type": contentType };
+	}
+
+	if (isAuthenticated()) {
+		const token = localStorage.getItem("authToken");
+		if (token) {
+			headers = { ...headers, "Authorization": `Bearer ${token}` };
+		}
+	}
+	return headers;
 };
 
 
@@ -38,9 +47,10 @@ export function fetchGet(url: string) {
 
 export function fetchPostFormData(url: string, body: FormData) {
 	const completeUrl = `${API_URL}/${url}`;
+
 	return fetch(completeUrl, {
 		method: "POST",
-		headers: getHeaders("multipart/form-data"),
+		headers: getHeaders(null),
 		body: body,
 	});
 }

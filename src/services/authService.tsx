@@ -7,7 +7,7 @@
 */
 
 /* ----- IMPORTS ----- */
-import { fetchPostJson } from "@/services/fetch";
+import { fetchPostFormData, fetchPostJson } from "@/services/fetch";
 import { clearMe, getMe } from "@/store/MeStore";
 
 
@@ -37,19 +37,16 @@ export const register = async (username: string, email: string, password: string
 	let responseJson;
 
 	try {
-		const response = await fetchPostJson("users", { "pseudo": username, "email": email, "password": password });
+		const formData = new FormData();
+		formData.append("pseudo", username);
+		formData.append("email", email);
+		formData.append("password", password);
+		const response = await fetchPostFormData("users", formData);
 		if (!response.ok)
 			return false;
-		responseJson = await response.json();
+		return login(email, password);
 	} catch (error) {
 		console.error("Error register:", error);
-		return false;
-	}
-	if (responseJson.access_token) {
-		localStorage.setItem('authToken', responseJson.access_token);
-		await getMe();
-		return true;
-	} else {
 		return false;
 	}
 };
