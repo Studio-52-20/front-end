@@ -12,13 +12,14 @@
 
 /* ----- IMPORTS ----- */
 import React, { useState } from 'react';
-import { fetchPost } from '@/services/fetch';
+import { fetchPostFormData } from '@/services/fetch';
 
 /* ----- COMPONENT ----- */
 const AdminPage: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
+    date: '',
     audio: null as File | null,
     cover: null as File | null,
   });
@@ -58,13 +59,20 @@ const AdminPage: React.FC = () => {
       const data = new FormData();
       data.append('titre', formData.name);
       data.append('description', formData.description);
+      
+      // Convertit la date au format ISO (2025-12-11T05:02:48.964Z)
+      const isoDate = new Date(formData.date).toISOString();
+      data.append('date', isoDate);
+      
       if (formData.audio) data.append('fichier', formData.audio);
       if (formData.cover) data.append('imageName', formData.cover);
-
+      data.append('isActive', '1');
+      
       console.log('Envoi des données à l\'API...');
+      console.log('Date envoyée:', isoDate);
 
       // Envoie à l'API
-      const response = await fetchPost('emissions', data);
+      const response = await fetchPostFormData('emissions', data);
 
       console.log('Réponse reçue:', response);
 
@@ -73,7 +81,7 @@ const AdminPage: React.FC = () => {
         console.log('Succès:', result);
         alert('Émission ajoutée avec succès ! 🎉');
         // Réinitialise le formulaire
-        setFormData({ name: '', description: '', audio: null, cover: null });
+        setFormData({ name: '', description: '', date: '', audio: null, cover: null });
         setAudioPreview('');
         setCoverPreview('');
       } else {
@@ -129,6 +137,22 @@ const AdminPage: React.FC = () => {
                 rows={4}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition resize-none text-gray-900"
                 placeholder="Décris ton émission..."
+              />
+            </div>
+
+            {/* Date et heure */}
+            <div>
+              <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
+                Date et heure de diffusion *
+              </label>
+              <input
+                type="datetime-local"
+                id="date"
+                name="date"
+                required
+                value={formData.date}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition text-gray-900"
               />
             </div>
 
