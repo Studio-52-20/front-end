@@ -23,6 +23,7 @@ import EmissionPage from "@/pages/Emission/EmissionPage";
 import { matchPath } from "react-router-dom";
 import SeriePage from "@/pages/Serie/SeriePage";
 import CategoryPage from "@/pages/Category/CategoryPage";
+import AuthPage from "@/pages/Auth/Auth";
 
 
 /* ----- DATAS ----- */
@@ -34,8 +35,7 @@ const PagesDatas: IPageConfig[] = [
 	{ name: "Emission", path: "/emission/:emissionId", content: EmissionPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Serie", path: "/serie/:serieId", content: SeriePage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Category", path: "/category/:categoryId", content: CategoryPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	// { name: "Login", path: "/login", content: "@/pages/LoginPage", displayInNavBar: false, displayNavBar: false, allowedAccessRoles: GetAllUserRoles() },
-	// { name: "AdminPanel", path: "/admin-panel", content: "@/pages/AdminPanel", displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetUserRoleByName("Admin") },
+	{ name: "Auth", path: "/auth", content: AuthPage, displayInNavBar: false, displayNavBar: false, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "NotFound", path: "*", content: NotFoundPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 ];
 
