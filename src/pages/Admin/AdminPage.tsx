@@ -13,7 +13,7 @@
 /* ----- IMPORTS ----- */
 import React, { useState, useEffect } from 'react';
 import { fetchPostFormData, fetchGet } from '@/services/fetch';
-import { Music, FileText, Calendar, Image, Loader2, Tag, Users } from 'lucide-react';
+import { Music, FileText, Calendar, Image, Loader2, Tag, Users, Tv } from 'lucide-react';
 import Studio5220TextLogo from '@/components/Logo/TextLogo/TextLogo';
 
 /* ----- COMPONENT ----- */
@@ -25,9 +25,11 @@ const AdminPage: React.FC = () => {
     audio: null as File | null,
     cover: null as File | null,
     categories: [] as string[],
+    series: [] as string[],
   });
 
   const [categories, setCategories] = useState<any[]>([]);
+  const [series, setSeries] = useState<any[]>([]);
   const [audioPreview, setAudioPreview] = useState<string>('');
   const [coverPreview, setCoverPreview] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,14 +39,33 @@ const AdminPage: React.FC = () => {
   const [searchUser, setSearchUser] = useState<string>('');
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
 
+  // État pour les notifications
+  const [notification, setNotification] = useState<{
+    show: boolean;
+    type: 'success' | 'error';
+    message: string;
+  }>({
+    show: false,
+    type: 'success',
+    message: ''
+  });
+
+  // Fonction pour afficher les notifications
+  const showNotification = (type: 'success' | 'error', message: string) => {
+    setNotification({ show: true, type, message });
+    
+    // Auto-fermeture après 5 secondes
+    setTimeout(() => {
+      setNotification({ show: false, type: 'success', message: '' });
+    }, 5000);
+  };
+
   // Charge les catégories disponibles
   useEffect(() => {
     const loadCategories = async () => {
       try {
         const response = await fetchGet('categories');
         const data = await response.json();
-        console.log('Données reçues:', data);  
-        console.log('Categories:', data.member); 
         setCategories(data.member || []);
       } catch (error) {
         console.error('Erreur chargement catégories:', error);
@@ -53,13 +74,26 @@ const AdminPage: React.FC = () => {
     loadCategories();
   }, []);
 
+  // Charge les séries disponibles
+  useEffect(() => {
+    const loadSeries = async () => {
+      try {
+        const response = await fetchGet('series');
+        const data = await response.json();
+        setSeries(data.member || []);
+      } catch (error) {
+        console.error('Erreur chargement séries:', error);
+      }
+    };
+    loadSeries();
+  }, []);
+
   // Charge les utilisateurs
   useEffect(() => {
     const loadUsers = async () => {
       try {
         const response = await fetchGet('users');
         const data = await response.json();
-        console.log('Utilisateurs reçus:', data);
         setUsers(data.member || []);
       } catch (error) {
         console.error('Erreur chargement utilisateurs:', error);
@@ -84,6 +118,15 @@ const AdminPage: React.FC = () => {
       categories: prev.categories.includes(categoryId)
         ? prev.categories.filter(id => id !== categoryId)
         : [...prev.categories, categoryId]
+    }));
+  };
+
+  const handleSerieToggle = (serieId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      series: prev.series.includes(serieId)
+        ? prev.series.filter(id => id !== serieId)
+        : [...prev.series, serieId]
     }));
   };
 
@@ -126,6 +169,7 @@ const AdminPage: React.FC = () => {
       
       data.append('isActive', '1');
       data.append('categoriesIds[]', JSON.stringify(formData.categories));
+      data.append('serieIds[]', JSON.stringify(formData.series));
       data.append('participantsIds[]', JSON.stringify(selectedUsers));
       
       if (formData.audio) data.append('audioFile', formData.audio);
@@ -134,19 +178,19 @@ const AdminPage: React.FC = () => {
       const response = await fetchPostFormData('emissions', data);
 
       if (response.ok) {
-        alert('Émission ajoutée avec succès ! 🎉');
-        setFormData({ name: '', description: '', date: '', audio: null, cover: null, categories: [] });
+        showNotification('success', '🎉 Émission ajoutée avec succès !');
+        setFormData({ name: '', description: '', date: '', audio: null, cover: null, categories: [], series: [] });
         setAudioPreview('');
         setCoverPreview('');
         setSelectedUsers([]);
         setSearchUser('');
       } else {
         const error = await response.json();
-        alert('Erreur : ' + (error.message || error.detail || 'Une erreur est survenue'));
+        showNotification('error', `❌ Erreur : ${error.message || error.detail || 'Une erreur est survenue'}`);
       }
     } catch (error) {
       console.error('Erreur réseau:', error);
-      alert('Impossible de contacter le serveur');
+      showNotification('error', '❌ Impossible de contacter le serveur');
     } finally {
       setIsSubmitting(false);
     }
@@ -156,6 +200,54 @@ const AdminPage: React.FC = () => {
     <div className="min-h-screen w-full flex flex-col justify-center items-center background-dark-green p-4 relative overflow-hidden mt-28">
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 background-mountain-meadow rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
       
+      {/* Notification */}
+      {notification.show && (
+        <div 
+          className={`fixed top-8 right-8 z-50 max-w-md p-6 rounded-2xl shadow-2xl backdrop-blur-xl border-2 ${
+            notification.type === 'success' 
+              ? 'bg-green-500/20 border-green-500 text-white' 
+              : 'bg-red-500/20 border-red-500 text-white'
+          }`}
+          style={{
+            animation: 'slideInRight 0.3s ease-out'
+          }}
+        >
+          <div className="flex items-start gap-4">
+            <div className={`p-3 rounded-full ${
+              notification.type === 'success' 
+                ? 'bg-green-500' 
+                : 'bg-red-500'
+            }`}>
+              {notification.type === 'success' ? (
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
+            </div>
+            
+            <div className="flex-1">
+              <h3 className="font-bold text-lg mb-1">
+                {notification.type === 'success' ? 'Succès !' : 'Erreur'}
+              </h3>
+              <p className="text-sm opacity-90">{notification.message}</p>
+            </div>
+            
+            <button
+              onClick={() => setNotification({ show: false, type: 'success', message: '' })}
+              className="text-white hover:opacity-70 transition-opacity"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="w-full max-w-4xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl relative z-10">
         <div className="flex flex-col items-center mb-8">
           <div className="mb-4">
@@ -236,6 +328,34 @@ const AdminPage: React.FC = () => {
                     className="hidden"
                   />
                   <span className="text-sm font-medium">{category.nom}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Séries */}
+          <div className="bg-black/20 border border-white/10 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Tv className="text-gray-400" size={20} />
+              <label className="text-white font-medium">Séries</label>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {series.map((serie) => (
+                <label
+                  key={serie.id}
+                  className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${
+                    formData.series.includes(serie.id)
+                      ? 'background-mountain-meadow text-black'
+                      : 'bg-white/5 text-white hover:bg-white/10'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.series.includes(serie.id)}
+                    onChange={() => handleSerieToggle(serie.id)}
+                    className="hidden"
+                  />
+                  <span className="text-sm font-medium">{serie.nom}</span>
                 </label>
               ))}
             </div>
@@ -365,6 +485,20 @@ const AdminPage: React.FC = () => {
           </button>
         </form>
       </div>
+
+      {/* Styles pour l'animation */}
+      <style>{`
+        @keyframes slideInRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 };
