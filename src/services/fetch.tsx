@@ -10,6 +10,8 @@
 	--U-----U------------------------
 */
 
+import { isAuthenticated } from "./authService";
+
 
 /* ----- DATAS ----- */
 const BASE_URL = "http://127.0.0.1:8000";
@@ -17,9 +19,20 @@ const API_URL = `${BASE_URL}/api`;
 
 
 /* ----- PRIVATE FUNCTIONS ----- */
-const getHeaders = () => {
-	return {
-	};
+const getHeaders = (contentType: string | null = "application/json") => {
+	let headers: HeadersInit = {};
+
+	if (contentType) {
+		headers = { ...headers, "Content-Type": contentType };
+	}
+
+	if (isAuthenticated()) {
+		const token = localStorage.getItem("authToken");
+		if (token) {
+			headers = { ...headers, "Authorization": `Bearer ${token}` };
+		}
+	}
+	return headers;
 };
 
 
@@ -32,12 +45,22 @@ export function fetchGet(url: string) {
 	});
 }
 
-export function fetchPost(url: string, body: FormData) {
+export function fetchPostFormData(url: string, body: FormData) {
+	const completeUrl = `${API_URL}/${url}`;
+
+	return fetch(completeUrl, {
+		method: "POST",
+		headers: getHeaders(null),
+		body: body,
+	});
+}
+
+export function fetchPostJson(url: string, body: any) {
 	const completeUrl = `${API_URL}/${url}`;
 	return fetch(completeUrl, {
 		method: "POST",
-		headers: getHeaders(),
-		body: body,
+		headers: getHeaders("application/json"),
+		body: JSON.stringify(body),
 	});
 }
 

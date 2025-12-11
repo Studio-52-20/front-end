@@ -16,9 +16,9 @@ import React from "react";
 import css from "./Laptop.module.css";
 import { NavLink } from "react-router-dom";
 import { GetPagesDatasInNavBar } from "@/data/PageData";
-import { UserCircle2 } from "lucide-react";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
 import type { IPageConfig } from "@/type/PageConfig";
+import DisplayAuthButton from "@/components/Display/Auth/DisplayAuthButton/DisplayAuthButton";
 
 
 /* ----- COMPONENT ----- */
@@ -39,9 +39,7 @@ const NavBar: React.FC = () => {
 					)
 				})}
 			</div>
-			<div className="textStyle-title color-mountain-meadow">
-				<UserCircle2 size={32} />
-			</div>
+			<DisplayAuthButton />
 		</div>
 	);
 };
