@@ -30,7 +30,7 @@ const JournalPage: React.FC = () => {
 
 	return (
 		<div className="flex flex-col min-h-screen">
-			<div className="h-28 shrink-0 display-mobile-mode"></div>
+			<div className="h-28 shrink-0"></div>
 			<JournalPresentation onReadJournal={scrollToReader} pdfUrl={pdfUrl} />
 			<JournalPdfReader id="journal-reader" pdfUrl={pdfUrl} />
 		</div>
