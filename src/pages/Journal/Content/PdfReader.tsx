@@ -12,6 +12,7 @@
 
 
 /* ----- IMPORTS ----- */
+import { DownloadIcon } from "lucide-react";
 import React from "react";
 
 
@@ -33,29 +34,42 @@ const JournalPdfReader: React.FC<JournalPdfReaderProps> = ({ id, pdfUrl }) => {
 						<div className="textStyle-title color-anti-flash-white">
 							Lecture en cours
 						</div>
-						<a href={pdfUrl} target="_blank" rel="noreferrer" className="text-sm color-anti-flash-white opacity-60 hover:opacity-100 underline">
+						<a href={pdfUrl} target="_blank" rel="noreferrer" className="hidden md:block text-sm color-anti-flash-white opacity-60 hover:opacity-100 underline">
 							Ouvrir dans un nouvel onglet
 						</a>
 					</div>
 
-					<div className="w-full h-[85vh] bg-white/90 rounded-xl overflow-hidden">
+					<div className="display-laptop-mode w-full h-[85vh] rounded-xl overflow-hidden">
 						<object
 							data={pdfUrl}
 							type="application/pdf"
 							className="w-full h-full"
 						>
 							<div className="flex flex-col items-center justify-center h-full text-gray-800 p-10 text-center">
-								<p className="text-lg font-bold mb-2">Oups !</p>
-								<p className="mb-4">Votre navigateur ne peut pas afficher le PDF ici.</p>
+								<p className="text-lg font-bold mb-2">Impossible d'afficher le PDF directement.</p>
 								<a
 									href={pdfUrl}
-									className="px-6 py-2 background-bangladesh-green text-white rounded-full"
+									className="px-6 py-2 background-bangladesh-green color-anti-flash-white rounded-full mt-4"
 									download
 								>
 									Télécharger le fichier
 								</a>
 							</div>
 						</object>
+					</div>
+
+					<div className="display-mobile-mode flex flex-col items-center justify-center py-12 text-center">
+						<p className="textStyle-text color-anti-flash-white mb-6 px-4">
+							Pour une meilleure expérience de lecture sur votre téléphone, nous vous recommandons de télécharger le journal.
+						</p>
+						<a
+							href={pdfUrl}
+							download
+							className="px-8 py-4 bg-white text-(--color-bangladesh-green) font-bold rounded-full shadow-lg flex items-center justify-center gap-2"
+						>
+							<DownloadIcon className="h-5 w-5" />
+							Télécharger le PDF
+						</a>
 					</div>
 
 					<div className="textStyle-text color-anti-flash-white text-center italic text-sm mt-2">

@@ -68,7 +68,7 @@ const JournalPresentation: React.FC<JournalPresentationProps> = ({ onReadJournal
 						<div className="flex flex-col sm:flex-row gap-4 mt-4">
 							<button
 								onClick={onReadJournal}
-								className="px-6 py-2 rounded-full background-bangladesh-green color-anti-flash-white font-bold hover:opacity-90 transition shadow-md flex items-center gap-2 group"
+								className="px-6 py-2 rounded-full background-bangladesh-green color-anti-flash-white font-bold hover:opacity-90 transition shadow-md flex items-center gap-2 group justify-center sm:justify-start"
 							>
 								LIRE MAINTENANT
 								<ChevronDown className="h-5 w-0 group-hover:animate-bounce group-hover:w-5 transition-all duration-300" />
@@ -76,7 +76,7 @@ const JournalPresentation: React.FC<JournalPresentationProps> = ({ onReadJournal
 							<a
 								href={pdfUrl}
 								download="Journal_5220_Decembre.pdf"
-								className="px-6 py-2 rounded-full border-2 border-(--color-bangladesh-green) hover:bg-(--color-bangladesh-green) color-anti-flash-white font-bold transition shadow-md flex items-center gap-2 group"
+								className="px-6 py-2 rounded-full border-2 border-(--color-bangladesh-green) hover:bg-(--color-bangladesh-green) color-anti-flash-white font-bold transition shadow-md flex items-center gap-2 group justify-center sm:justify-start"
 							>
 								TÉLÉCHARGER
 								<DownloadIcon className="h-5 w-0 group-hover:animate-bounce group-hover:w-5 transition-all duration-300" />
