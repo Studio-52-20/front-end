@@ -13,11 +13,12 @@
 /* ----- IMPORTS ----- */
 import React, { useState } from "react";
 import css from "./Mobile.module.css";
-import { Ellipsis, UserCircle2 } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { GetPagesDatasInNavBar } from "@/data/PageData";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
 import type { IPageConfig } from "@/type/PageConfig";
+import DisplayAuthButton from "@/components/Display/Auth/DisplayAuthButton/DisplayAuthButton";
 
 
 /* ----- COMPONENT ----- */
@@ -47,9 +48,7 @@ const NavBar: React.FC = () => {
 						})}
 					</div>
 					<div className="flex justify-end p-6">
-						<div className="textStyle-title color-anti-flash-white">
-							<UserCircle2 size={32} />
-						</div>
+						<DisplayAuthButton />
 					</div>
 				</div>
 			</div>
