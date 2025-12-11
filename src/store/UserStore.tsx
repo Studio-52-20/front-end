@@ -12,7 +12,7 @@
 
 /* ----- IMPORTS ----- */
 import type { IUser } from "@/type/User";
-import { fetchGet } from "@/services/fetch";
+import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
 /* ----- DATAS ----- */
@@ -25,7 +25,7 @@ function _formatJsonUser(jsonResponse: any) {
 	const tmp: IUser = {
 		id: jsonResponse["id"],
 		username: jsonResponse["pseudo"],
-		image: jsonResponse["image"] ?? "/img/anonymous_user.jpg",
+		image: jsonResponse["imageName"] ? getFullUrl(`/uploads/users/${jsonResponse["imageName"]}`) : "/img/anonymous_user.jpg",
 	}
 	users.set(tmp.id, { fetch: Date.now(), user: tmp });
 }
