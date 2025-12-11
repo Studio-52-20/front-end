@@ -64,9 +64,10 @@ const AdminPage: React.FC = () => {
       const isoDate = new Date(formData.date).toISOString();
       data.append('date', isoDate);
       
-      if (formData.audio) data.append('fichier', formData.audio);
-      if (formData.cover) data.append('imageName', formData.cover);
       data.append('isActive', '1');
+      
+      if (formData.audio) data.append('audioFile', formData.audio);
+      if (formData.cover) data.append('imageFile', formData.cover);
       
       console.log('Envoi des données à l\'API...');
       console.log('Date envoyée:', isoDate);
