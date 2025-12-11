@@ -34,12 +34,28 @@ function _formatJsonUser(jsonResponse: any) {
 /* ----- FETCH ----- */
 async function fetchUsers() {
 	try {
-		const response = await fetchGet("users");
-		const jsonResponse = await response.json();
 		users.clear();
 		lastUsersFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++)
-			_formatJsonUser(jsonResponse.member[i])
+
+		let page = 1;
+		let hasNextPage = true;
+
+		while (hasNextPage) {
+			const response = await fetchGet(`users?page=${page}`);
+			const jsonResponse = await response.json();
+
+			if (jsonResponse.member) {
+				for (let i = 0; i < jsonResponse.member.length; i++) {
+					_formatJsonUser(jsonResponse.member[i]);
+				}
+			}
+
+			if (jsonResponse.view && jsonResponse.view.next)
+				page++;
+			else
+				hasNextPage = false;
+		}
+
 	} catch (error) {
 		console.error("Error fetching users: ", error);
 	}
