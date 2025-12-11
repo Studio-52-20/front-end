@@ -11,8 +11,10 @@
 
 
 /* ----- IMPORTS ----- */
-import React, { useState } from 'react';
-import { fetchPostFormData } from '@/services/fetch';
+import React, { useState, useEffect } from 'react';
+import { fetchPostFormData, fetchGet } from '@/services/fetch';
+import { Music, FileText, Calendar, Image, Loader2, Tag } from 'lucide-react';
+import Studio5220TextLogo from '@/components/Logo/TextLogo/TextLogo';
 
 /* ----- COMPONENT ----- */
 const AdminPage: React.FC = () => {
@@ -22,15 +24,40 @@ const AdminPage: React.FC = () => {
     date: '',
     audio: null as File | null,
     cover: null as File | null,
+    categories: [] as string[],
   });
 
+  const [categories, setCategories] = useState<any[]>([]);
   const [audioPreview, setAudioPreview] = useState<string>('');
   const [coverPreview, setCoverPreview] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Charge les catégories disponibles
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const response = await fetchGet('categories');
+        const data = await response.json();
+        setCategories(data.member || []);
+      } catch (error) {
+        console.error('Erreur chargement catégories:', error);
+      }
+    };
+    loadCategories();
+  }, []);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCategoryToggle = (categoryId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      categories: prev.categories.includes(categoryId)
+        ? prev.categories.filter(id => id !== categoryId)
+        : [...prev.categories, categoryId]
+    }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'audio' | 'cover') => {
@@ -55,39 +82,28 @@ const AdminPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Crée le FormData avec les bons noms de champs
       const data = new FormData();
       data.append('titre', formData.name);
       data.append('description', formData.description);
       
-      // Convertit la date au format ISO (2025-12-11T05:02:48.964Z)
       const isoDate = new Date(formData.date).toISOString();
       data.append('date', isoDate);
       
       data.append('isActive', '1');
+      data.append('categoriesIds', JSON.stringify(formData.categories));
       
       if (formData.audio) data.append('audioFile', formData.audio);
       if (formData.cover) data.append('imageFile', formData.cover);
-      
-      console.log('Envoi des données à l\'API...');
-      console.log('Date envoyée:', isoDate);
 
-      // Envoie à l'API
       const response = await fetchPostFormData('emissions', data);
 
-      console.log('Réponse reçue:', response);
-
       if (response.ok) {
-        const result = await response.json();
-        console.log('Succès:', result);
         alert('Émission ajoutée avec succès ! 🎉');
-        // Réinitialise le formulaire
-        setFormData({ name: '', description: '', date: '', audio: null, cover: null });
+        setFormData({ name: '', description: '', date: '', audio: null, cover: null, categories: [] });
         setAudioPreview('');
         setCoverPreview('');
       } else {
         const error = await response.json();
-        console.error('Erreur backend:', error);
         alert('Erreur : ' + (error.message || error.detail || 'Une erreur est survenue'));
       }
     } catch (error) {
@@ -99,130 +115,159 @@ const AdminPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 mt-28">
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <h1 className="text-3xl font-bold color-mountain-meadow mb-8 text-center">
+    <div className="min-h-screen w-full flex flex-col justify-center items-center background-dark-green p-4 relative overflow-hidden mt-28">
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 background-mountain-meadow rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
+      
+      <div className="w-full max-w-4xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl relative z-10">
+        <div className="flex flex-col items-center mb-8">
+          <div className="mb-4">
+            <Studio5220TextLogo color="var(--color-mountain-meadow)" size={0.8} />
+          </div>
+          <h2 className="text-3xl font-bold text-white text-center">
             Ajouter une émission
-          </h1>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Nom de l'émission */}
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                Nom de l'émission *
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition text-gray-900"
-                placeholder="Le titre de ton émission"
-              />
-            </div>
-
-            {/* Description */}
-            <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-                Description *
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                required
-                value={formData.description}
-                onChange={handleInputChange}
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition resize-none text-gray-900"
-                placeholder="Décris ton émission..."
-              />
-            </div>
-
-            {/* Date et heure */}
-            <div>
-              <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
-                Date et heure de diffusion *
-              </label>
-              <input
-                type="datetime-local"
-                id="date"
-                name="date"
-                required
-                value={formData.date}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition text-gray-900"
-              />
-            </div>
-
-            {/* Audio */}
-            <div>
-              <label htmlFor="audio" className="block text-sm font-medium text-gray-700 mb-2">
-                Audio de l'émission *
-              </label>
-              <label className="flex-1 cursor-pointer">
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-500 transition">
-                  <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                  </svg>
-                  <p className="mt-2 text-sm text-gray-600">
-                    {audioPreview || 'Clique pour choisir un fichier audio'}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">MP3, WAV, OGG</p>
-                </div>
-                <input
-                  type="file"
-                  id="audio"
-                  accept="audio/*"
-                  onChange={(e) => handleFileChange(e, 'audio')}
-                  className="hidden"
-                  required
-                />
-              </label>
-            </div>
-
-            {/* Image de couverture */}
-            <div>
-              <label htmlFor="cover" className="block text-sm font-medium text-gray-700 mb-2">
-                Image de couverture *
-              </label>
-              <label className="flex-1 cursor-pointer">
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-500 transition">
-                  {coverPreview ? (
-                    <img src={coverPreview} alt="Preview" className="mx-auto h-32 w-32 object-cover rounded-lg" />
-                  ) : (
-                    <>
-                      <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <p className="mt-2 text-sm text-gray-600">Clique pour choisir une image</p>
-                    </>
-                  )}
-                  <p className="text-xs text-gray-500 mt-1">PNG, JPG, WEBP</p>
-                </div>
-                <input
-                  type="file"
-                  id="cover"
-                  accept="image/*"
-                  onChange={(e) => handleFileChange(e, 'cover')}
-                  className="hidden"
-                  required
-                />
-              </label>
-            </div>
-
-            {/* Bouton submit */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full background-mountain-meadow text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? 'Envoi en cours...' : 'Ajouter l\'émission'}
-            </button>
-          </form>
+          </h2>
+          <p className="text-gray-400 text-sm mt-2 text-center">
+            Remplissez le formulaire pour créer une nouvelle émission
+          </p>
         </div>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          {/* Nom de l'émission */}
+          <div className="relative group">
+            <FileText className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:color-mountain-meadow transition-colors" size={20} />
+            <input
+              type="text"
+              name="name"
+              placeholder="Nom de l'émission *"
+              required
+              value={formData.name}
+              onChange={handleInputChange}
+              className="w-full bg-black/20 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all"
+            />
+          </div>
+
+          {/* Description */}
+          <div className="relative group">
+            <textarea
+              name="description"
+              placeholder="Description de l'émission *"
+              required
+              value={formData.description}
+              onChange={handleInputChange}
+              rows={4}
+              className="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all resize-none"
+            />
+          </div>
+
+          {/* Date et heure */}
+          <div className="relative group">
+            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:color-mountain-meadow transition-colors" size={20} />
+            <input
+              type="datetime-local"
+              name="date"
+              required
+              value={formData.date}
+              onChange={handleInputChange}
+              className="w-full bg-black/20 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all"
+            />
+          </div>
+
+          {/* Catégories */}
+          <div className="bg-black/20 border border-white/10 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Tag className="text-gray-400" size={20} />
+              <label className="text-white font-medium">Catégories</label>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {categories.map((category) => (
+                <label
+                  key={category.id}
+                  className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${
+                    formData.categories.includes(category.id)
+                      ? 'background-mountain-meadow text-black'
+                      : 'bg-white/5 text-white hover:bg-white/10'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.categories.includes(category.id)}
+                    onChange={() => handleCategoryToggle(category.id)}
+                    className="hidden"
+                  />
+                  <span className="text-sm font-medium">{category.nom}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Audio */}
+          <div>
+            <label className="flex items-center gap-2 text-white mb-2">
+              <Music size={20} className="text-gray-400" />
+              <span className="font-medium">Audio de l'émission *</span>
+            </label>
+            <label className="cursor-pointer block">
+              <div className="bg-black/20 border-2 border-dashed border-white/10 rounded-xl p-6 text-center hover:border-green-500 transition-all">
+                <Music className="mx-auto h-12 w-12 text-gray-400 mb-2" />
+                <p className="text-white text-sm">
+                  {audioPreview || 'Clique pour choisir un fichier audio'}
+                </p>
+                <p className="text-gray-500 text-xs mt-1">MP3, WAV, OGG</p>
+              </div>
+              <input
+                type="file"
+                accept="audio/*"
+                onChange={(e) => handleFileChange(e, 'audio')}
+                className="hidden"
+                required
+              />
+            </label>
+          </div>
+
+          {/* Image de couverture */}
+          <div>
+            <label className="flex items-center gap-2 text-white mb-2">
+              <Image size={20} className="text-gray-400" />
+              <span className="font-medium">Image de couverture *</span>
+            </label>
+            <label className="cursor-pointer block">
+              <div className="bg-black/20 border-2 border-dashed border-white/10 rounded-xl p-6 text-center hover:border-green-500 transition-all">
+                {coverPreview ? (
+                  <img src={coverPreview} alt="Preview" className="mx-auto h-32 w-32 object-cover rounded-lg" />
+                ) : (
+                  <>
+                    <Image className="mx-auto h-12 w-12 text-gray-400 mb-2" />
+                    <p className="text-white text-sm">Clique pour choisir une image</p>
+                  </>
+                )}
+                <p className="text-gray-500 text-xs mt-1">PNG, JPG, WEBP</p>
+              </div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleFileChange(e, 'cover')}
+                className="hidden"
+                required
+              />
+            </label>
+          </div>
+
+          {/* Bouton submit */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="mt-4 background-mountain-meadow text-black font-bold py-4 rounded-xl hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(76,175,80,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="animate-spin" size={20} />
+                Envoi en cours...
+              </>
+            ) : (
+              'Ajouter l\'émission'
+            )}
+          </button>
+        </form>
       </div>
     </div>
   );
