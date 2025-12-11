@@ -37,7 +37,7 @@ const PagesDatas: IPageConfig[] = [
 	{ name: "Emission", path: "/emission/:emissionId", content: EmissionPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Serie", path: "/serie/:serieId", content: SeriePage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Category", path: "/category/:categoryId", content: CategoryPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "Admin", path: "/admin", content: AdminPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
+	{ name: "Admin", path: "/admin", content: AdminPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Auth", path: "/auth", content: AuthPage, displayInNavBar: false, displayNavBar: false, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Journal", path: "/journal", content: JournalPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "NotFound", path: "*", content: NotFoundPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
