@@ -19,6 +19,7 @@ import { GetPagesDatasInNavBar } from "@/data/PageData";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
 import type { IPageConfig } from "@/type/PageConfig";
 import DisplayAuthButton from "@/components/Display/Auth/DisplayAuthButton/DisplayAuthButton";
+import { isAuthenticated } from "@/services/authService";
 
 
 /* ----- COMPONENT ----- */
@@ -32,6 +33,7 @@ const NavBar: React.FC = () => {
 					<Studio5220TextLogo color="var(--color-mountain-meadow)" size={0.6} />
 				</NavLink>
 				{pagesConfigs.map((pageConfig) => {
+					if (pageConfig.authRequired && !isAuthenticated()) return;
 					return (
 						<NavLink key={pageConfig.name} to={pageConfig.path} className={({ isActive }) => `${isActive ? css.activeLink : ''} textStyle-subtitle color-mountain-meadow ${css.navbarLink}`}>
 							{pageConfig.name}
