@@ -26,7 +26,7 @@ function _formatJsonCategory(jsonResponse: any) {
 		id: jsonResponse["id"],
 		name: jsonResponse["nom"],
 		image: getFullUrl(jsonResponse["imageUrl"]) ?? "/img/default_img.jpg",
-		emissions: jsonResponse["emissionIds"] ?? [],
+		emissions: jsonResponse["emissionIds"],
 	}
 	categories.set(tmp.id, { fetch: Date.now(), category: tmp });
 }

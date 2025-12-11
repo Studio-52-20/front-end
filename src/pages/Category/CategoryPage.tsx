@@ -54,6 +54,7 @@ const CategoryPage: React.FC = () => {
 		fetchData();
 	}, [categoryId]);
 
+
 	if (loading) {
 		return <div className="flex justify-center items-center h-screen textStyle-title">
 			<Loader />

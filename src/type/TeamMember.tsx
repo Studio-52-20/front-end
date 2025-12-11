@@ -17,8 +17,4 @@ export interface ITeamMember {
 	role: string;
 	bio: string;
 	image: string;
-	fullBio: string;
-	joinDate: string;
-	quote: string;
-	recommendedEmission: string;
 };
