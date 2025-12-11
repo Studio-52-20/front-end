@@ -69,12 +69,7 @@ const EmissionPage: React.FC = () => {
 	}, [emissionId]);
 
 	async function refreshComments() {
-		if (!emission) return;
-		const tmp = await refreshEmissionById(emission.id);
-		setEmission(tmp);
-		getCommentsByIds(emission.comments ?? []).then((comments) => {
-			setComments(comments);
-		});
+		window.location.reload();
 	}
 
 
