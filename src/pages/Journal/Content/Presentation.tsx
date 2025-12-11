@@ -75,7 +75,9 @@ const JournalPresentation: React.FC<JournalPresentationProps> = ({ onReadJournal
 							</button>
 							<a
 								href={pdfUrl}
-								download="Journal_5220_Decembre.pdf"
+								target="_blank"
+								rel="noreferrer"
+								download
 								className="px-6 py-2 rounded-full border-2 border-(--color-bangladesh-green) hover:bg-(--color-bangladesh-green) color-anti-flash-white font-bold transition shadow-md flex items-center gap-2 group justify-center sm:justify-start"
 							>
 								TÉLÉCHARGER
