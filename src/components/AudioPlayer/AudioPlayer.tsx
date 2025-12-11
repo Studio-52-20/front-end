@@ -12,7 +12,7 @@
 
 
 /* ----- IMPORTS ----- */
-import { CloudDownload, Pause, Play, RotateCcw, SkipBack, SkipForward, Volume, Volume1, Volume2, VolumeOff } from "lucide-react";
+import { CloudDownload, Pause, Play, RotateCcw, SkipBack, SkipForward } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 
@@ -30,7 +30,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }: AudioPlayerProps) => {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentTime, setCurrentTime] = useState(0);
 	const [duration, setDuration] = useState(0);
-	const [volume, setVolume] = useState(1);
 
 	const formatTime = (time: number) => {
 		const minutes = Math.floor(time / 60);
@@ -87,10 +86,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }: AudioPlayerProps) => {
 		};
 	}, []);
 
-	useEffect(() => {
-		if (audioRef.current) audioRef.current.volume = volume;
-	}, [volume]);
-
 	return (
 		<div className="w-full max-w-xl text-white py-4 flex flex-col gap-6 rounded-xl">
 			<audio ref={audioRef} src={src} preload="metadata" />
@@ -112,27 +107,21 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }: AudioPlayerProps) => {
 
 
 			<div className="flex justify-around items-center gap-4">
-				<button onClick={restart} className="">
+				<button onClick={restart} className="p-2 rounded-full hover:bg-(--color-anti-flash-white-o25) transition-all">
 					<RotateCcw size={32} />
 				</button>
-				<button onClick={() => skip(-10)} className="">
+				<button onClick={() => skip(-10)} className="p-2 rounded-full hover:bg-(--color-anti-flash-white-o25) transition-all">
 					<SkipBack size={32} />
 				</button>
-				<button onClick={togglePlay} className="">
+				<button onClick={togglePlay} className="p-2 rounded-full hover:bg-(--color-anti-flash-white-o25) transition-all">
 					{isPlaying ? <Pause size={32} /> : <Play size={32} />}
 				</button>
-				<button onClick={() => skip(10)} className="">
+				<button onClick={() => skip(10)} className="p-2 rounded-full hover:bg-(--color-anti-flash-white-o25) transition-all">
 					<SkipForward size={32} />
 				</button>
-				<button>
+				<a href={src} target="_blank" className="p-2 rounded-full hover:bg-(--color-anti-flash-white-o25) transition-all">
 					<CloudDownload size={32} />
-				</button>
-				{/* <div className="flex items-center gap-2 ml-auto">
-					<div onClick={() => setVolume(0)}>
-						{volume == 0 ? <VolumeOff /> : <Volume2 />}
-					</div>
-					<input type="range" min={0} max={1} step={0.01} value={volume} onChange={(e) => setVolume(Number(e.target.value))} />
-				</div> */}
+				</a>
 			</div>
 		</div>
 	);

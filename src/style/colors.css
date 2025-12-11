@@ -25,6 +25,7 @@
 	--color-caribbean-green: #00DF81;
 
 	--color-anti-flash-white: #f1f7f6;
+	--color-anti-flash-white-o25: rgba(241, 247, 246, 0.25);
 	--color-anti-flash-white-o50: rgba(241, 247, 246, 0.5);
 	--color-anti-flash-white-o75: rgba(241, 247, 246, 0.75);
 }
