@@ -18,6 +18,7 @@ import { GetPagesDatasInNavBar } from "@/data/PageData";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
 import type { IPageConfig } from "@/type/PageConfig";
 import DisplayAuthButton from "@/components/Display/Auth/DisplayAuthButton/DisplayAuthButton";
+import { isAuthenticated } from "@/services/authService";
 
 
 /* ----- COMPONENT ----- */
@@ -39,6 +40,7 @@ const NavBar: React.FC = () => {
 				<div className={`${open ? css.slideIn : css.slideOut} ${css.sidebar}`}>
 					<div className="flex flex-col flex-1 justify-start items-center gap-8 h-full">
 						{pagesConfigs.map((pageConfig) => {
+							if (pageConfig.authRequired && !isAuthenticated()) return;
 							return (
 								<NavLink key={pageConfig.name} to={pageConfig.path} className={({ isActive }) => `${isActive ? css.activeLink : ''} textStyle-subtitle color-anti-flash-white ${css.navbarLink}`} onClick={() => setOpen(false)}>
 									{pageConfig.name}

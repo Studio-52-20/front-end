@@ -11,10 +11,6 @@
 */
 
 
-/* ----- IMPORTS ----- */
-import type { IUserRole } from "./User";
-
-
 /* ----- TYPE ----- */
 export interface IPageConfig {
 	name: string;
@@ -22,5 +18,5 @@ export interface IPageConfig {
 	content: React.FC;
 	displayInNavBar: boolean;
 	displayNavBar: boolean;
-	allowedAccessRoles: IUserRole[];
+	authRequired: boolean;
 }
