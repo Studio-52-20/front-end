@@ -13,7 +13,7 @@
 
 /* ----- IMPORTS ----- */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Mail, Lock, User, Loader2, ArrowRight } from "lucide-react";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
 import { login, register } from "@/services/authService";
@@ -129,7 +129,7 @@ const AuthPage: React.FC = () => {
 					</button>
 				</form>
 
-				<div className="mt-8 pt-6 border-t border-white/10 text-center">
+				<div className="mt-8 pt-6 border-t border-white/10 text-center flex flex-col gap-2 justify-center items-center">
 					<p className="text-gray-400 text-sm">
 						{isLoginMode ? "Pas encore de compte ?" : "Vous avez déjà un compte ?"}
 						<button
@@ -142,6 +142,12 @@ const AuthPage: React.FC = () => {
 							{isLoginMode ? "S'inscrire" : "Se connecter"}
 						</button>
 					</p>
+					<NavLink
+						to="/"
+						className="ml-2 text-sm text-(--color-mountain-meadow) font-semibold hover:underline transition-all"
+					>
+						Revenir au menu
+					</NavLink>
 				</div>
 
 			</div>

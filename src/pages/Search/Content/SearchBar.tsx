@@ -62,66 +62,68 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onClear }) => {
 				</p>
 			</div>
 
-			<div className="relative z-50 w-full background-dark-green border border-(--color-bangladesh-green) hover:border-(--color-mountain-meadow) focus-within:border-(--color-mountain-meadow) rounded-full p-2 flex items-center shadow-lg hover:scale-110 focus-within:scale-110 gap-2 transition-all">
-
-				<div className="px-4 color-anti-flash-white-o50">
-					<Search className="w-5 h-5" />
+			<div className="relative z-50 w-full background-dark-green border border-(--color-bangladesh-green) hover:border-(--color-mountain-meadow) focus-within:border-(--color-mountain-meadow) rounded-full p-2 flex flex-col sm:flex-row items-center shadow-lg hover:scale-110 focus-within:scale-110 gap-2 transition-all">
+				<div className="flex  grow items-center">
+					<div className="px-4 color-anti-flash-white-o50">
+						<Search className="w-5 h-5" />
+					</div>
+					<input
+						type="text"
+						className="bg-transparent border-none outline-none color-anti-flash-white w-full placeholder-(--color-anti-flash-white-o50) h-10 text-lg"
+						placeholder="Chercher un titre..."
+						value={query}
+						onChange={(e) => setQuery(e.target.value)}
+						onKeyDown={handleKeyDown}
+					/>
 				</div>
-
-				<input
-					type="text"
-					className="bg-transparent border-none outline-none color-anti-flash-white w-full placeholder-(--color-anti-flash-white-o50) h-10 text-lg"
-					placeholder="Chercher un titre..."
-					value={query}
-					onChange={(e) => setQuery(e.target.value)}
-					onKeyDown={handleKeyDown}
-				/>
-
-				<div className={`px-4 ${query === "" ? "color-anti-flash-white-o50" : "color-anti-flash-white"}`}>
-					<X className="w-5 h-5" onClick={() => {
-						setQuery("");
-						onClear();
-					}} />
-				</div>
-
-				<div className="w-px h-8 background-bangladesh-green"></div>
-
-				<div className="relative">
+				<div className="flex items-center">
 					<button
-						onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-						className="inline-flex items-center justify-center gap-2 color-anti-flash-white px-4 py-2.5 focus:outline-none transition-all"
-						type="button"
+						onClick={() => {
+							setQuery("");
+							onClear();
+						}}
+						className="sm:mx-4 color-anti-flash-white background-bangladesh-green hover:brightness-110 color-anti-flash-white p-3 rounded-full shrink-0 transition-all"
 					>
-						{filterLabels[filter]}
-						<ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+						<X className="w-5 h-5" />
 					</button>
 
-					{isDropdownOpen && (
-						<div className="absolute right-0 top-full mt-4 w-44 background-dark-green border border-(--color-bangladesh-green) rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 origin-top-right">
-							<ul className="p-1 text-sm color-anti-flash-white-o75">
-								{options.map((opt) => (
-									<li key={opt.value} className="py-0.5">
-										<button
-											onClick={() => handleSelectFilter(opt.value)}
-											className={`flex w-full text-left px-4 py-2 rounded-lg hover:bg-(--color-bangladesh-green-o20) hover:text-(--color-anti-flash-white) transition-colors ${filter === opt.value ? 'background-bangladesh-green color-anti-flash-white font-bold' : ''}`}
-										>
-											{opt.label}
-										</button>
-									</li>
-								))}
-							</ul>
-						</div>
-					)}
-				</div>
+					<div className="w-px h-8 background-bangladesh-green display-laptop-mode"></div>
 
-				<button
-					onClick={() => onSearch(query, filter)}
-					className="background-bangladesh-green hover:brightness-110 color-anti-flash-white p-3 rounded-full transition-all shrink-0"
-				>
-					<ArrowRight className="w-5 h-5" />
-				</button>
+					<div className="relative">
+						<button
+							onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+							className="inline-flex items-center justify-center gap-2 color-anti-flash-white px-4 py-2.5 focus:outline-none transition-all"
+							type="button"
+						>
+							{filterLabels[filter]}
+							<ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+						</button>
+						{isDropdownOpen && (
+							<div className="absolute right-0 top-full mt-4 w-44 background-dark-green border border-(--color-bangladesh-green) rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 origin-top-right">
+								<ul className="p-1 text-sm color-anti-flash-white-o75">
+									{options.map((opt) => (
+										<li key={opt.value} className="py-0.5">
+											<button
+												onClick={() => handleSelectFilter(opt.value)}
+												className={`flex w-full text-left px-4 py-2 rounded-lg hover:bg-(--color-bangladesh-green-o20) hover:text-(--color-anti-flash-white) transition-colors ${filter === opt.value ? 'background-bangladesh-green color-anti-flash-white font-bold' : ''}`}
+											>
+												{opt.label}
+											</button>
+										</li>
+									))}
+								</ul>
+							</div>
+						)}
+					</div>
+					<button
+						onClick={() => onSearch(query, filter)}
+						className="background-bangladesh-green hover:brightness-110 color-anti-flash-white p-3 rounded-full transition-all shrink-0"
+					>
+						<ArrowRight className="w-5 h-5" />
+					</button>
+				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 

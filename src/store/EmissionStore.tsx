@@ -117,6 +117,5 @@ export async function getRecentEmissions(count: number) {
 		.sort((a, b) => b.emission.date.getTime() - a.emission.date.getTime())
 		.slice(0, count)
 		.map(item => item.emission);
-	console.log(sortedEmissions);
 	return sortedEmissions;
 }
