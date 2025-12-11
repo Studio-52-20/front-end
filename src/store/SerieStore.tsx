@@ -27,7 +27,7 @@ function _formatJsonSerie(jsonResponse: any) {
 		name: jsonResponse["nom"],
 		description: jsonResponse["description"],
 		image: getFullUrl(jsonResponse["imageUrl"]) ?? "/img/default_img.jpg",
-		emissions: jsonResponse["emissionIds"] ?? [],
+		emissions: jsonResponse["emissionIds"],
 	}
 	series.set(tmp.id, { fetch: Date.now(), serie: tmp });
 }
