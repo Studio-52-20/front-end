@@ -51,6 +51,8 @@ const JournalPdfReader: React.FC<JournalPdfReaderProps> = ({ id, pdfUrl }) => {
 									href={pdfUrl}
 									className="px-6 py-2 background-bangladesh-green color-anti-flash-white rounded-full mt-4"
 									download
+									target="_blank"
+									rel="noreferrer"
 								>
 									Télécharger le fichier
 								</a>
@@ -64,6 +66,8 @@ const JournalPdfReader: React.FC<JournalPdfReaderProps> = ({ id, pdfUrl }) => {
 						</p>
 						<a
 							href={pdfUrl}
+							target="_blank"
+							rel="noreferrer"
 							download
 							className="px-8 py-4 bg-white text-(--color-bangladesh-green) font-bold rounded-full shadow-lg flex items-center justify-center gap-2"
 						>
