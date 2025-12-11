@@ -92,7 +92,8 @@ const AdminPage: React.FC = () => {
       data.append('date', isoDate);
       
       data.append('isActive', '1');
-      data.append('categoriesIds', JSON.stringify(formData.categories));
+      
+      data.append('categoriesIds[]', JSON.stringify(formData.categories));
       
       if (formData.audio) data.append('audioFile', formData.audio);
       if (formData.cover) data.append('imageFile', formData.cover);
