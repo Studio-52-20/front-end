@@ -38,7 +38,9 @@ const AdminPage: React.FC = () => {
       try {
         const response = await fetchGet('categories');
         const data = await response.json();
-        setCategories(data.member || []);
+        console.log('Données reçues:', data);  
+        console.log('Categories:', data.member); 
+          setCategories(data.member || []);
       } catch (error) {
         console.error('Erreur chargement catégories:', error);
       }
