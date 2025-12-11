@@ -25,6 +25,7 @@ import SeriePage from "@/pages/Serie/SeriePage";
 import CategoryPage from "@/pages/Category/CategoryPage";
 import AdminPage from "@/pages/Admin/AdminPage";
 import AuthPage from "@/pages/Auth/Auth";
+import JournalPage from "@/pages/Journal/Journal";
 
 
 /* ----- DATAS ----- */
@@ -38,6 +39,7 @@ const PagesDatas: IPageConfig[] = [
 	{ name: "Category", path: "/category/:categoryId", content: CategoryPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Admin", path: "/admin", content: AdminPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "Auth", path: "/auth", content: AuthPage, displayInNavBar: false, displayNavBar: false, allowedAccessRoles: GetAllUserRoles() },
+	{ name: "Journal", path: "/journal", content: JournalPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 	{ name: "NotFound", path: "*", content: NotFoundPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
 ];
 
