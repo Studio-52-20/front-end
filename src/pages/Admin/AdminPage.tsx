@@ -163,17 +163,20 @@ const AdminPage: React.FC = () => {
           </div>
 
           {/* Date et heure */}
-          <div className="relative group">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:color-mountain-meadow transition-colors" size={20} />
-            <input
-              type="datetime-local"
-              name="date"
-              required
-              value={formData.date}
-              onChange={handleInputChange}
-              className="w-full bg-black/20 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all"
-            />
-          </div>
+        <div className="relative group">
+          <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:color-mountain-meadow transition-colors" size={20} />
+          <input
+            type="datetime-local"
+            name="date"
+            required
+            value={formData.date}
+            onChange={handleInputChange}
+            className="w-full bg-black/20 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all"
+            style={{
+              colorScheme: 'dark'
+            }}
+          />
+        </div>
 
           {/* Catégories */}
           <div className="bg-black/20 border border-white/10 rounded-xl p-4">
