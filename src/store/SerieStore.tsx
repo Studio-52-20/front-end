@@ -36,12 +36,28 @@ function _formatJsonSerie(jsonResponse: any) {
 /* ----- FETCH ----- */
 async function fetchSeries() {
 	try {
-		const response = await fetchGet("series");
-		const jsonResponse = await response.json();
 		series.clear();
 		lastSeriesFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++)
-			_formatJsonSerie(jsonResponse.member[i])
+
+		let page = 1;
+		let hasNextPage = true;
+
+		while (hasNextPage) {
+			const response = await fetchGet(`series?page=${page}`);
+			const jsonResponse = await response.json();
+
+			if (jsonResponse.member) {
+				for (let i = 0; i < jsonResponse.member.length; i++) {
+					_formatJsonSerie(jsonResponse.member[i]);
+				}
+			}
+
+			if (jsonResponse.view && jsonResponse.view.next)
+				page++;
+			else
+				hasNextPage = false;
+			}
+
 	} catch (error) {
 		console.error("Error fetching series: ", error);
 	}

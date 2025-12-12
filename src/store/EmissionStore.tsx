@@ -40,12 +40,28 @@ function _formatJsonEmission(jsonResponse: any) {
 /* ----- FETCH ----- */
 async function fetchEmissions() {
 	try {
-		const response = await fetchGet("emissions");
-		const jsonResponse = await response.json();
 		emissions.clear();
 		lastEmissionsFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++)
-			_formatJsonEmission(jsonResponse.member[i]);
+
+		let page = 1;
+		let hasNextPage = true;
+
+		while (hasNextPage) {
+			const response = await fetchGet(`emissions?page=${page}`);
+			const jsonResponse = await response.json();
+
+			if (jsonResponse.member) {
+				for (let i = 0; i < jsonResponse.member.length; i++) {
+					_formatJsonEmission(jsonResponse.member[i]);
+				}
+			}
+
+			if (jsonResponse.view && jsonResponse.view.next)
+				page++;
+			else
+				hasNextPage = false;
+		}
+
 	} catch (error) {
 		console.error("Error fetching emissions: ", error);
 	}
@@ -98,11 +114,6 @@ export async function getEmissionsByIds(ids: string[]) {
 
 	const results = await Promise.all(promises);
 	return results.filter((c): c is IEmission => c !== undefined);
-}
-
-export async function refreshEmissionById(id: string): Promise<IEmission | undefined> {
-	fetchEmission(id);
-	return emissions.get(id)?.emission;
 }
 
 

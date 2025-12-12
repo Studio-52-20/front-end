@@ -36,12 +36,27 @@ function _formatJsonComment(jsonResponse: any) {
 /* ----- FETCH ----- */
 async function fetchComments() {
 	try {
-		const response = await fetchGet("commentaires");
-		const jsonResponse = await response.json();
 		comments.clear();
-		lastCommentsFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++)
-			_formatJsonComment(jsonResponse.member[i])
+
+		let page = 1;
+		let hasNextPage = true;
+
+		while (hasNextPage) {
+			const response = await fetchGet(`commentaires?page=${page}`);
+			const jsonResponse = await response.json();
+
+			if (jsonResponse.member) {
+				for (let i = 0; i < jsonResponse.member.length; i++) {
+					_formatJsonComment(jsonResponse.member[i]);
+				}
+			}
+
+			if (jsonResponse.view && jsonResponse.view.next)
+				page++;
+			else
+				hasNextPage = false;
+		}
+
 	} catch (error) {
 		console.error("Error fetching comments: ", error);
 	}

@@ -12,7 +12,7 @@
 
 /* ----- IMPORTS ----- */
 import type { IUser } from "@/type/User";
-import { fetchGet } from "@/services/fetch";
+import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
 /* ----- DATAS ----- */
@@ -25,7 +25,7 @@ function _formatJsonUser(jsonResponse: any) {
 	const tmp: IUser = {
 		id: jsonResponse["id"],
 		username: jsonResponse["pseudo"],
-		image: jsonResponse["image"] ?? "/img/anonymous_user.jpg",
+		image: jsonResponse["imageName"] ? getFullUrl(`/uploads/users/${jsonResponse["imageName"]}`) : "/img/anonymous_user.jpg",
 	}
 	users.set(tmp.id, { fetch: Date.now(), user: tmp });
 }
@@ -34,12 +34,28 @@ function _formatJsonUser(jsonResponse: any) {
 /* ----- FETCH ----- */
 async function fetchUsers() {
 	try {
-		const response = await fetchGet("users");
-		const jsonResponse = await response.json();
 		users.clear();
 		lastUsersFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++)
-			_formatJsonUser(jsonResponse.member[i])
+
+		let page = 1;
+		let hasNextPage = true;
+
+		while (hasNextPage) {
+			const response = await fetchGet(`users?page=${page}`);
+			const jsonResponse = await response.json();
+
+			if (jsonResponse.member) {
+				for (let i = 0; i < jsonResponse.member.length; i++) {
+					_formatJsonUser(jsonResponse.member[i]);
+				}
+			}
+
+			if (jsonResponse.view && jsonResponse.view.next)
+				page++;
+			else
+				hasNextPage = false;
+		}
+
 	} catch (error) {
 		console.error("Error fetching users: ", error);
 	}
