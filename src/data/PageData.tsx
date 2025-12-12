@@ -24,6 +24,7 @@ import SeriePage from "@/pages/Serie/SeriePage";
 import CategoryPage from "@/pages/Category/CategoryPage";
 import AuthPage from "@/pages/Auth/Auth";
 import JournalPage from "@/pages/Journal/Journal";
+import AdminPage from "@/pages/Admin/AdminPage";
 
 
 /* ----- DATAS ----- */
