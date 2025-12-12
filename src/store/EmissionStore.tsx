@@ -116,11 +116,6 @@ export async function getEmissionsByIds(ids: string[]) {
 	return results.filter((c): c is IEmission => c !== undefined);
 }
 
-export async function refreshEmissionById(id: string): Promise<IEmission | undefined> {
-	fetchEmission(id);
-	return emissions.get(id)?.emission;
-}
-
 
 /* ----- FUNCTION ----- */
 export function clearEmissions() {

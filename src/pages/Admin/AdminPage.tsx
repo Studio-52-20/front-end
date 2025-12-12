@@ -1,13 +1,13 @@
 /*
-	Authors:
-	>> Clément Lacroix - { clacroix2@etu.uqac.cq }
-	>> Lucas Aubriet - { laubriet@etu.uqac.cq }
-	>> Martin Vidal - { mvidal@etu.uqac.cq }
-	>> Nathan TIROLF - { ntirolf@etu.uqac.cq }
-	>> Romane Lesueur - { rlesueur@etu.uqac.cq }
+  Authors:
+  >> Clément Lacroix - { clacroix2@etu.uqac.cq }
+  >> Lucas Aubriet - { laubriet@etu.uqac.cq }
+  >> Martin Vidal - { mvidal@etu.uqac.cq }
+  >> Nathan TIROLF - { ntirolf@etu.uqac.cq }
+  >> Romane Lesueur - { rlesueur@etu.uqac.cq }
 
-	(„• ֊ •„)❤  <  Have a good day !
-	--U-----U------------------------*/
+  („• ֊ •„)❤  <  Have a good day !
+  --U-----U------------------------*/
 
 
 /* ----- IMPORTS ----- */
@@ -15,6 +15,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchPostFormData, fetchGet } from '@/services/fetch';
 import { Music, FileText, Calendar, Image, Loader2, Tag, Users, Tv } from 'lucide-react';
 import Studio5220TextLogo from '@/components/Logo/TextLogo/TextLogo';
+import { clearEmissions } from '@/store/EmissionStore';
 
 /* ----- COMPONENT ----- */
 const AdminPage: React.FC = () => {
@@ -53,7 +54,7 @@ const AdminPage: React.FC = () => {
   // Fonction pour afficher les notifications
   const showNotification = (type: 'success' | 'error', message: string) => {
     setNotification({ show: true, type, message });
-    
+
     // Auto-fermeture après 5 secondes
     setTimeout(() => {
       setNotification({ show: false, type: 'success', message: '' });
@@ -103,7 +104,7 @@ const AdminPage: React.FC = () => {
   }, []);
 
   // Filtrage des utilisateurs selon la recherche
-  const filteredUsers = users.filter(user => 
+  const filteredUsers = users.filter(user =>
     user.pseudo?.toLowerCase().includes(searchUser.toLowerCase())
   );
 
@@ -131,7 +132,7 @@ const AdminPage: React.FC = () => {
   };
 
   const handleUserToggle = (userId: string) => {
-    setSelectedUsers(prev => 
+    setSelectedUsers(prev =>
       prev.includes(userId)
         ? prev.filter(id => id !== userId)
         : [...prev, userId]
@@ -163,15 +164,15 @@ const AdminPage: React.FC = () => {
       const data = new FormData();
       data.append('titre', formData.name);
       data.append('description', formData.description);
-      
+
       const isoDate = new Date(formData.date).toISOString();
       data.append('date', isoDate);
-      
+
       data.append('isActive', '1');
-      data.append('categoriesIds[]', JSON.stringify(formData.categories));
-      data.append('serieIds[]', JSON.stringify(formData.series));
-      data.append('participantsIds[]', JSON.stringify(selectedUsers));
-      
+      // data.append('categoriesIds[]', JSON.stringify(formData.categories));
+      // data.append('serieIds[]', JSON.stringify(formData.series));
+      // data.append('participantsIds[]', JSON.stringify(selectedUsers));
+
       if (formData.audio) data.append('audioFile', formData.audio);
       if (formData.cover) data.append('imageFile', formData.cover);
 
@@ -184,6 +185,8 @@ const AdminPage: React.FC = () => {
         setCoverPreview('');
         setSelectedUsers([]);
         setSearchUser('');
+        clearEmissions();
+        window.location.href = "/"
       } else {
         const error = await response.json();
         showNotification('error', `❌ Erreur : ${error.message || error.detail || 'Une erreur est survenue'}`);
@@ -199,25 +202,23 @@ const AdminPage: React.FC = () => {
   return (
     <div className="min-h-screen w-full flex flex-col justify-center items-center background-dark-green p-4 relative overflow-hidden mt-28">
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 background-mountain-meadow rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
-      
+
       {/* Notification */}
       {notification.show && (
-        <div 
-          className={`fixed top-8 right-8 z-50 max-w-md p-6 rounded-2xl shadow-2xl backdrop-blur-xl border-2 ${
-            notification.type === 'success' 
-              ? 'bg-green-500/20 border-green-500 text-white' 
-              : 'bg-red-500/20 border-red-500 text-white'
-          }`}
+        <div
+          className={`fixed top-8 right-8 z-50 max-w-md p-6 rounded-2xl shadow-2xl backdrop-blur-xl border-2 ${notification.type === 'success'
+            ? 'bg-green-500/20 border-green-500 text-white'
+            : 'bg-red-500/20 border-red-500 text-white'
+            }`}
           style={{
             animation: 'slideInRight 0.3s ease-out'
           }}
         >
           <div className="flex items-start gap-4">
-            <div className={`p-3 rounded-full ${
-              notification.type === 'success' 
-                ? 'bg-green-500' 
-                : 'bg-red-500'
-            }`}>
+            <div className={`p-3 rounded-full ${notification.type === 'success'
+              ? 'bg-green-500'
+              : 'bg-red-500'
+              }`}>
               {notification.type === 'success' ? (
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -228,14 +229,14 @@ const AdminPage: React.FC = () => {
                 </svg>
               )}
             </div>
-            
+
             <div className="flex-1">
               <h3 className="font-bold text-lg mb-1">
                 {notification.type === 'success' ? 'Succès !' : 'Erreur'}
               </h3>
               <p className="text-sm opacity-90">{notification.message}</p>
             </div>
-            
+
             <button
               onClick={() => setNotification({ show: false, type: 'success', message: '' })}
               className="text-white hover:opacity-70 transition-opacity"
@@ -315,11 +316,10 @@ const AdminPage: React.FC = () => {
               {categories.map((category) => (
                 <label
                   key={category.id}
-                  className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${
-                    formData.categories.includes(category.id)
-                      ? 'background-mountain-meadow text-black'
-                      : 'bg-white/5 text-white hover:bg-white/10'
-                  }`}
+                  className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${formData.categories.includes(category.id)
+                    ? 'background-mountain-meadow text-black'
+                    : 'bg-white/5 text-white hover:bg-white/10'
+                    }`}
                 >
                   <input
                     type="checkbox"
@@ -343,11 +343,10 @@ const AdminPage: React.FC = () => {
               {series.map((serie) => (
                 <label
                   key={serie.id}
-                  className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${
-                    formData.series.includes(serie.id)
-                      ? 'background-mountain-meadow text-black'
-                      : 'bg-white/5 text-white hover:bg-white/10'
-                  }`}
+                  className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${formData.series.includes(serie.id)
+                    ? 'background-mountain-meadow text-black'
+                    : 'bg-white/5 text-white hover:bg-white/10'
+                    }`}
                 >
                   <input
                     type="checkbox"
@@ -367,7 +366,7 @@ const AdminPage: React.FC = () => {
               <Users className="text-gray-400" size={20} />
               <label className="text-white font-medium">Participants</label>
             </div>
-            
+
             {/* Barre de recherche */}
             <input
               type="text"
@@ -376,7 +375,7 @@ const AdminPage: React.FC = () => {
               onChange={(e) => setSearchUser(e.target.value)}
               className="w-full bg-black/30 border border-white/10 rounded-lg py-2 px-3 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all mb-3"
             />
-            
+
             {/* Liste des participants */}
             <div className="max-h-48 overflow-y-auto space-y-2">
               {filteredUsers.length === 0 ? (
@@ -387,11 +386,10 @@ const AdminPage: React.FC = () => {
                 filteredUsers.map((user) => (
                   <label
                     key={user.id}
-                    className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${
-                      selectedUsers.includes(user.id)
-                        ? 'background-mountain-meadow text-black'
-                        : 'bg-white/5 text-white hover:bg-white/10'
-                    }`}
+                    className={`flex items-center gap-2 p-3 rounded-lg cursor-pointer transition-all ${selectedUsers.includes(user.id)
+                      ? 'background-mountain-meadow text-black'
+                      : 'bg-white/5 text-white hover:bg-white/10'
+                      }`}
                   >
                     <input
                       type="checkbox"
@@ -405,7 +403,7 @@ const AdminPage: React.FC = () => {
                 ))
               )}
             </div>
-            
+
             {/* Affichage des participants sélectionnés */}
             {selectedUsers.length > 0 && (
               <div className="mt-3 pt-3 border-t border-white/10">

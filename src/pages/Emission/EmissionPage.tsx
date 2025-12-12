@@ -18,7 +18,7 @@ import React, { useEffect, useState } from "react";
 import NotFoundPage from "../NotFound/NotFoundPage";
 import { useParams } from "react-router-dom";
 import AudioPlayer from "@/components/AudioPlayer/AudioPlayer";
-import { getEmissionById, refreshEmissionById } from "@/store/EmissionStore";
+import { getEmissionById } from "@/store/EmissionStore";
 import type { IEmission } from "@/type/Emission";
 import type { IUser } from "@/type/User";
 import type { IComment } from "@/type/Comment";
