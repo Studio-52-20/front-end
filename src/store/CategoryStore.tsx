@@ -35,12 +35,28 @@ function _formatJsonCategory(jsonResponse: any) {
 /* ----- FETCH ----- */
 async function fetchCategories() {
 	try {
-		const response = await fetchGet("categories");
-		const jsonResponse = await response.json();
 		categories.clear();
 		lastCategoriesFetch = Date.now();
-		for (let i = 0; i < jsonResponse.member.length; i++)
-			_formatJsonCategory(jsonResponse.member[i])
+
+		let page = 1;
+		let hasNextPage = true;
+
+		while (hasNextPage) {
+			const response = await fetchGet(`categories?page=${page}`);
+			const jsonResponse = await response.json();
+
+			if (jsonResponse.member) {
+				for (let i = 0; i < jsonResponse.member.length; i++) {
+					_formatJsonCategory(jsonResponse.member[i]);
+				}
+			}
+
+			if (jsonResponse.view && jsonResponse.view.next)
+				page++;
+			else
+				hasNextPage = false;
+		}
+
 	} catch (error) {
 		console.error("Error fetching categories: ", error);
 	}

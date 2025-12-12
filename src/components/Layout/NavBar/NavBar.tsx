@@ -14,12 +14,13 @@
 /* ----- IMPORTS ----- */
 import { GetPageDataByPath } from "@/data/PageData";
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 
 
 /* ----- COMPONENTS ----- */
 import Laptop from "@/components/Layout/NavBar/Laptop/Laptop";
 import Mobile from "@/components/Layout/NavBar/mobile/Mobile";
+import { isAuthenticated } from "@/services/authService";
 
 
 /* ----- COMPONENT ----- */
@@ -36,6 +37,10 @@ const NavBar: React.FC = () => {
 	if (!pageData || !pageData.displayNavBar) {
 		return null;
 	}
+
+	if (pageData.authRequired && !isAuthenticated())
+		return <Navigate to="/auth" />;
+
 
 	return (
 		<>

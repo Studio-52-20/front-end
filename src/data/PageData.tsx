@@ -13,7 +13,6 @@
 
 /* ----- IMPORTS ----- */
 import type { IPageConfig } from "@/type/PageConfig";
-import { GetAllUserRoles, GetUserRoleByName } from "@/data/UserRoleData";
 import HomePage from "@/pages/Home/HomePage";
 import StudioPage from "@/pages/Studio/StudioPage";
 import SearchPage from "@/pages/Search/SearchPage";
@@ -29,16 +28,17 @@ import JournalPage from "@/pages/Journal/Journal";
 
 /* ----- DATAS ----- */
 const PagesDatas: IPageConfig[] = [
-	{ name: "Home", path: "/", content: HomePage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "The Studio", path: "/studio", content: StudioPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "Members", path: "/members", content: MembersPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetUserRoleByName(["Admin", "Viewer"]) },
-	{ name: "Search", path: "/search", content: SearchPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "Emission", path: "/emission/:emissionId", content: EmissionPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "Serie", path: "/serie/:serieId", content: SeriePage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "Category", path: "/category/:categoryId", content: CategoryPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "Auth", path: "/auth", content: AuthPage, displayInNavBar: false, displayNavBar: false, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "Journal", path: "/journal", content: JournalPage, displayInNavBar: true, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
-	{ name: "NotFound", path: "*", content: NotFoundPage, displayInNavBar: false, displayNavBar: true, allowedAccessRoles: GetAllUserRoles() },
+	{ name: "Home", path: "/", content: HomePage, displayInNavBar: false, displayNavBar: true, authRequired: false },
+	{ name: "The Studio", path: "/studio", content: StudioPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "Members", path: "/members", content: MembersPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "Search", path: "/search", content: SearchPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "Emission", path: "/emission/:emissionId", content: EmissionPage, displayInNavBar: false, displayNavBar: true, authRequired: false },
+	{ name: "Serie", path: "/serie/:serieId", content: SeriePage, displayInNavBar: false, displayNavBar: true, authRequired: false },
+	{ name: "Category", path: "/category/:categoryId", content: CategoryPage, displayInNavBar: false, displayNavBar: true, authRequired: false },
+	{ name: "Admin", path: "/admin", content: AdminPage, displayInNavBar: true, displayNavBar: true, authRequired: true },
+	{ name: "Auth", path: "/auth", content: AuthPage, displayInNavBar: false, displayNavBar: false, authRequired: false },
+	{ name: "Journal", path: "/journal", content: JournalPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "NotFound", path: "*", content: NotFoundPage, displayInNavBar: false, displayNavBar: true, authRequired: false },
 ];
 
 
