@@ -20,6 +20,8 @@
     display: none;
 }
 
+
+/* ----- MEDIA QUERY ----- */
 @media screen and (max-width: 768px) {
     .display-laptop-mode {
         display: none;

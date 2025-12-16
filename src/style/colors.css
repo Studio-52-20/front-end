@@ -11,7 +11,7 @@
 */
 
 
-/* ----- VARIABLE ----- */
+/* ----- OVERRIDE ----- */
 :root {
 	--color-dark-green: #032221;
 	--color-dark-green-o50: rgba(3, 34, 33, 0.5);
@@ -31,7 +31,7 @@
 }
 
 
-/* ----- CLASSE ----- */
+/* ----- CLASSES ----- */
 .color-dark-green {
 	color: var(--color-dark-green);
 }

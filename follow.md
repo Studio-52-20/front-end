@@ -130,13 +130,13 @@
 		- [ ] MeStore.tsx
 		- [ ] SerieStore.tsx
 		- [ ] UserStore.tsx
-	- [ ] style
-		- [ ] colors.css
-		- [ ] global.css
-		- [ ] responsive.css
-		- [ ] scrollbar.css
-		- [ ] tailwind.css
-		- [ ] texts.css
+	- [x] style
+		- [x] colors.css
+		- [x] global.css
+		- [x] responsive.css
+		- [x] scrollbar.css
+		- [x] tailwind.css
+		- [x] texts.css
 	- [x] type
 		- [x] Category.tsx
 		- [x] Comment.tsx
