@@ -120,9 +120,9 @@
 				- [ ] NousEcouter.tsx
 				- [ ] Presentation.tsx
 			- [ ] StudioPage.tsx
-	- [ ] services
-		- [ ] authService.tsx
-		- [ ] fetch.tsx
+	- [x] services
+		- [x] authService.tsx
+		- [x] fetch.tsx
 	- [x] store
 		- [x] CategoryStore.tsx
 		- [x] CommentStore.tsx

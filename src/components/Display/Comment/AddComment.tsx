@@ -13,7 +13,7 @@
 
 /* ----- IMPORTS ----- */
 import Loader from "@/components/Layout/Loader/Loader";
-import { fetchPostFormData } from "@/services/fetch";
+import { fetchPost } from "@/services/fetch";
 import { PlusCircle, X, Send, Trash2, CheckCircle, AlertCircle } from "lucide-react";
 import React, { useState } from "react";
 
@@ -60,7 +60,7 @@ const AddComment: React.FC<AddCommentProps> = ({ callback, emissionId }) => {
 		payload.append("userId", "10000000-0000-0000-0000-000000000001");
 
 		try {
-			const response = await fetchPostFormData("commentaires", payload);
+			const response = await fetchPost("commentaires", payload, "formData");
 			if (response.status < 200 || response.status >= 300) {
 				const errorData = await response.json();
 				console.error("Erreur API:", errorData);

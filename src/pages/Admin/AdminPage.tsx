@@ -12,7 +12,7 @@
 
 /* ----- IMPORTS ----- */
 import React, { useState, useEffect } from 'react';
-import { fetchPostFormData, fetchGet } from '@/services/fetch';
+import { fetchGet, fetchPost } from '@/services/fetch';
 import { Music, FileText, Calendar, Image, Loader2, Tag, Users, Tv } from 'lucide-react';
 import Studio5220TextLogo from '@/components/Logo/TextLogo/TextLogo';
 import { clearEmissions } from '@/store/EmissionStore';
@@ -176,7 +176,7 @@ const AdminPage: React.FC = () => {
       if (formData.audio) data.append('audioFile', formData.audio);
       if (formData.cover) data.append('imageFile', formData.cover);
 
-      const response = await fetchPostFormData('emissions', data);
+      const response = await fetchPost('emissions', data, "formData");
 
       if (response.ok) {
         showNotification('success', '🎉 Émission ajoutée avec succès !');
