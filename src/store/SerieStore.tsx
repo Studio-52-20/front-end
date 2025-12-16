@@ -10,12 +10,13 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import type { ISerie } from "@/type/Serie";
 import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
-/* ----- DATAS ----- */
+/* ----- STORAGE ----- */
 let lastSeriesFetch: number = 0;
 const series: Map<string, { fetch: number; serie: ISerie }> = new Map();
 
@@ -34,7 +35,7 @@ function _formatJsonSerie(jsonResponse: any) {
 
 
 /* ----- FETCH ----- */
-async function fetchSeries() {
+async function _fetchSeries() {
 	try {
 		series.clear();
 		lastSeriesFetch = Date.now();
@@ -56,14 +57,14 @@ async function fetchSeries() {
 				page++;
 			else
 				hasNextPage = false;
-			}
+		}
 
 	} catch (error) {
 		console.error("Error fetching series: ", error);
 	}
 }
 
-async function fetchSerie(id: string) {
+async function _fetchSerie(id: string) {
 	try {
 		const response = await fetchGet(`series/${id}`);
 		const jsonResponse = await response.json();
@@ -73,7 +74,24 @@ async function fetchSerie(id: string) {
 	}
 }
 
-export async function getQuerySeries(query: string) {
+
+/* ----- GETTERS ----- */
+async function getSeries() {
+	if (series.size === 0 || Date.now() - lastSeriesFetch > 1000 * 60 * 60 * 24) await _fetchSeries();
+	const tmp: ISerie[] = [];
+	series.forEach((value) => {
+		tmp.push(value.serie);
+	});
+	return tmp;
+}
+
+async function getSerieById(id: string) {
+	const serie = series.get(id);
+	if (serie === undefined || Date.now() - serie.fetch > 1000 * 60 * 60 * 24) await _fetchSerie(id);
+	return series.get(id)?.serie;
+}
+
+async function getQuerySeries(query: string) {
 	await getSeries();
 	const tmp: ISerie[] = [];
 	series.forEach((value) => {
@@ -83,24 +101,6 @@ export async function getQuerySeries(query: string) {
 	return tmp;
 }
 
-/* ----- GETTERS ----- */
-export async function getSeries() {
-	if (series.size === 0 || Date.now() - lastSeriesFetch > 1000 * 60 * 60 * 24) await fetchSeries();
-	const tmp: ISerie[] = [];
-	series.forEach((value) => {
-		tmp.push(value.serie);
-	});
-	return tmp;
-}
 
-export async function getSerieById(id: string) {
-	const serie = series.get(id);
-	if (serie === undefined || Date.now() - serie.fetch > 1000 * 60 * 60 * 24) await fetchSerie(id);
-	return series.get(id)?.serie;
-}
-
-
-/* ----- FUNCTION ----- */
-export function clearSeries() {
-	series.clear();
-}
+/* ----- EXPORTS ----- */
+export { getSeries, getSerieById, getQuerySeries }

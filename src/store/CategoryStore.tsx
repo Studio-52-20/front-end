@@ -10,12 +10,13 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import type { ICategory } from "@/type/Category";
 import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
-/* ----- DATAS ----- */
+/* ----- STORAGE ----- */
 let lastCategoriesFetch: number = 0;
 const categories: Map<string, { fetch: number; category: ICategory }> = new Map();
 
@@ -33,7 +34,7 @@ function _formatJsonCategory(jsonResponse: any) {
 
 
 /* ----- FETCH ----- */
-async function fetchCategories() {
+async function _fetchCategories() {
 	try {
 		categories.clear();
 		lastCategoriesFetch = Date.now();
@@ -62,7 +63,7 @@ async function fetchCategories() {
 	}
 }
 
-async function fetchCategory(id: string) {
+async function _fetchCategory(id: string) {
 	try {
 		const response = await fetchGet(`categories/${id}`);
 		const jsonResponse = await response.json();
@@ -72,7 +73,24 @@ async function fetchCategory(id: string) {
 	}
 }
 
-export async function getQueryCategories(query: string) {
+
+/* ----- GETTERS ----- */
+async function getCategories() {
+	if (categories.size === 0 || Date.now() - lastCategoriesFetch > 1000 * 60 * 60 * 24) await _fetchCategories();
+	const tmp: ICategory[] = [];
+	categories.forEach((value) => {
+		tmp.push(value.category);
+	});
+	return tmp;
+}
+
+async function getCategoryById(id: string) {
+	const category = categories.get(id);
+	if (category === undefined || Date.now() - category.fetch > 1000 * 60 * 60 * 24) await _fetchCategory(id);
+	return categories.get(id)?.category;
+}
+
+async function getQueryCategories(query: string) {
 	await getCategories();
 	const tmp: ICategory[] = [];
 	categories.forEach((value) => {
@@ -82,24 +100,6 @@ export async function getQueryCategories(query: string) {
 	return tmp;
 }
 
-/* ----- GETTERS ----- */
-export async function getCategories() {
-	if (categories.size === 0 || Date.now() - lastCategoriesFetch > 1000 * 60 * 60 * 24) await fetchCategories();
-	const tmp: ICategory[] = [];
-	categories.forEach((value) => {
-		tmp.push(value.category);
-	});
-	return tmp;
-}
 
-export async function getCategoryById(id: string) {
-	const category = categories.get(id);
-	if (category === undefined || Date.now() - category.fetch > 1000 * 60 * 60 * 24) await fetchCategory(id);
-	return categories.get(id)?.category;
-}
-
-
-/* ----- FUNCTION ----- */
-export function clearCategories() {
-	categories.clear();
-}
+/* ----- EXPORTS ----- */
+export { getCategories, getCategoryById, getQueryCategories }

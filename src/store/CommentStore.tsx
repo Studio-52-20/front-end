@@ -10,12 +10,13 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import type { IComment } from "@/type/Comment";
 import { fetchGet } from "@/services/fetch";
 
 
-/* ----- DATAS ----- */
+/* ----- STORAGE ----- */
 let lastCommentsFetch: number = 0;
 const comments: Map<string, { fetch: number; comment: IComment }> = new Map();
 
@@ -34,7 +35,7 @@ function _formatJsonComment(jsonResponse: any) {
 
 
 /* ----- FETCH ----- */
-async function fetchComments() {
+async function _fetchComments() {
 	try {
 		comments.clear();
 
@@ -62,7 +63,7 @@ async function fetchComments() {
 	}
 }
 
-async function fetchComment(id: string) {
+async function _fetchComment(id: string) {
 	try {
 		const response = await fetchGet(`commentaires/${id}`);
 		const jsonResponse = await response.json();
@@ -73,8 +74,8 @@ async function fetchComment(id: string) {
 }
 
 /* ----- GETTERS ----- */
-export async function getComments() {
-	if (comments.size === 0 || Date.now() - lastCommentsFetch > 1000 * 60 * 60 * 24) await fetchComments();
+async function getComments() {
+	if (comments.size === 0 || Date.now() - lastCommentsFetch > 1000 * 60 * 60 * 24) await _fetchComments();
 	const tmp: IComment[] = [];
 	comments.forEach((value) => {
 		tmp.push(value.comment);
@@ -82,13 +83,13 @@ export async function getComments() {
 	return tmp;
 }
 
-export async function getCommentById(id: string) {
+async function getCommentById(id: string) {
 	const comment = comments.get(id);
-	if (comment === undefined || Date.now() - comment.fetch > 1000 * 60 * 60 * 24) await fetchComment(id);
+	if (comment === undefined || Date.now() - comment.fetch > 1000 * 60 * 60 * 24) await _fetchComment(id);
 	return comments.get(id)?.comment;
 }
 
-export async function getCommentsByIds(ids: string[]) {
+async function getCommentsByIds(ids: string[]) {
 	const promises = ids.map(async (id) => {
 		try {
 			return await getCommentById(id);
@@ -102,7 +103,5 @@ export async function getCommentsByIds(ids: string[]) {
 }
 
 
-/* ----- FUNCTION ----- */
-export function clearComments() {
-	comments.clear();
-}
+/* ----- EXPORTS ----- */
+export { getComments, getCommentById, getCommentsByIds }

@@ -123,13 +123,13 @@
 	- [ ] services
 		- [ ] authService.tsx
 		- [ ] fetch.tsx
-	- [ ] store
-		- [ ] CategoryStore.tsx
-		- [ ] CommentStore.tsx
-		- [ ] EmissionStore.tsx
-		- [ ] MeStore.tsx
-		- [ ] SerieStore.tsx
-		- [ ] UserStore.tsx
+	- [x] store
+		- [x] CategoryStore.tsx
+		- [x] CommentStore.tsx
+		- [x] EmissionStore.tsx
+		- [x] MeStore.tsx
+		- [x] SerieStore.tsx
+		- [x] UserStore.tsx
 	- [x] style
 		- [x] colors.css
 		- [x] global.css
