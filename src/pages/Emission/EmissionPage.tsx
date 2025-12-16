@@ -27,7 +27,7 @@ import { getSerieById } from "@/store/SerieStore";
 import { getUsersByIds } from "@/store/UserStore";
 import { getCommentsByIds } from "@/store/CommentStore";
 import Loader from "@/components/Layout/Loader/Loader";
-import AddComment from "@/components/Display/Comment/AddComment";
+import AddComment from "@/components/Display/Comment/AddComment/AddComment";
 
 
 /* ----- COMPONENT ----- */
