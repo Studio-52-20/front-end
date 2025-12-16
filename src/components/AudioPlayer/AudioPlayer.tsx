@@ -33,9 +33,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }: AudioPlayerProps) => {
 
 	const formatTime = (time: number) => {
 		const minutes = Math.floor(time / 60);
-		const seconds = Math.floor(time % 60)
-			.toString()
-			.padStart(2, "0");
+		const seconds = Math.floor(time % 60).toString().padStart(2, "0");
 		return `${minutes}:${seconds}`;
 	};
 
@@ -87,7 +85,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }: AudioPlayerProps) => {
 	}, []);
 
 	return (
-		<div className="w-full max-w-xl text-white py-4 flex flex-col gap-6 rounded-xl">
+		<div className="w-full max-w-xl color-anti-flash-white py-4 flex flex-col gap-6 rounded-xl">
 			<audio ref={audioRef} src={src} preload="metadata" />
 
 			<div className="flex justify-between items-center gap-4 textStyle-text opacity-80">
@@ -104,7 +102,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }: AudioPlayerProps) => {
 				</div>
 				<div>{formatTime(duration)}</div>
 			</div>
-
 
 			<div className="flex justify-around items-center gap-4">
 				<button onClick={restart} className="p-2 rounded-full hover:bg-(--color-anti-flash-white-o25) transition-all">
@@ -127,4 +124,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }: AudioPlayerProps) => {
 	);
 }
 
+
+/* ----- EXPORT ----- */
 export default AudioPlayer;

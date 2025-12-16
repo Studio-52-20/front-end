@@ -36,4 +36,6 @@ const DisplayUserHover: React.FC<DisplayUserHoverProps> = ({ user }) => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplayUserHover;

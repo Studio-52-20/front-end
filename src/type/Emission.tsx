@@ -11,9 +11,6 @@
 */
 
 
-/* ----- IMPORTS ----- */
-
-
 /* ----- TYPE ----- */
 export interface IEmission {
 	id: string;

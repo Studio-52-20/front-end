@@ -10,6 +10,7 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import DisplayCategorySmall from "@/components/Display/Category/DisplayCategorySmall";
 import DisplayEmissionMedium from "@/components/Display/Emission/DisplayEmissionMedium";
@@ -18,18 +19,18 @@ import Loader from "@/components/Layout/Loader/Loader";
 import { getCategories } from "@/store/CategoryStore";
 import { getRecentEmissions } from "@/store/EmissionStore";
 import { getSeries } from "@/store/SerieStore";
-import type { ICategory } from "@/type/Category";
 import type { IEmission } from "@/type/Emission";
-import type { ISerie } from "@/type/Serie";
+import type { IEmissionList } from "@/type/EmissionList";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+
 /* ----- COMPONENT ----- */
 const HomePage: React.FC = () => {
 	const [emissions, setEmissions] = useState<IEmission[]>([]);
-	const [series, setSeries] = useState<ISerie[]>([]);
-	const [categories, setCategories] = useState<ICategory[]>([]);
+	const [series, setSeries] = useState<IEmissionList[]>([]);
+	const [categories, setCategories] = useState<IEmissionList[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -122,7 +123,8 @@ const HomePage: React.FC = () => {
 		<div className="flex justify-center items-center h-screen textStyle-title">
 			No emissions...
 		</div>
-
 };
 
+
+/* ----- EXPORT ----- */
 export default HomePage;

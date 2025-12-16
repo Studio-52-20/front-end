@@ -10,12 +10,13 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import type { IUser } from "@/type/User";
 import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
-/* ----- DATAS ----- */
+/* ----- STORAGE ----- */
 let lastUsersFetch: number = 0;
 const users: Map<string, { fetch: number; user: IUser }> = new Map();
 
@@ -32,7 +33,7 @@ function _formatJsonUser(jsonResponse: any) {
 
 
 /* ----- FETCH ----- */
-async function fetchUsers() {
+async function _fetchUsers() {
 	try {
 		users.clear();
 		lastUsersFetch = Date.now();
@@ -61,7 +62,7 @@ async function fetchUsers() {
 	}
 }
 
-async function fetchUser(id: string) {
+async function _fetchUser(id: string) {
 	try {
 		const response = await fetchGet(`users/${id}`);
 		const jsonResponse = await response.json();
@@ -71,9 +72,10 @@ async function fetchUser(id: string) {
 	}
 }
 
+
 /* ----- GETTERS ----- */
-export async function getUsers() {
-	if (users.size === 0 || Date.now() - lastUsersFetch > 1000 * 60 * 60 * 24) await fetchUsers();
+async function getUsers() {
+	if (users.size === 0 || Date.now() - lastUsersFetch > 1000 * 60 * 60 * 24) await _fetchUsers();
 	const tmp: IUser[] = [];
 	users.forEach((value) => {
 		tmp.push(value.user);
@@ -81,13 +83,13 @@ export async function getUsers() {
 	return tmp;
 }
 
-export async function getUserById(id: string) {
+async function getUserById(id: string) {
 	const user = users.get(id);
-	if (user === undefined || Date.now() - user.fetch > 1000 * 60 * 60 * 24) await fetchUser(id);
+	if (user === undefined || Date.now() - user.fetch > 1000 * 60 * 60 * 24) await _fetchUser(id);
 	return users.get(id)?.user;
 }
 
-export async function getUsersByIds(ids: string[]) {
+async function getUsersByIds(ids: string[]) {
 	const promises = ids.map(async (id) => {
 		try {
 			return await getUserById(id);
@@ -101,7 +103,5 @@ export async function getUsersByIds(ids: string[]) {
 }
 
 
-/* ----- FUNCTION ----- */
-export function clearUsers() {
-	users.clear();
-}
+/* ----- EXPORTS ----- */
+export { getUsers, getUserById, getUsersByIds }

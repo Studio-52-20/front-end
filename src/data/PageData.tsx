@@ -30,15 +30,15 @@ import AdminPage from "@/pages/Admin/AdminPage";
 /* ----- DATAS ----- */
 const PagesDatas: IPageConfig[] = [
 	{ name: "Home", path: "/", content: HomePage, displayInNavBar: false, displayNavBar: true, authRequired: false },
-	{ name: "The Studio", path: "/studio", content: StudioPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
-	{ name: "Members", path: "/members", content: MembersPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
-	{ name: "Search", path: "/search", content: SearchPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "Studio", path: "/studio", content: StudioPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "Membres", path: "/members", content: MembersPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "Rechercher", path: "/search", content: SearchPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
 	{ name: "Emission", path: "/emission/:emissionId", content: EmissionPage, displayInNavBar: false, displayNavBar: true, authRequired: false },
 	{ name: "Serie", path: "/serie/:serieId", content: SeriePage, displayInNavBar: false, displayNavBar: true, authRequired: false },
-	{ name: "Category", path: "/category/:categoryId", content: CategoryPage, displayInNavBar: false, displayNavBar: true, authRequired: false },
+	{ name: "Categorie", path: "/category/:categoryId", content: CategoryPage, displayInNavBar: false, displayNavBar: true, authRequired: false },
 	{ name: "Admin", path: "/admin", content: AdminPage, displayInNavBar: true, displayNavBar: true, authRequired: true },
-	{ name: "Auth", path: "/auth", content: AuthPage, displayInNavBar: false, displayNavBar: false, authRequired: false },
 	{ name: "Journal", path: "/journal", content: JournalPage, displayInNavBar: true, displayNavBar: true, authRequired: false },
+	{ name: "Auth", path: "/auth", content: AuthPage, displayInNavBar: false, displayNavBar: false, authRequired: false },
 	{ name: "NotFound", path: "*", content: NotFoundPage, displayInNavBar: false, displayNavBar: true, authRequired: false },
 ];
 

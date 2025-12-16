@@ -12,11 +12,11 @@
 
 
 /* ----- IMPORTS ----- */
-import type { ITeamMember } from "@/type/TeamMember";
+import type { IMember } from "@/type/User";
 
 
 /* ----- DATAS ----- */
-const TeamMemberDatas: ITeamMember[] = [
+const TeamMemberDatas: IMember[] = [
 	{
 		name: "Clement",
 		role: "Président",
@@ -80,9 +80,8 @@ const TeamMemberDatas: ITeamMember[] = [
 ];
 
 
-
 /* ----- FUNCTIONS ----- */
-function GetTeamMemberDatas(): ITeamMember[] {
+function GetTeamMemberDatas(): IMember[] {
 	return TeamMemberDatas;
 }
 

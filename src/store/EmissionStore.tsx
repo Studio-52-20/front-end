@@ -10,12 +10,13 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import type { IEmission } from "@/type/Emission";
 import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
-/* ----- DATAS ----- */
+/* ----- STORAGE ----- */
 let lastEmissionsFetch: number = 0;
 const emissions: Map<string, { fetch: number; emission: IEmission }> = new Map();
 
@@ -38,7 +39,7 @@ function _formatJsonEmission(jsonResponse: any) {
 
 
 /* ----- FETCH ----- */
-async function fetchEmissions() {
+async function _fetchEmissions() {
 	try {
 		emissions.clear();
 		lastEmissionsFetch = Date.now();
@@ -67,7 +68,7 @@ async function fetchEmissions() {
 	}
 }
 
-async function fetchEmission(id: string) {
+async function _fetchEmission(id: string) {
 	try {
 		const response = await fetchGet(`emissions/${id}`);
 		const jsonResponse = await response.json();
@@ -78,8 +79,8 @@ async function fetchEmission(id: string) {
 }
 
 /* ----- GETTERS ----- */
-export async function getEmissions() {
-	if (emissions.size === 0 || Date.now() - lastEmissionsFetch > 1000 * 60 * 60 * 24) await fetchEmissions();
+async function getEmissions() {
+	if (emissions.size === 0 || Date.now() - lastEmissionsFetch > 1000 * 60 * 60 * 24) await _fetchEmissions();
 	const tmp: IEmission[] = [];
 	emissions.forEach((value) => {
 		tmp.push(value.emission);
@@ -87,13 +88,13 @@ export async function getEmissions() {
 	return tmp;
 }
 
-export async function getEmissionById(id: string) {
+async function getEmissionById(id: string) {
 	const emission = emissions.get(id);
-	if (emission === undefined || Date.now() - emission.fetch > 1000 * 60 * 60 * 24) await fetchEmission(id);
+	if (emission === undefined || Date.now() - emission.fetch > 1000 * 60 * 60 * 24) await _fetchEmission(id);
 	return emissions.get(id)?.emission;
 }
 
-export async function getQueryEmissions(query: string) {
+async function getQueryEmissions(query: string) {
 	await getEmissions();
 	const tmp: IEmission[] = [];
 	emissions.forEach((value) => {
@@ -103,7 +104,7 @@ export async function getQueryEmissions(query: string) {
 	return tmp;
 }
 
-export async function getEmissionsByIds(ids: string[]) {
+async function getEmissionsByIds(ids: string[]) {
 	const promises = ids.map(async (id) => {
 		try {
 			return await getEmissionById(id);
@@ -116,13 +117,7 @@ export async function getEmissionsByIds(ids: string[]) {
 	return results.filter((c): c is IEmission => c !== undefined);
 }
 
-
-/* ----- FUNCTION ----- */
-export function clearEmissions() {
-	emissions.clear();
-}
-
-export async function getRecentEmissions(count: number) {
+async function getRecentEmissions(count: number) {
 	await getEmissions();
 	const sortedEmissions = Array.from(emissions.values())
 		.sort((a, b) => b.emission.date.getTime() - a.emission.date.getTime())
@@ -130,3 +125,13 @@ export async function getRecentEmissions(count: number) {
 		.map(item => item.emission);
 	return sortedEmissions;
 }
+
+
+/* ----- FUNCTION ----- */
+function clearEmissions() {
+	emissions.clear();
+}
+
+
+/* ----- EXPORTS ----- */
+export { getEmissions, getEmissionById, getEmissionsByIds, getQueryEmissions, getRecentEmissions, clearEmissions}

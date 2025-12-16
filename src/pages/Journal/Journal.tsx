@@ -37,4 +37,6 @@ const JournalPage: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default JournalPage;
