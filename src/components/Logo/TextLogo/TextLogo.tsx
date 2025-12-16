@@ -32,4 +32,6 @@ const Studio5220TextLogo: React.FC<Studio5220TextLogoProps> = ({ color = 'var(--
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default Studio5220TextLogo;

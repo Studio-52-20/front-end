@@ -35,7 +35,11 @@ const NavBar: React.FC = () => {
 				{pagesConfigs.map((pageConfig) => {
 					if (pageConfig.authRequired && !isAuthenticated()) return;
 					return (
-						<NavLink key={pageConfig.name} to={pageConfig.path} className={({ isActive }) => `${isActive ? css.activeLink : ''} textStyle-subtitle color-mountain-meadow ${css.navbarLink}`}>
+						<NavLink
+							key={pageConfig.name}
+							to={pageConfig.path}
+							className={({ isActive }) => `${isActive ? css.activeLink : ''} textStyle-subtitle color-mountain-meadow ${css.navbarLink}`}
+						>
 							{pageConfig.name}
 						</NavLink>
 					)
@@ -46,4 +50,6 @@ const NavBar: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default NavBar;

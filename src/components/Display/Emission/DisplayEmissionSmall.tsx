@@ -47,4 +47,6 @@ const DisplayEmissionSmall: React.FC<DisplayEmissionSmallProps> = ({ emission })
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplayEmissionSmall;

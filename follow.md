@@ -42,44 +42,44 @@
 - [ ] src
 	- [ ] App.tsx
 	- [ ] components
-		- [ ] AudioPlayer
-			- [ ] AudioPlayer.tsx
+		- [x] AudioPlayer
+			- [x] AudioPlayer.tsx
 		- [ ] Display
-		- [ ] Auth
-			- [ ] DisplayAuthButton
-				- [ ] DisplayAuthButton.tsx
-		- [ ] Category
-			- [ ] DisplayCategorySmall.tsx
-		- [ ] Comment
-			- [ ] AddComment.tsx
-			- [ ] DisplayComment.tsx
-		- [ ] Emission
-			- [ ] DisplayEmissionMedium.tsx
-			- [ ] DisplayEmissionSmall.tsx
-		- [ ] Serie
-			- [ ] DisplaySerieSmall.tsx
-		- [ ] SocialNetwork
-			- [ ] DisplaySocialNetwork.tsx
-		- [ ] User
-			- [ ] Hover
-				- [ ] DisplayUserHover.tsx
-		- [ ] Layout
-		- [ ] Footer
-			- [ ] Footer.tsx
-		- [ ] Loader
-			- [ ] Loader.module.css
-			- [ ] Loader.tsx
-		- [ ] NavBar
-			- [ ] Laptop
-				- [ ] Laptop.module.css
-				- [ ] Laptop.tsx
-			- [ ] mobile
-				- [ ] Mobile.module.css
-				- [ ] Mobile.tsx
-			- [ ] NavBar.tsx
-		- [ ] Logo
-			- [ ] TextLogo
-				- [ ] TextLogo.tsx
+			- [x] Auth
+				- [x] DisplayAuthButton
+					- [x] DisplayAuthButton.tsx
+			- [x] Category
+				- [x] DisplayCategorySmall.tsx
+			- [ ] Comment
+				- [ ] AddComment.tsx
+				- [x] DisplayComment.tsx
+			- [x] Emission
+				- [x] DisplayEmissionMedium.tsx
+				- [x] DisplayEmissionSmall.tsx
+			- [x] Serie
+				- [x] DisplaySerieSmall.tsx
+			- [x] SocialNetwork
+				- [x] DisplaySocialNetwork.tsx
+			- [x] User
+				- [x] Hover
+					- [x] DisplayUserHover.tsx
+		- [x] Layout
+			- [x] Footer
+				- [x] Footer.tsx
+			- [x] Loader
+				- [x] Loader.module.css
+				- [x] Loader.tsx
+			- [x] NavBar
+				- [x] Laptop
+					- [x] Laptop.module.css
+					- [x] Laptop.tsx
+				- [x] mobile
+					- [x] Mobile.module.css
+					- [x] Mobile.tsx
+				- [x] NavBar.tsx
+		- [x] Logo
+			- [x] TextLogo
+				- [x] TextLogo.tsx
 	- [ ] data
 		- [ ] PageData.tsx
 		- [ ] SocialNetworkData.tsx

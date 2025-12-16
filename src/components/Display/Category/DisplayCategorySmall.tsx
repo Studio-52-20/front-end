@@ -36,4 +36,6 @@ const DisplayCategorySmall: React.FC<DisplayCategorySmallProps> = ({ category })
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplayCategorySmall;

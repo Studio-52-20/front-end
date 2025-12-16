@@ -34,9 +34,8 @@ const NavBar: React.FC = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [pathname]);
 
-	if (!pageData || !pageData.displayNavBar) {
+	if (!pageData || !pageData.displayNavBar)
 		return null;
-	}
 
 	if (pageData.authRequired && !isAuthenticated())
 		return <Navigate to="/auth" />;
@@ -54,4 +53,6 @@ const NavBar: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default NavBar;

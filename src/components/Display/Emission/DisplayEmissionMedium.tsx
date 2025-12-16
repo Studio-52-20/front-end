@@ -45,4 +45,6 @@ const DisplayEmissionMedium: React.FC<DisplayEmissionMediumProps> = ({ emission 
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplayEmissionMedium;

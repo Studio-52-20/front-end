@@ -39,4 +39,6 @@ const DisplaySerieSmall: React.FC<DisplaySerieSmallProps> = ({ serie }) => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplaySerieSmall;

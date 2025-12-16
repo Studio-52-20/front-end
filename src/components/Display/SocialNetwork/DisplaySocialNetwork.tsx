@@ -40,4 +40,6 @@ const DisplaySocialNetwork: React.FC<DisplaySocialNetworkProps> = ({ social, col
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplaySocialNetwork;
