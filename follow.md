@@ -1,0 +1,149 @@
+- [x] public
+	- [x] example
+		- [x] audio
+			- [x] creepypasta_1.MP3
+			- [x] creepypasta_2.MP3
+			- [x] example.mp3
+		- [x] img
+			- [x] clement.jpg
+			- [x] creepypasta_1.png
+			- [x] creepypasta_2.png
+			- [x] kanna.png
+			- [x] lucas.jpg
+			- [x] martin.jpg
+			- [x] nathan.png
+			- [x] romane.jpg
+	- [x] img
+		- [x] anonymous_user.jpg
+		- [x] default_img.jpg
+		- [x] micro.png
+		- [x] illustrations
+			- [x] casqueAudio.png
+			- [x] journalCover.png
+			- [x] microphone.png
+			- [x] tableDeMixage.png
+		- [x] teamMembers
+			- [x] clement.jpeg
+			- [x] elisa.jpeg
+			- [x] ethan.jpeg
+			- [x] florian.jpeg
+			- [x] matteo.jpeg
+			- [x] nathan.jpeg
+	- [x] pdf
+		- [x] Journal studio 5220 - UQAC.pdf
+	- [x] svg
+		- [x] Studio5220-logo.svg
+		- [x] socials
+			- [x] discordIcon.svg
+			- [x] instagramIcon.svg
+			- [x] outlookIcon.svg
+			- [x] spotifyIcon.svg
+- [ ] README.md
+- [ ] src
+	- [ ] App.tsx
+	- [ ] components
+		- [ ] AudioPlayer
+			- [ ] AudioPlayer.tsx
+		- [ ] Display
+		- [ ] Auth
+			- [ ] DisplayAuthButton
+				- [ ] DisplayAuthButton.tsx
+		- [ ] Category
+			- [ ] DisplayCategorySmall.tsx
+		- [ ] Comment
+			- [ ] AddComment.tsx
+			- [ ] DisplayComment.tsx
+		- [ ] Emission
+			- [ ] DisplayEmissionMedium.tsx
+			- [ ] DisplayEmissionSmall.tsx
+		- [ ] Serie
+			- [ ] DisplaySerieSmall.tsx
+		- [ ] SocialNetwork
+			- [ ] DisplaySocialNetwork.tsx
+		- [ ] User
+			- [ ] Hover
+				- [ ] DisplayUserHover.tsx
+		- [ ] Layout
+		- [ ] Footer
+			- [ ] Footer.tsx
+		- [ ] Loader
+			- [ ] Loader.module.css
+			- [ ] Loader.tsx
+		- [ ] NavBar
+			- [ ] Laptop
+				- [ ] Laptop.module.css
+				- [ ] Laptop.tsx
+			- [ ] mobile
+				- [ ] Mobile.module.css
+				- [ ] Mobile.tsx
+			- [ ] NavBar.tsx
+		- [ ] Logo
+			- [ ] TextLogo
+				- [ ] TextLogo.tsx
+	- [ ] data
+		- [ ] PageData.tsx
+		- [ ] SocialNetworkData.tsx
+		- [ ] TeamMemberData.tsx
+		- [ ] WebsiteConfigData.tsx
+	- [ ] main.tsx
+	- [ ] pages
+		- [ ] Admin
+		- [ ] AdminPage.tsx
+		- [ ] Auth
+		- [ ] Auth.tsx
+		- [ ] Category
+		- [ ] CategoryPage.tsx
+		- [ ] Emission
+		- [ ] EmissionPage.tsx
+		- [ ] Home
+		- [ ] HomePage.tsx
+		- [ ] Journal
+		- [ ] Content
+			- [ ] PdfReader.tsx
+			- [ ] Presentation.tsx
+		- [ ] Journal.tsx
+		- [ ] Members
+		- [ ] Members.tsx
+		- [ ] NotFound
+		- [ ] NotFoundPage.tsx
+		- [ ] Search
+		- [ ] Content
+			- [ ] DisplayResult.tsx
+			- [ ] SearchBar.tsx
+		- [ ] SearchPage.tsx
+		- [ ] Serie
+		- [ ] SeriePage.tsx
+		- [ ] Studio
+			- [ ] Content
+				- [ ] Equipe.tsx
+				- [ ] InvitationParticipation.tsx
+				- [ ] NousEcouter.tsx
+				- [ ] Presentation.tsx
+			- [ ] StudioPage.tsx
+	- [ ] services
+		- [ ] authService.tsx
+		- [ ] fetch.tsx
+	- [ ] store
+		- [ ] CategoryStore.tsx
+		- [ ] CommentStore.tsx
+		- [ ] EmissionStore.tsx
+		- [ ] MeStore.tsx
+		- [ ] SerieStore.tsx
+		- [ ] UserStore.tsx
+	- [ ] style
+		- [ ] colors.css
+		- [ ] global.css
+		- [ ] responsive.css
+		- [ ] scrollbar.css
+		- [ ] tailwind.css
+		- [ ] texts.css
+	- [x] type
+		- [x] Category.tsx
+		- [x] Comment.tsx
+		- [x] Emission.tsx
+		- [x] PageConfig.tsx
+		- [x] Serie.tsx
+		- [x] SocialNetwork.tsx
+		- [x] TeamMember.tsx
+		- [x] User.tsx
+		- [x] WebsiteConfig.tsx
