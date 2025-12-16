@@ -10,6 +10,7 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import { ArrowRight, ChevronDown, Search, X } from "lucide-react";
 import React, { useState } from "react";
@@ -125,4 +126,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onClear }) => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default SearchBar;

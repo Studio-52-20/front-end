@@ -19,12 +19,14 @@ export interface IUser {
 }
 
 export interface IMember {
-	id: string;
-	username: string;
-	image: string;
+	name: string;
+	role: string;
 	bio: string;
-	email: string;
-	emissions: string[];
+	image: string;
+	fullBio: string;
+	joinDate: string;
+	quote: string;
+	recommendedEmission: string;
 }
 
 export interface IUserMe {

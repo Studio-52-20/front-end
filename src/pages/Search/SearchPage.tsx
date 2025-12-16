@@ -10,12 +10,12 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import React from "react";
 import SearchBar from "./Content/SearchBar";
 import type { IEmission } from "@/type/Emission";
-import type { ICategory } from "@/type/Category";
-import type { ISerie } from "@/type/Serie";
+import type { IEmissionList } from "@/type/EmissionList";
 import Loader from "@/components/Layout/Loader/Loader";
 import { getQuerySeries } from "@/store/SerieStore";
 import { getQueryEmissions } from "@/store/EmissionStore";
@@ -26,8 +26,8 @@ import SearchPageDisplayResult from "./Content/DisplayResult";
 /* ----- COMPONENT ----- */
 const SearchPage: React.FC = () => {
 	const [emissions, setEmissions] = React.useState<IEmission[]>([]);
-	const [categories, setCategories] = React.useState<ICategory[]>([]);
-	const [series, setSeries] = React.useState<ISerie[]>([]);
+	const [categories, setCategories] = React.useState<IEmissionList[]>([]);
+	const [series, setSeries] = React.useState<IEmissionList[]>([]);
 	const [query, setQuery] = React.useState<string>("");
 	const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -78,4 +78,6 @@ const SearchPage: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default SearchPage;

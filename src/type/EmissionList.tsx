@@ -12,13 +12,10 @@
 
 
 /* ----- TYPE ----- */
-export interface ITeamMember {
+export interface IEmissionList {
+	id: string;
 	name: string;
-	role: string;
-	bio: string;
+	description: string;
 	image: string;
-	fullBio: string;
-	joinDate: string;
-	quote: string;
-	recommendedEmission: string;
+	emissions: string[];
 };

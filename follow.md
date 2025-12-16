@@ -91,35 +91,35 @@
 			- [ ] AdminPage.tsx
 		- [ ] Auth
 			- [ ] Auth.tsx
-		- [ ] Category
-			- [ ] CategoryPage.tsx
-		- [ ] Emission
-			- [ ] EmissionPage.tsx
-		- [ ] Home
-			- [ ] HomePage.tsx
-		- [ ] Journal
-			- [ ] Content
-				- [ ] PdfReader.tsx
-				- [ ] Presentation.tsx
-			- [ ] Journal.tsx
-		- [ ] Members
-			- [ ] Members.tsx
-		- [ ] NotFound
-			- [ ] NotFoundPage.tsx
-		- [ ] Search
-			- [ ] Content
-				- [ ] DisplayResult.tsx
-				- [ ] SearchBar.tsx
-			- [ ] SearchPage.tsx
-		- [ ] Serie
-			- [ ] SeriePage.tsx
-		- [ ] Studio
-			- [ ] Content
-				- [ ] Equipe.tsx
-				- [ ] InvitationParticipation.tsx
-				- [ ] NousEcouter.tsx
-				- [ ] Presentation.tsx
-			- [ ] StudioPage.tsx
+		- [x] Category
+			- [x] CategoryPage.tsx
+		- [x] Emission
+			- [x] EmissionPage.tsx
+		- [x] Home
+			- [x] HomePage.tsx
+		- [x] Journal
+			- [x] Content
+				- [x] PdfReader.tsx
+				- [x] Presentation.tsx
+			- [x] Journal.tsx
+		- [x] Members
+			- [x] Members.tsx
+		- [x] NotFound
+			- [x] NotFoundPage.tsx
+		- [x] Search
+			- [x] Content
+				- [x] DisplayResult.tsx
+				- [x] SearchBar.tsx
+			- [x] SearchPage.tsx
+		- [x] Serie
+			- [x] SeriePage.tsx
+		- [x] Studio
+			- [x] Content
+				- [x] Equipe.tsx
+				- [x] InvitationParticipation.tsx
+				- [x] NousEcouter.tsx
+				- [x] Presentation.tsx
+			- [x] StudioPage.tsx
 	- [x] services
 		- [x] authService.tsx
 		- [x] fetch.tsx

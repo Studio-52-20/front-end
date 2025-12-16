@@ -12,18 +12,18 @@
 
 
 /* ----- IMPORTS ----- */
-import type { ISerie } from "@/type/Serie";
+import type { IEmissionList } from "@/type/EmissionList";
 import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
 /* ----- STORAGE ----- */
 let lastSeriesFetch: number = 0;
-const series: Map<string, { fetch: number; serie: ISerie }> = new Map();
+const series: Map<string, { fetch: number; serie: IEmissionList }> = new Map();
 
 
 /* ----- PRIVATE FUNCTION ----- */
 function _formatJsonSerie(jsonResponse: any) {
-	const tmp: ISerie = {
+	const tmp: IEmissionList = {
 		id: jsonResponse["id"],
 		name: jsonResponse["nom"],
 		description: jsonResponse["description"],
@@ -78,7 +78,7 @@ async function _fetchSerie(id: string) {
 /* ----- GETTERS ----- */
 async function getSeries() {
 	if (series.size === 0 || Date.now() - lastSeriesFetch > 1000 * 60 * 60 * 24) await _fetchSeries();
-	const tmp: ISerie[] = [];
+	const tmp: IEmissionList[] = [];
 	series.forEach((value) => {
 		tmp.push(value.serie);
 	});
@@ -93,7 +93,7 @@ async function getSerieById(id: string) {
 
 async function getQuerySeries(query: string) {
 	await getSeries();
-	const tmp: ISerie[] = [];
+	const tmp: IEmissionList[] = [];
 	series.forEach((value) => {
 		if (value.serie.name.toLowerCase().includes(query.toLowerCase()))
 			tmp.push(value.serie);

@@ -12,20 +12,21 @@
 
 
 /* ----- IMPORTS ----- */
-import type { ICategory } from "@/type/Category";
+import type { IEmissionList } from "@/type/EmissionList";
 import { fetchGet, getFullUrl } from "@/services/fetch";
 
 
 /* ----- STORAGE ----- */
 let lastCategoriesFetch: number = 0;
-const categories: Map<string, { fetch: number; category: ICategory }> = new Map();
+const categories: Map<string, { fetch: number; category: IEmissionList }> = new Map();
 
 
 /* ----- PRIVATE FUNCTION ----- */
 function _formatJsonCategory(jsonResponse: any) {
-	const tmp: ICategory = {
+	const tmp: IEmissionList = {
 		id: jsonResponse["id"],
 		name: jsonResponse["nom"],
+		description: jsonResponse["description"] ?? "",
 		image: getFullUrl(jsonResponse["imageUrl"]) ?? "/img/default_img.jpg",
 		emissions: jsonResponse["emissionIds"] ?? [],
 	}
@@ -77,7 +78,7 @@ async function _fetchCategory(id: string) {
 /* ----- GETTERS ----- */
 async function getCategories() {
 	if (categories.size === 0 || Date.now() - lastCategoriesFetch > 1000 * 60 * 60 * 24) await _fetchCategories();
-	const tmp: ICategory[] = [];
+	const tmp: IEmissionList[] = [];
 	categories.forEach((value) => {
 		tmp.push(value.category);
 	});
@@ -92,7 +93,7 @@ async function getCategoryById(id: string) {
 
 async function getQueryCategories(query: string) {
 	await getCategories();
-	const tmp: ICategory[] = [];
+	const tmp: IEmissionList[] = [];
 	categories.forEach((value) => {
 		if (value.category.name.toLowerCase().includes(query.toLowerCase()))
 			tmp.push(value.category);

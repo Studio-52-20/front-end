@@ -12,13 +12,13 @@
 
 
 /* ----- IMPORTS ----- */
-import type { ICategory } from "@/type/Category";
+import type { IEmissionList } from "@/type/EmissionList";
 import React from "react";
 
 
 /* ----- PROPS ----- */
 type DisplayCategorySmallProps = {
-	category: ICategory
+	category: IEmissionList
 };
 
 

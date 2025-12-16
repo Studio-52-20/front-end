@@ -12,13 +12,13 @@
 
 
 /* ----- IMPORTS ----- */
-import type { ISerie } from "@/type/Serie";
+import type { IEmissionList } from "@/type/EmissionList";
 import React from "react";
 
 
 /* ----- PROPS ----- */
 type DisplaySerieSmallProps = {
-	serie: ISerie
+	serie: IEmissionList
 };
 
 

@@ -22,7 +22,7 @@ import { getEmissionById } from "@/store/EmissionStore";
 import type { IEmission } from "@/type/Emission";
 import type { IUser } from "@/type/User";
 import type { IComment } from "@/type/Comment";
-import type { ISerie } from "@/type/Serie";
+import type { IEmissionList } from "@/type/EmissionList";
 import { getSerieById } from "@/store/SerieStore";
 import { getUsersByIds } from "@/store/UserStore";
 import { getCommentsByIds } from "@/store/CommentStore";
@@ -35,7 +35,7 @@ const EmissionPage: React.FC = () => {
 	const [emission, setEmission] = useState<IEmission | undefined>(undefined);
 	const [participants, setParticipants] = useState<IUser[]>([]);
 	const [comments, setComments] = useState<IComment[]>([]);
-	const [serie, setSerie] = useState<ISerie | undefined>(undefined);
+	const [serie, setSerie] = useState<IEmissionList | undefined>(undefined);
 	const [loading, setLoading] = useState(true);
 	const { emissionId } = useParams();
 
@@ -147,4 +147,6 @@ const EmissionPage: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default EmissionPage;

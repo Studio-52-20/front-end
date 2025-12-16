@@ -91,4 +91,6 @@ const JournalPresentation: React.FC<JournalPresentationProps> = ({ onReadJournal
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default JournalPresentation;
