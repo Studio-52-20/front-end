@@ -88,31 +88,31 @@
 	- [ ] main.tsx
 	- [ ] pages
 		- [ ] Admin
-		- [ ] AdminPage.tsx
+			- [ ] AdminPage.tsx
 		- [ ] Auth
-		- [ ] Auth.tsx
+			- [ ] Auth.tsx
 		- [ ] Category
-		- [ ] CategoryPage.tsx
+			- [ ] CategoryPage.tsx
 		- [ ] Emission
-		- [ ] EmissionPage.tsx
+			- [ ] EmissionPage.tsx
 		- [ ] Home
-		- [ ] HomePage.tsx
+			- [ ] HomePage.tsx
 		- [ ] Journal
-		- [ ] Content
-			- [ ] PdfReader.tsx
-			- [ ] Presentation.tsx
-		- [ ] Journal.tsx
+			- [ ] Content
+				- [ ] PdfReader.tsx
+				- [ ] Presentation.tsx
+			- [ ] Journal.tsx
 		- [ ] Members
-		- [ ] Members.tsx
+			- [ ] Members.tsx
 		- [ ] NotFound
-		- [ ] NotFoundPage.tsx
+			- [ ] NotFoundPage.tsx
 		- [ ] Search
-		- [ ] Content
-			- [ ] DisplayResult.tsx
-			- [ ] SearchBar.tsx
-		- [ ] SearchPage.tsx
+			- [ ] Content
+				- [ ] DisplayResult.tsx
+				- [ ] SearchBar.tsx
+			- [ ] SearchPage.tsx
 		- [ ] Serie
-		- [ ] SeriePage.tsx
+			- [ ] SeriePage.tsx
 		- [ ] Studio
 			- [ ] Content
 				- [ ] Equipe.tsx
