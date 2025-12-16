@@ -111,8 +111,6 @@ La page d’émission permet :
 - de consulter les commentaires  
 - écouter l’émission via un lecteur audio
 
-Les données affichées proviennent d’un fichier temporaire (`TemporaryData`) en attendant la version finale connectée à un backend.
-
 <br>
 
 ---
@@ -160,7 +158,7 @@ Le projet utilise React Router DOM avec des routes paramétrées :
 - `/emission/:emissionId`
 - `/404`
 
-Une redirection automatique sera mise en place ultérieurement pour les pages inconnues / authentification.
+Une redirection automatique est mise en place pour les pages inconnues / authentification.
 
 <br>
 
@@ -202,9 +200,10 @@ Projet réalisé par :
 
 ## 📄 Licence
 
-À compléter selon les exigences du cours.  
-Si aucune indication n’est donnée : **MIT** est conseillé.
+Copyright © 2025 Studio 52-20. Tous droits réservés.
 
+Ce projet est la propriété exclusive de ses auteurs. Toute reproduction, distribution ou modification, partielle ou totale, est interdite sans l'autorisation écrite préalable des auteurs.
+s
 <br>
 
 ---

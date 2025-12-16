@@ -38,7 +38,7 @@
 			- [x] instagramIcon.svg
 			- [x] outlookIcon.svg
 			- [x] spotifyIcon.svg
-- [ ] README.md
+- [x] README.md
 - [ ] src
 	- [x] App.tsx
 	- [x] components
