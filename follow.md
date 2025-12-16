@@ -41,17 +41,17 @@
 - [ ] README.md
 - [ ] src
 	- [ ] App.tsx
-	- [ ] components
+	- [x] components
 		- [x] AudioPlayer
 			- [x] AudioPlayer.tsx
-		- [ ] Display
+		- [x] Display
 			- [x] Auth
 				- [x] DisplayAuthButton
 					- [x] DisplayAuthButton.tsx
 			- [x] Category
 				- [x] DisplayCategorySmall.tsx
-			- [ ] Comment
-				- [ ] AddComment.tsx
+			- [x] Comment
+				- [x] AddComment.tsx
 				- [x] DisplayComment.tsx
 			- [x] Emission
 				- [x] DisplayEmissionMedium.tsx
@@ -80,11 +80,11 @@
 		- [x] Logo
 			- [x] TextLogo
 				- [x] TextLogo.tsx
-	- [ ] data
-		- [ ] PageData.tsx
-		- [ ] SocialNetworkData.tsx
-		- [ ] TeamMemberData.tsx
-		- [ ] WebsiteConfigData.tsx
+	- [x] data
+		- [x] PageData.tsx
+		- [x] SocialNetworkData.tsx
+		- [x] TeamMemberData.tsx
+		- [x] WebsiteConfigData.tsx
 	- [ ] main.tsx
 	- [ ] pages
 		- [ ] Admin

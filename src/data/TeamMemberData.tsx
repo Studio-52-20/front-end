@@ -80,7 +80,6 @@ const TeamMemberDatas: ITeamMember[] = [
 ];
 
 
-
 /* ----- FUNCTIONS ----- */
 function GetTeamMemberDatas(): ITeamMember[] {
 	return TeamMemberDatas;

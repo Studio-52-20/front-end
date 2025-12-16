@@ -16,7 +16,11 @@ import type { IWebsiteConfig } from "@/type/WebsiteConfig";
 
 
 /* ----- DATAS ----- */
-export const WebsiteConfigDatas: IWebsiteConfig = {
+const WebsiteConfigDatas: IWebsiteConfig = {
 	siteName: "Studio 52.20",
 	iconLink: "/svg/Studio5220-logo.svg",
 }
+
+
+/* ----- EXPORTS ----- */
+export { WebsiteConfigDatas };
