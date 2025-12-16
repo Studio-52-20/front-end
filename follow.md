@@ -40,7 +40,7 @@
 			- [x] spotifyIcon.svg
 - [ ] README.md
 - [ ] src
-	- [ ] App.tsx
+	- [x] App.tsx
 	- [x] components
 		- [x] AudioPlayer
 			- [x] AudioPlayer.tsx
@@ -85,7 +85,7 @@
 		- [x] SocialNetworkData.tsx
 		- [x] TeamMemberData.tsx
 		- [x] WebsiteConfigData.tsx
-	- [ ] main.tsx
+	- [x] main.tsx
 	- [ ] pages
 		- [ ] Admin
 			- [ ] AdminPage.tsx
