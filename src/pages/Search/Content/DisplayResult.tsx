@@ -10,11 +10,11 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import React from "react";
-import type { ICategory } from "@/type/Category";
 import type { IEmission } from "@/type/Emission";
-import type { ISerie } from "@/type/Serie";
+import type { IEmissionList } from "@/type/EmissionList";
 import { Link } from "react-router-dom";
 import DisplayCategorySmall from "@/components/Display/Category/DisplayCategorySmall";
 import DisplayEmissionMedium from "@/components/Display/Emission/DisplayEmissionMedium";
@@ -24,8 +24,8 @@ import DisplaySerieSmall from "@/components/Display/Serie/DisplaySerieSmall";
 /* ----- PROPS ----- */
 interface SearchBarProps {
 	emissions: IEmission[];
-	categories: ICategory[];
-	series: ISerie[];
+	categories: IEmissionList[];
+	series: IEmissionList[];
 }
 
 
@@ -43,46 +43,53 @@ const SearchPageDisplayResult: React.FC<SearchBarProps> = ({ emissions, categori
 	const gridClass = "grid grid-rows-2 grid-flow-col auto-cols-max overflow-x-auto justify-start";
 	const flexClass = "flex flex-wrap justify-center items-start";
 
+	const elements = [
+		{
+			lenOk: emissions.length > 0,
+			title: "Emissions",
+			list: emissions,
+			linkPrefix: '/emission/',
+			component: (item: any) => <DisplayEmissionMedium emission={item as IEmission} />
+		},
+		{
+			lenOk: categories.length > 0,
+			title: "Categories",
+			list: categories,
+			linkPrefix: '/category/',
+			component: (item: any) => <DisplayCategorySmall category={item as IEmissionList} />
+		},
+		{
+			lenOk: series.length > 0,
+			title: "Series",
+			list: series,
+			linkPrefix: '/serie/',
+			component: (item: any) => <DisplaySerieSmall serie={item as IEmissionList} />
+		}
+	]
+
 	return (
 		<div className="flex flex-col gap-16">
-			{emissions.length > 0 &&
-				<div className="flex flex-col gap-4">
-					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Emissions</div>
-					<div className={`gap-4 pb-4 px-1 ${onlyOne || emissions.length <= 2 ? flexClass : gridClass}`}>
-						{emissions.map((emission) => (
-							<Link key={emission.id} to={`/emission/${emission.id}`}>
-								<DisplayEmissionMedium emission={emission} />
-							</Link>
-						))}
-					</div>
-				</div>
-			}
-			{categories.length > 0 &&
-				<div className="flex flex-col gap-4">
-					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Categories</div>
-					<div className={`gap-4 pb-4 px-1 ${onlyOne || categories.length <= 2 ? flexClass : gridClass}`}>
-						{categories.map((category) => (
-							<Link key={category.id} to={`/category/${category.id}`}>
-								<DisplayCategorySmall category={category} />
-							</Link>
-						))}
-					</div>
-				</div>
-			}
-			{series.length > 0 &&
-				<div className="flex flex-col gap-4">
-					<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>Series</div>
-					<div className={`gap-4 pb-4 px-1 ${onlyOne || series.length <= 2 ? flexClass : gridClass}`}>
-						{series.map((serie) => (
-							<Link key={serie.id} to={`/serie/${serie.id}`}>
-								<DisplaySerieSmall serie={serie} />
-							</Link>
-						))}
-					</div>
-				</div>
+			{
+				elements.map((elem) => {
+					if (elem.lenOk)
+						return (
+							<div className="flex flex-col gap-4">
+								<div className={`textStyle-title color-anti-flash-white ${onlyOne ? "text-center" : ""}`}>{elem.title}</div>
+								<div className={`gap-4 pb-4 px-1 ${onlyOne || emissions.length <= 2 ? flexClass : gridClass}`}>
+									{elem.list.map((item) => (
+										<Link key={item.id} to={`${elem.linkPrefix}${item.id}`}>
+											{elem.component(item)}
+										</Link>
+									))}
+								</div>
+							</div>
+						);
+				})
 			}
 		</div>
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default SearchPageDisplayResult;

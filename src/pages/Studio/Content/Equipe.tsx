@@ -10,9 +10,11 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import React from "react";
 import { GetTeamMemberDatas } from "@/data/TeamMemberData";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 
 /* ----- COMPONENT ----- */
@@ -43,12 +45,18 @@ const StudioEquipePart: React.FC = () => {
 					</div>
 				</div>
 
-				<div className="text-center textStyle-text italic">
-					← Fais défiler pour voir toute l'équipe →
+				<div className="text-center textStyle-text italic flex justify-center items-center gap-4">
+					<ChevronLeftIcon size={16} />
+					<span>
+						Fais défiler pour voir toute l'équipe
+					</span>
+					<ChevronRightIcon size={16} />
 				</div>
 			</div>
 		</section>
 	);
 };
 
+
+/* ----- EXPORTS ----- */
 export default StudioEquipePart;

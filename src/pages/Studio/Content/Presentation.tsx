@@ -10,6 +10,7 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import React from "react";
 
@@ -59,4 +60,6 @@ const StudioPresentationPart: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORTS ----- */
 export default StudioPresentationPart;

@@ -38,17 +38,19 @@ const DisplayAuthButton: React.FC = () => {
 		fetchData();
 	}, []);
 
+	function disconnect() {
+		logout();
+		setUserMe(undefined);
+	}
+
+
 	if (isAuthenticated() && userMe) {
 		return (
 			<div className="flex items-center gap-4">
 				<div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full py-1 pr-4 pl-1 backdrop-blur-sm shadow-sm transition-all hover:bg-white/10 hover:border-(--color-mountain-meadow) group cursor-default">
 					<div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20 group-hover:border-(--color-mountain-meadow) transition-colors">
 						{userMe.image ? (
-							<img
-								src={userMe.image}
-								alt={userMe.username}
-								className="w-full h-full object-cover"
-							/>
+							<img src={userMe.image} alt={userMe.username} className="w-full h-full object-cover" />
 						) : (
 							<div className="w-full h-full bg-gray-600 flex items-center justify-center text-xs text-white font-bold">
 								{userMe.username.charAt(0).toUpperCase()}
@@ -63,10 +65,7 @@ const DisplayAuthButton: React.FC = () => {
 
 				<button
 					className="flex items-center justify-center p-2 rounded-full text-(--color-mountain-meadow) hover:bg-red-500/20 hover:text-red-400 transition-all duration-300"
-					onClick={() => {
-						logout();
-						setUserMe(undefined);
-					}}
+					onClick={disconnect}
 					title="Se déconnecter"
 				>
 					<LogOut size={24} />
@@ -77,17 +76,13 @@ const DisplayAuthButton: React.FC = () => {
 
 	return (
 		<NavLink to="/auth">
-			<button
-				className="group flex items-center justify-center p-2 rounded-full hover:bg-white/10 transition-all duration-300"
-				title="Se connecter"
-			>
-				<UserCircle2
-					size={32}
-					className="color-mountain-meadow group-hover:scale-110 transition-transform duration-200"
-				/>
+			<button title="Se connecter" className="group flex items-center justify-center p-2 rounded-full hover:bg-white/10 transition-all duration-300" >
+				<UserCircle2 size={32} className="color-mountain-meadow group-hover:scale-110 transition-transform duration-200" />
 			</button>
 		</NavLink>
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplayAuthButton;

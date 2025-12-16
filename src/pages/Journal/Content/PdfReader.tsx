@@ -86,4 +86,6 @@ const JournalPdfReader: React.FC<JournalPdfReaderProps> = ({ id, pdfUrl }) => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default JournalPdfReader;

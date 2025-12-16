@@ -10,6 +10,8 @@
 	--U-----U------------------------
 */
 
+
+/* ----- IMPORTS ----- */
 import { isAuthenticated } from "./authService";
 
 
@@ -19,7 +21,7 @@ const API_URL = `${BASE_URL}/api`;
 
 
 /* ----- PRIVATE FUNCTIONS ----- */
-const getHeaders = (contentType: string | null = "application/json") => {
+const _getHeaders = (contentType: string | null = "application/json") => {
 	let headers: HeadersInit = {};
 
 	if (contentType) {
@@ -36,38 +38,28 @@ const getHeaders = (contentType: string | null = "application/json") => {
 };
 
 
-/* ----- PUBLIC FUNCTIONS ----- */
-export function fetchGet(url: string) {
-	const completeUrl = `${API_URL}/${url}`;
-	return fetch(completeUrl, {
-		method: "GET",
-		headers: getHeaders(),
-	});
-}
-
-export function fetchPostFormData(url: string, body: FormData) {
-	const completeUrl = `${API_URL}/${url}`;
-
-	return fetch(completeUrl, {
-		method: "POST",
-		headers: getHeaders(null),
-		body: body,
-	});
-}
-
-export function fetchPostJson(url: string, body: any) {
-	const completeUrl = `${API_URL}/${url}`;
-	return fetch(completeUrl, {
-		method: "POST",
-		headers: getHeaders("application/json"),
-		body: JSON.stringify(body),
-	});
-}
-
-export function getBaseUrl() {
-	return BASE_URL;
-}
-
-export function getFullUrl(relativeUrl: string) {
+/* ----- GETTER ----- */
+function getFullUrl(relativeUrl: string) {
 	return `${BASE_URL}${relativeUrl}`;
 }
+
+
+/* ----- PUBLIC FUNCTIONS ----- */
+function fetchGet(url: string) {
+	return fetch(`${API_URL}/${url}`, {
+		method: "GET",
+		headers: _getHeaders(),
+	});
+}
+
+function fetchPost(url: string, body: any, type: "json" | "formData") {
+	return fetch(`${API_URL}/${url}`, {
+		method: "POST",
+		headers: _getHeaders(type == "json" ? "application/json" : null),
+		body: type == "json" ? JSON.stringify(body) : body as FormData,
+	});
+}
+
+
+/* ----- EXPORT ----- */
+export { getFullUrl, fetchGet, fetchPost }

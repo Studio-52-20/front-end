@@ -10,6 +10,7 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import React from "react";
 import StudioPresentationPart from "./Content/Presentation";
@@ -30,4 +31,6 @@ const StudioPage: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORTS ----- */
 export default StudioPage;

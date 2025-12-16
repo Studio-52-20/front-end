@@ -48,4 +48,6 @@ const DisplayComment: React.FC<DisplayCommentProps> = ({ comment }) => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default DisplayComment;

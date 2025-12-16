@@ -58,4 +58,6 @@ const NavBar: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default NavBar;

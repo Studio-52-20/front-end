@@ -15,7 +15,7 @@ import type { IUserMe } from "@/type/User";
 import { fetchGet } from "@/services/fetch";
 
 
-/* ----- DATAS ----- */
+/* ----- STORAGE ----- */
 let lastUsersFetch: number = 0;
 let me: IUserMe | undefined = undefined
 
@@ -34,7 +34,7 @@ function _formatJsonUser(jsonResponse: any) {
 
 
 /* ----- FETCH ----- */
-async function fetchMe() {
+async function _fetchMe() {
 	try {
 		const response = await fetchGet("me");
 		const jsonResponse = await response.json();
@@ -46,13 +46,19 @@ async function fetchMe() {
 	}
 }
 
+
 /* ----- GETTERS ----- */
-export async function getMe() {
-	if (me === undefined || Date.now() - lastUsersFetch > 1000 * 60 * 60 * 24) await fetchMe();
+async function getMe() {
+	if (me === undefined || Date.now() - lastUsersFetch > 1000 * 60 * 60 * 24) await _fetchMe();
 	return me;
 }
 
+
 /* ----- FUNCTION ----- */
-export function clearMe() {
+function clearMe() {
 	me = undefined;
 }
+
+
+/* ----- EXPORTS ----- */
+export { getMe, clearMe }

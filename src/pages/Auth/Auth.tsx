@@ -14,7 +14,7 @@
 /* ----- IMPORTS ----- */
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Mail, Lock, User, Loader2, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, Loader2, ArrowRight, X, Check } from "lucide-react";
 import Studio5220TextLogo from "@/components/Logo/TextLogo/TextLogo";
 import { login, register } from "@/services/authService";
 
@@ -29,6 +29,8 @@ const AuthPage: React.FC = () => {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+
 
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -47,6 +49,13 @@ const AuthPage: React.FC = () => {
 		e.preventDefault();
 		setError(null);
 		setIsLoading(true);
+
+		if (password !== confirmPassword) {
+			setError("Les mots de passe ne correspondent pas.");
+			setIsLoading(false);
+			return;
+		}
+
 
 		if (await register(username, email, password)) {
 			navigate("/");
@@ -116,6 +125,25 @@ const AuthPage: React.FC = () => {
 							required
 						/>
 					</div>
+					{
+						!isLoginMode && (
+							<div className="relative group">
+								<Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-(--color-mountain-meadow) transition-colors" size={20} />
+								<input
+									type="password"
+									placeholder="Confirmer le mot de passe"
+									value={confirmPassword}
+									onChange={(e) => setConfirmPassword(e.target.value)}
+									className={`w-full bg-black/20 border ${confirmPassword == "" ? "border-white/10" : password !== confirmPassword ? "border-red-800" : "border-green-800"} rounded-xl py-3 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-(--color-mountain-meadow) transition-all`}
+									required
+								/>
+								{confirmPassword == "" ? null : password !== confirmPassword ?
+									<X className="absolute right-3 top-1/2 -translate-y-1/2 text-red-800" size={20} /> :
+									<Check className="absolute right-3 top-1/2 -translate-y-1/2 text-green-800" size={20} />
+								}
+							</div>
+						)
+					}
 					<button
 						type="submit"
 						disabled={isLoading}
@@ -155,4 +183,6 @@ const AuthPage: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORT ----- */
 export default AuthPage;

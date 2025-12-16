@@ -10,6 +10,7 @@
 	--U-----U------------------------
 */
 
+
 /* ----- IMPORTS ----- */
 import DisplaySocialNetwork from "@/components/Display/SocialNetwork/DisplaySocialNetwork";
 import { GetSocialNetworkDatas } from "@/data/SocialNetworkData";
@@ -55,4 +56,6 @@ const StudioNousEcouterPart: React.FC = () => {
 	);
 };
 
+
+/* ----- EXPORTS ----- */
 export default StudioNousEcouterPart;
