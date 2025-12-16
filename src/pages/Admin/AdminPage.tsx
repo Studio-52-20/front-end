@@ -17,6 +17,7 @@ import { Music, FileText, Calendar, Image, Loader2, Tag, Users, Tv } from 'lucid
 import Studio5220TextLogo from '@/components/Logo/TextLogo/TextLogo';
 import { clearEmissions } from '@/store/EmissionStore';
 
+
 /* ----- COMPONENT ----- */
 const AdminPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -501,4 +502,6 @@ const AdminPage: React.FC = () => {
   );
 };
 
+
+/* ----- EXPORT ----- */
 export default AdminPage;

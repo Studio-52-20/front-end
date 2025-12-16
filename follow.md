@@ -39,7 +39,7 @@
 			- [x] outlookIcon.svg
 			- [x] spotifyIcon.svg
 - [x] README.md
-- [ ] src
+- [x] src
 	- [x] App.tsx
 	- [x] components
 		- [x] AudioPlayer
@@ -86,11 +86,11 @@
 		- [x] TeamMemberData.tsx
 		- [x] WebsiteConfigData.tsx
 	- [x] main.tsx
-	- [ ] pages
-		- [ ] Admin
-			- [ ] AdminPage.tsx
-		- [ ] Auth
-			- [ ] Auth.tsx
+	- [x] pages
+		- [x] Admin
+			- [x] AdminPage.tsx
+		- [x] Auth
+			- [x] Auth.tsx
 		- [x] Category
 			- [x] CategoryPage.tsx
 		- [x] Emission
